@@ -9,7 +9,8 @@ function Messagebar() {
     return (
         <>
             <div className="message-bar">
-                Send a message...
+                <div className="text-input">Type a message here...</div>
+                <div className="send-button">Send</div>
             </div>
         </>
     )

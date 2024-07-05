@@ -9,7 +9,7 @@ function Recipientbar() {
     return (
         <>
             <div className="recipient-bar">
-                Recipient bar
+                To: Person
             </div>
         </>
     )

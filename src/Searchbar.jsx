@@ -9,7 +9,8 @@ function Searchbar() {
     return (
         <>
             <div className="search-bar">
-                Search bar
+                <div className="icon">Icon</div>
+                <div className="input">Search ...</div>
             </div>
         </>
     )
