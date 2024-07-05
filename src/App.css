@@ -1,8 +1,8 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /*margin: 0 auto;*/
+  /*padding: 2rem;*/
+  /*text-align: center;*/
 }
 
 .logo {
@@ -39,4 +39,44 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.sidebar {
+  background-color: #46b11f;
+}
+
+.chatWindow-container {
+  background-color: #46b11f;
+  width: 100%;
+  min-width: 350px;
+  overflow: auto;
+}
+
+.sidebar-container {
+  background-color: #f89f00;
+  max-width: 20%;
+  min-width: 175px;
+  overflow: auto;
+}
+
+.app-container {
+  background-color: #242424;
+  resize: both;
+  overflow: auto;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+}
+
+.search-bar {
+  border-width: 2px;
+  border-style: solid;
+  max-height: 100px;
+}
+
+.recipient-bar {
+  border-width: 2px;
+  border-style: solid;
+  max-height: 100px;
 }
