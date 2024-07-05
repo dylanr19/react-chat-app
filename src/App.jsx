@@ -6,6 +6,7 @@ import ChatWindow from './ChatWindow.jsx'
 import Sidebar from './Sidebar.jsx'
 import Searchbar from './Searchbar.jsx'
 import Recipientbar from './Recipientbar.jsx'
+import Messagebar from './Messagebar.jsx'
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -22,6 +23,7 @@ function App() {
             <div className={"chatWindow-container"}>
                 <Recipientbar></Recipientbar>
                 <ChatWindow></ChatWindow>
+                <Messagebar></Messagebar>
             </div>
 
         </div>
