@@ -1,5 +1,6 @@
 #root {
-  max-width: 1280px;
+  /*max-width: 1280px;*/
+  overflow: hidden;
   /*margin: 0 auto;*/
   /*padding: 2rem;*/
   /*text-align: center;*/
@@ -41,48 +42,60 @@
 /*  color: #888;*/
 /*}*/
 
-.sidebar {
-  background-color: #46b11f;
-}
-
-.chatWindow-container {
-  background-color: #f8f9fd;
-  width: 100%;
-  min-width: 350px;
-  overflow: auto;
-}
-
-.sidebar-container {
-  background-color: white;
-  max-width: 20%;
-  min-width: 175px;
-  overflow: auto;
-}
-
 .app-container {
   background-color: #242424;
   resize: both;
-  overflow: auto;
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: stretch;
 }
 
+.sidebar-container {
+  background-color: white;
+  max-width: 20%;
+  min-width: 150px;
+}
+
 .search-bar {
   border-width: 2px;
+  border-left-width: 0px;
+  border-right-width: 0px;
   border-style: solid;
-  max-height: 100px;
+  min-height: 60px;
+  height: 15%;
+  width: 100%;
+}
+
+.side-bar {
+  overflow: auto;
+}
+
+.chatWindow-container {
+  background-color: #f8f9fd;
+  width: 100%;
+  min-width: 350px;
 }
 
 .recipient-bar {
+  border-width: 2px;
+  border-style: solid;
   height: 15%;
+  min-height: 60px;
 }
 
 .chat-window {
-  height: 70%;
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-right-width: 2px;
+  border-right-style: solid;
+  height: 75%;
+  overflow: auto;
 }
 
 .message-bar {
-  height: 15%;
+  border-width: 2px;
+  border-bottom-width: 0px;
+  border-style: solid;
+  height: 10%;
 }
