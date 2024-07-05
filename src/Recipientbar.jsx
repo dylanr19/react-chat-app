@@ -3,7 +3,7 @@
 //import viteLogo from '/vite.svg'
 import './App.css'
 
-function Searchbar() {
+function Recipientbar() {
     //const [count, setCount] = useState(0)
 
     return (
@@ -15,4 +15,4 @@ function Searchbar() {
     )
 }
 
-export default Searchbar
+export default Recipientbar
