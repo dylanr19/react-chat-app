@@ -9,7 +9,7 @@ function Recipientbar() {
     return (
         <>
             <div className="recipient-bar">
-                <h1>Recipient bar</h1>
+                Recipient bar
             </div>
         </>
     )

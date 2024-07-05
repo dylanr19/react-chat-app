@@ -62,13 +62,14 @@
   border-left-width: 0px;
   border-right-width: 0px;
   border-style: solid;
-  min-height: 60px;
-  height: 15%;
+  min-height: 50px;
+  height: 8%;
   width: 100%;
 }
 
 .side-bar {
   overflow: auto;
+  height: 92%;
 }
 
 .chatWindow-container {
@@ -80,8 +81,8 @@
 .recipient-bar {
   border-width: 2px;
   border-style: solid;
-  height: 15%;
-  min-height: 60px;
+  height: 8%;
+  min-height: 50px;
 }
 
 .chat-window {
@@ -89,7 +90,7 @@
   border-left-style: solid;
   border-right-width: 2px;
   border-right-style: solid;
-  height: 75%;
+  height: 82%;
   overflow: auto;
 }
 
