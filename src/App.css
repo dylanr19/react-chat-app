@@ -90,21 +90,34 @@
 
 .message-bar .text-input {
   width: 100%;
+  border:  none;
+  background-color: #f8f9fd;
+  outline: none;
   align-content: center;
   padding-left: 1%;
 }
 
 .message-bar .send-button {
-  background-color: #157347;
+  background-color: #159059;
   margin: 1%;
   border-radius: 50%;
-  width: 47px;
-  height: 42px;
+  font-size: 8px;
   text-align: center;
-  align-content: center;
   align-self: center;
+  outline: none;
 }
 
+.message-bar .send-button:hover {
+  background-color: #157347;
+  box-shadow: 0 2px 5px 0 rgba(13, 13, 13, 0.24), 0 17px 50px 0 rgba(39, 39, 39, 0.19);
+}
+
+.message-bar .send-button:active {
+  opacity: 0.8;
+  font-size: 7px;
+}
+
+/* bootstrap icon */
 .message-bar .send-button .bi {
   font-size: 20px;
   color: whitesmoke;

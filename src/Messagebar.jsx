@@ -10,10 +10,10 @@ function Messagebar() {
     return (
         <>
             <div className="message-bar">
-                <div className="text-input">Type a message here...</div>
-                <div className="send-button">
+                <input type="text" className="text-input" placeholder="Type a message here ..." />
+                <button type="button" className="send-button">
                     <i className="bi bi-send-fill"></i>
-                </div>
+                </button>
             </div>
         </>
     )
