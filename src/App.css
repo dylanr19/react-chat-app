@@ -34,16 +34,21 @@
   display: flex;
 }
 
+/* bootstrap search icon */
 .search-bar .bi.bi-search {
   font-size: 15px;
   color: dimgray;
   align-content: center;
   text-align: center;
+  position: relative;
+  left: 5px;
   width: 30%;
 }
 
 .search-bar .input {
   align-content: center;
+  outline: none;
+  border: none;
   width: 70%;
 }
 

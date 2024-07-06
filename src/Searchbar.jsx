@@ -10,7 +10,7 @@ function Searchbar() {
         <>
             <div className="search-bar">
                 <i className="bi bi-search"></i>
-                <div className="input">Search ...</div>
+                <input type="text" className="input" placeholder="Search ..."/>
             </div>
         </>
     )
