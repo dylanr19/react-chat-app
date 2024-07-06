@@ -6,45 +6,8 @@
   /*text-align: center;*/
 }
 
-/*.logo {*/
-/*  height: 6em;*/
-/*  padding: 1.5em;*/
-/*  will-change: filter;*/
-/*  transition: filter 300ms;*/
-/*}*/
-/*.logo:hover {*/
-/*  filter: drop-shadow(0 0 2em #646cffaa);*/
-/*}*/
-/*.logo.react:hover {*/
-/*  filter: drop-shadow(0 0 2em #61dafbaa);*/
-/*}*/
-
-/*@keyframes logo-spin {*/
-/*  from {*/
-/*    transform: rotate(0deg);*/
-/*  }*/
-/*  to {*/
-/*    transform: rotate(360deg);*/
-/*  }*/
-/*}*/
-
-/*@media (prefers-reduced-motion: no-preference) {*/
-/*  a:nth-of-type(2) .logo {*/
-/*    animation: logo-spin infinite 20s linear;*/
-/*  }*/
-/*}*/
-
-/*.card {*/
-/*  padding: 2em;*/
-/*}*/
-
-/*.read-the-docs {*/
-/*  color: #888;*/
-/*}*/
-
 .app-container {
   background-color: #242424;
-  resize: both;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -54,13 +17,16 @@
 .sidebar-container {
   background-color: white;
   width: 18%;
+  height: 100%;
   min-width: 150px;
+  display: flex;
+  flex-direction: column;
 }
 
 .search-bar {
   border-width: 2px;
-  border-left-width: 0px;
-  border-right-width: 0px;
+  border-left-width: 0;
+  border-right-width: 0;
   border-style: solid;
   min-height: 50px;
   height: 8%;
@@ -68,14 +34,15 @@
   display: flex;
 }
 
-.search-bar .icon {
-  background-color: blue;
+.search-bar .bi.bi-search {
+  font-size: 15px;
+  color: dimgray;
   align-content: center;
+  text-align: center;
   width: 30%;
 }
 
 .search-bar .input {
-  background-color: red;
   align-content: center;
   width: 70%;
 }
@@ -87,12 +54,19 @@
 
 .chatWindow-container {
   background-color: #f8f9fd;
-  width: 82%;
+  border-width: 0;
+  border-left-width: 2px;
+  border-style: solid;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   min-width: 350px;
 }
 
 .recipient-bar {
-  border-width: 2px;
+  border-width: 0;
+  border-bottom-width: 2px;
+  border-top-width: 2px;
   border-style: solid;
   height: 8%;
   min-height: 50px;
@@ -102,32 +76,36 @@
 }
 
 .chat-window {
-  border-left-width: 2px;
-  border-left-style: solid;
-  border-right-width: 2px;
-  border-right-style: solid;
-  height: 82%;
+  height: 84%;
   overflow: auto;
 }
 
 .message-bar {
-  border-width: 2px;
-  border-bottom-width: 0px;
-  border-style: solid;
-  height: 10%;
+  outline: 2px solid black;
+  min-height: 50px;
+  height: 8%;
+  width: 100%;
   display: flex;
 }
 
 .message-bar .text-input {
-  background-color: blue;
   width: 100%;
   align-content: center;
   padding-left: 1%;
 }
 
 .message-bar .send-button {
-  background-color: red;
-  width: 15%;
-  max-width: 80px;
+  background-color: #157347;
+  margin: 1%;
+  border-radius: 50%;
+  width: 47px;
+  height: 42px;
+  text-align: center;
   align-content: center;
+  align-self: center;
+}
+
+.message-bar .send-button .bi {
+  font-size: 20px;
+  color: whitesmoke;
 }

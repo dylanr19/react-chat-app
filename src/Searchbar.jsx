@@ -9,7 +9,7 @@ function Searchbar() {
     return (
         <>
             <div className="search-bar">
-                <div className="icon">Icon</div>
+                <i className="bi bi-search"></i>
                 <div className="input">Search ...</div>
             </div>
         </>
