@@ -1,4 +1,5 @@
 import './App.css'
+import ChatBox from './ChatBox'
 
 function ChatWindow() {
 
@@ -6,7 +7,7 @@ function ChatWindow() {
     return (
         <>
             <div className="chat-window">
-
+                <ChatBox></ChatBox>
             </div>
         </>
     )

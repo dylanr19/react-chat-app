@@ -7,6 +7,7 @@ import Sidebar from './Sidebar.jsx'
 import Searchbar from './Searchbar.jsx'
 import Recipientbar from './Recipientbar.jsx'
 import Messagebar from './Messagebar.jsx'
+import ChatBox from './ChatBox.jsx'
 
 function App() {
   //const [count, setCount] = useState(0)
