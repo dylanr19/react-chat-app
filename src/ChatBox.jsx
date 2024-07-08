@@ -5,7 +5,7 @@ function ChatBox({ photo, text, date, isPartner }) {
 
     return (
         <>
-            <div className="chat-box-partner">
+            <div className="chat-box-received">
                 <div className="photo-container">
                     <img className="photo"
                          src="https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg"/>
@@ -16,14 +16,14 @@ function ChatBox({ photo, text, date, isPartner }) {
                 </div>
             </div>
 
-            <div className="chat-box-self">
+            <div className="chat-box-sent">
                 <div className="message-container">
                     <span className="text">Hey Jake, Doing good!</span>
                     <span className="date">11:03 AM, January, 23rd</span>
                 </div>
             </div>
 
-            <div className="chat-box-partner">
+            <div className="chat-box-received">
                 <div className="photo-container">
                     <img className="photo"
                          src="https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg"/>
@@ -34,7 +34,7 @@ function ChatBox({ photo, text, date, isPartner }) {
                 </div>
             </div>
 
-            <div className="chat-box-self">
+            <div className="chat-box-sent">
                 <div className="message-container">
                     <span className="text">Yes I did. You passed the test!</span>
                     <span className="date">11:03 AM, January, 23rd</span>

@@ -87,7 +87,7 @@
   overflow: auto;
 }
 
-.chat-box-partner {
+.chat-box-received {
   display: flex;
   max-width: 75%;
   margin: 5px;
@@ -95,23 +95,23 @@
   padding: 10px;
 }
 
-.chat-box-partner .photo-container {
+.chat-box-received .photo-container {
   margin-right: 15px;
 }
 
-.chat-box-partner .photo {
+.chat-box-received .photo {
   width: 48px;
   border-radius: 50%;
 }
 
-.chat-box-partner .message-container {
+.chat-box-received .message-container {
   display: flex;
   margin-top: 24px;
   flex-direction: column;
   border-radius: 4px;
 }
 
-.chat-box-partner .message-container .text {
+.chat-box-received .message-container .text {
   background-color: white;
   border-radius: 4px;
   padding: 10px;
@@ -119,14 +119,14 @@
   padding-bottom: 6px;
 }
 
-.chat-box-partner .message-container .date {
+.chat-box-received .message-container .date {
   font-size: 10px;
   margin-top: 1px;
   align-self: flex-start;
 }
 
 
-.chat-box-self {
+.chat-box-sent {
   display: flex;
   align-self: flex-end;
   max-width: 75%;
@@ -135,13 +135,13 @@
   margin-bottom: -20px;
 }
 
-.chat-box-self .message-container {
+.chat-box-sent .message-container {
   display: flex;
   flex-direction: column;
   border-radius: 4px;
 }
 
-.chat-box-self .message-container .text {
+.chat-box-sent .message-container .text {
   color: #ffffff;
   background-image: linear-gradient(310deg, #a663ea, #17c1e8);
   border-radius: 4px;
@@ -150,7 +150,7 @@
   padding-bottom: 6px;
 }
 
-.chat-box-self .message-container .date {
+.chat-box-sent .message-container .date {
   font-size: 10px;
   margin-top: 1px;
   align-self: flex-start;
