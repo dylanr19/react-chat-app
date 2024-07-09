@@ -10,6 +10,7 @@ function ContactTab({ photo, name, lastMessage }) {
                     <text className="name">{name}</text>
                     <text className="last-message">{lastMessage}</text>
                 </div>
+                <div className="unread-icon">8</div>
             </div>
         </>
     )
