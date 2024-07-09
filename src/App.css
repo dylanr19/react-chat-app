@@ -60,7 +60,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   width: 100%;
-  display: flex;
+  display: inline-block;
   align-items: center;
   justify-content: space-evenly;
   border-style: solid;
@@ -69,22 +69,45 @@
 }
 
 .contact-tab .photo {
+  display: inline-block;
+  vertical-align: middle;
   width: 48px;
   height: 48px;
+  margin-left: 5px;
   border-radius: 50%;
 }
 
 .contact-tab .info-container {
-  display: flex;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-left: 8px;
+  /*background-color: red;*/
+  /*display: flex;*/
   flex-direction: column;
 }
 
 .contact-tab .info-container .name {
-
+  display: block;
 }
 
 .contact-tab .info-container .last-message {
+  display: block;
+}
 
+.contact-tab .unread-icon {
+  float: right;
+  position: relative;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  text-align: center;
+  top: 28px;
+  right: 30px;
+  font-size: 10px;
+  border-radius: 50%;
+  color: white;
+  background-color: red;
 }
 
 .chatWindow-container {
