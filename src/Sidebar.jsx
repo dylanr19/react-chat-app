@@ -7,7 +7,7 @@ function Sidebar() {
     return (
         <>
             <div className="side-bar">
-                <ContactTab photo={placeholder} name={"Jacob"} lastMessage={"Great! Did you ..."}></ContactTab>
+                <ContactTab photo={placeholder} name={"Jacob"} lastMessage={"Great! Did you read..."}></ContactTab>
             </div>
         </>
     )

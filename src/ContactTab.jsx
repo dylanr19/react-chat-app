@@ -5,12 +5,12 @@ function ContactTab({ photo, name, lastMessage }) {
     return (
         <>
             <div className="contact-tab">
-                <img className="photo" src={photo} alt={"photo of " + {name}} />
+                <img className="photo" src={photo} alt={"photo of " + {name}}/>
                 <div className="info-container">
                     <text className="name">{name}</text>
                     <text className="last-message">{lastMessage}</text>
                 </div>
-                <div className="unread-icon">8</div>
+                <div className="unread-icon">3</div>
             </div>
         </>
     )
