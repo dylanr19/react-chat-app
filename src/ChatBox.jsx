@@ -12,6 +12,8 @@ function ChatBox({ photo, text, date, isPartner }) {
                 </div>
                 <div className="message-container">
                     <span className="text">Hi Bob, How are you?Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, beatae earum nemo obcaecati ratione repellendus vel. Aliquam doloribus fuga natus pariatur veritatis! Consequuntur, dicta fuga maiores molestias nesciunt quia sed.</span>
+                    <span className="text">See you tomorrow!</span>
+
                     <span className="date">11:02 AM, January, 23rd</span>
                 </div>
             </div>
@@ -37,6 +39,7 @@ function ChatBox({ photo, text, date, isPartner }) {
             <div className="chat-box-sent">
                 <div className="message-container">
                     <span className="text">Yes I did. You passed the test!</span>
+                    <span className="text">Best of wishes Jake!</span>
                     <span className="date">11:03 AM, January, 23rd</span>
                 </div>
             </div>

@@ -147,11 +147,11 @@
   padding: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
+  margin-bottom: 5px;
 }
 
 .chat-box-received .message-container .date {
   font-size: 10px;
-  margin-top: 1px;
   align-self: flex-start;
 }
 
@@ -178,11 +178,12 @@
   padding: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
+  margin-bottom: 5px;
 }
 
 .chat-box-sent .message-container .date {
   font-size: 10px;
-  margin-top: 1px;
+  margin-top: -3px;
   align-self: flex-start;
 }
 
