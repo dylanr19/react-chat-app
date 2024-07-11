@@ -11,7 +11,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -79,57 +79,64 @@
   height: 92%;
 }
 
-.contact-tab {
+.partner-tab {
   padding-top: 10px;
   padding-bottom: 10px;
   width: 100%;
-  display: inline-block;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   border-style: solid;
   border-width: 0;
   border-bottom-width: 2px;
   border-color: #f3f5f7;
-  background-color: #f8f9fd;
+  border-radius: 0;
+  transition: opacity ease 0.3s;
 }
 
-.contact-tab .photo {
-  display: inline-block;
-  vertical-align: middle;
+.partner-tab:hover {
+  border-color: #f3f5f7;
+  opacity: 0.8;
+}
+
+.partner-tab:focus {
+    outline: none;
+}
+
+.partner-tab .photo {
   width: 48px;
   height: 48px;
-  margin-left: 5px;
   border-radius: 50%;
 }
 
-.contact-tab .info-container {
+.partner-tab .info-container {
   display: inline-block;
-  vertical-align: middle;
+  text-align: start;
+  width: 100px;
   margin-left: 8px;
-  flex-direction: column;
 }
 
-.contact-tab .info-container .name {
+.partner-tab .info-container .name {
   display: block;
   font-size: 12px;
 }
 
-.contact-tab .info-container .last-message {
-  display: block;
+.partner-tab .info-container .last-message {
   font-size: 11px;
   font-weight: 400;
 }
 
-.contact-tab .unread-icon {
-  float: right;
+.partner-tab .unread-icon {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 15px;
   height: 15px;
-  top: 25px;
-  right: 18px;
+  top: 7px;
+  left: 10px;
   font-size: 10px;
   border-radius: 50%;
   color: white;
