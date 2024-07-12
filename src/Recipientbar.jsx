@@ -3,12 +3,12 @@ import {MessageContext} from "./MessageContext.jsx";
 import './App.css'
 
 function Recipientbar() {
-    const {partnerName} = useContext(MessageContext)
+    const { chatPartner } = useContext(MessageContext)
 
     return (
         <>
             <div className="recipient-bar">
-                To: {partnerName === null ? 'name unavailable' : partnerName}
+                To: {chatPartner.name === '' ? 'name unavailable' : chatPartner.name}
             </div>
         </>
     )
