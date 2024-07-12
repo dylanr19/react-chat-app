@@ -5,17 +5,18 @@ import {MessageContext} from "./MessageContext.jsx";
 
 
 function ChatWindow() {
-    const { messageList } = useContext(MessageContext)
+    const { messageHistory } = useContext(MessageContext)
 
     return (
         <>
             <div className="chat-window">
-                {messageList.map((message) => (
+                {messageHistory.map((message) => (
                     <ChatBox
                         photoURL={message.photoURL}
                         text={message.text}
                         date={message.date}
                         key={message.senderId}
+                        senderId={message.senderId}
                     />
                 ))}
             </div>

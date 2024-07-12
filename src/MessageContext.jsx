@@ -5,7 +5,7 @@ export const MessageContext = createContext();
 export const MessageProvider = ({ children }) => {
     const messageData = {photoURL: '', senderId: '', date: '', text: '',}
     const [newMessage, setNewMessage] = useState(messageData)
-    const [messageList, setMessageList] = useState([messageData])
+    const [messageHistory, setMessageHistory] = useState([messageData])
 
     const [chatPartner, setChatPartner] = useState({photoURL : '', name: '', userId: '', lastMessage: '', isActive: false})
     const [partnerList, setPartnerList] = useState([
@@ -35,16 +35,27 @@ export const MessageProvider = ({ children }) => {
     useEffect(() => {
         // Request message list of conversation between this user and its partner from server
         // Set the state with these messages
-        setMessageList(requestMessageHistory('xxx', 'user1'))
+        setMessageHistory(requestMessageHistory('xxx', 'user1'))
     }, [chatPartner]);
 
     const requestMessageHistory = (ownId, partnerId) => {
         return [{
-            photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
-            senderId: 'user1',
-            date: '11:02 AM, January, 23rd',
-            text: 'I am not sure if that can work out.',
-        }]
+                photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
+                senderId: 'user1',
+                date: '11:02 AM, January, 23rd',
+                text: 'I am not sure if that can work out.',
+            },
+            {   photoURL: '',
+                senderId: 'ownId',
+                date: '12:02 AM, January, 23rd',
+                text: 'That is not a problem.',
+            },
+            {
+                photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
+                senderId: 'user1',
+                date: '11:02 AM, January, 23rd',
+                text: 'See you next time!',
+            }]
     }
 
     const processMessage = (messageData) => {
@@ -98,9 +109,9 @@ export const MessageProvider = ({ children }) => {
     }
 
     const appendMessageToChat = (messageData) => {
-        const messageListCopy = [...messageList]
+        const messageListCopy = [...messageHistory]
         messageListCopy.push(messageData)
-        setMessageList(messageListCopy)
+        setMessageHistory(messageListCopy)
     }
 
     const playNotificationSound = () => {
@@ -115,8 +126,8 @@ export const MessageProvider = ({ children }) => {
         <MessageContext.Provider value={{
             newMessage,
             setNewMessage,
-            messageList,
-            setMessageList,
+            messageHistory,
+            setMessageHistory,
             chatPartner,
             setChatPartner,
             partnerList,
