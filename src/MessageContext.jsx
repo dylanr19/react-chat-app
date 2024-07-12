@@ -3,14 +3,11 @@ import {createContext, useEffect, useState} from 'react';
 export const MessageContext = createContext();
 
 export const MessageProvider = ({ children }) => {
-    const [chatPartner, setChatPartner] = useState({
-        photoURL : '',
-        name: '',
-        userId: '',
-        lastMessage: '',
-        isActive: false
-    })
+    const messageData = {photoURL: '', senderId: '', date: '', text: '',}
+    const [newMessage, setNewMessage] = useState(messageData)
+    const [messageList, setMessageList] = useState([messageData])
 
+    const [chatPartner, setChatPartner] = useState({photoURL : '', name: '', userId: '', lastMessage: '', isActive: false})
     const [partnerList, setPartnerList] = useState([
         {
             photoURL : 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
@@ -35,25 +32,15 @@ export const MessageProvider = ({ children }) => {
         },
     ])
 
-    const messageData = {
-        photoURL: '',
-        senderId: '',
-        date: '',
-        text: '',
-    }
-
-    const [newMessage, setNewMessage] = useState(messageData)
-    const [messageList, setMessageList] = useState([messageData])
-
     useEffect(() => {
         // Request message list of conversation between this user and its partner from server
         // Set the state with these messages
-        setMessageList(requestMessageList)
-    }, []);
+        setMessageList(requestMessageHistory('xxx', 'user1'))
+    }, [chatPartner]);
 
-    const requestMessageList = () => {
+    const requestMessageHistory = (ownId, partnerId) => {
         return [{
-            photoURL: '',
+            photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
             senderId: 'user1',
             date: '11:02 AM, January, 23rd',
             text: 'I am not sure if that can work out.',
@@ -61,49 +48,67 @@ export const MessageProvider = ({ children }) => {
     }
 
     const processMessage = (messageData) => {
-        // process incoming message:
-        // Check if id of current chat partner matches that of the sender's id
-        if (chatPartner.userId === messageData.senderId) {
-            // client is currently chatting with the sender
-            const messageListCopy = [...messageList]
-            messageListCopy.push(messageData)
-            setMessageList(messageListCopy)
-
-            const partnerListCopy = [...partnerList]
-            const partnerData = partnerListCopy.find(partner => partner.userId === messageData.senderId)
-            partnerData.lastMessage = messageData.text
-            setPartnerList(partnerListCopy)
-
-            return
-        }
-
-        // client is not currently chatting with the sender
         const partnerListCopy = [...partnerList]
-        const partnerData = partnerListCopy.find(partner => partner.userId === messageData.senderId)
+        const partnerData = getPartnerData(messageData.senderId)
+        const isSenderNew = partnerData == null
+        const isSenderChatPartner = chatPartner.userId === messageData.senderId
+        const isAppMinimized = true;
 
-        if (partnerData == null) {
-            // this sender does not have a partner tab
-            const newPartner = {
-                photoURL : messageData.photoURL,
-                name: messageData.name,
-                userId: messageData.senderId,
-                lastMessage: messageData.text,
-                isActive: false
-            }
+        if (isSenderNew) {
+            // the sender is not a partner yet
+            createNewPartner(messageData, partnerListCopy)
 
-            partnerListCopy.push(newPartner)
-            setPartnerList(partnerListCopy)
         } else {
-            // this sender does already have a partner tab
-            partnerData.lastMessage = messageData.text
-            setPartnerList(partnerListCopy)
-            return
+            // the sender is already a partner
+            setPartnerLastMessage(messageData, partnerData, partnerListCopy)
+
+            if (isSenderChatPartner) {
+                // client currently has an open chat window with the sender
+                appendMessageToChat(messageData)
+            }
         }
 
-        //if (app is minimized to system tray) {
-            // play ping sound
-            // show desktop notification
-        //}
+        if (isAppMinimized) {
+            // app is minimized to system tray
+            playNotificationSound()
+            showDesktopNotification()
+        }
+    }
+
+    const getPartnerData = (Id, partnerListCopy) => {
+        return partnerListCopy.find(partner => partner.userId === Id)
+    }
+
+    const createNewPartner = (messageData, partnerListCopy) => {
+        const newPartner = {
+            photoURL : messageData.photoURL,
+            name: messageData.name,
+            userId: messageData.senderId,
+            lastMessage: messageData.text,
+            isActive: false
+        }
+
+        partnerListCopy.push(newPartner)
+        setPartnerList(partnerListCopy)
+    }
+
+    const setPartnerLastMessage = (messageData, partnerData, partnerListCopy) => {
+        partnerData.lastMessage = messageData.text
+        setPartnerList(partnerListCopy)
+    }
+
+    const appendMessageToChat = (messageData) => {
+        const messageListCopy = [...messageList]
+        messageListCopy.push(messageData)
+        setMessageList(messageListCopy)
+    }
+
+    const playNotificationSound = () => {
+
+    }
+
+    const showDesktopNotification = () => {
+
     }
 
     return (
