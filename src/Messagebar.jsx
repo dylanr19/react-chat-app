@@ -11,9 +11,19 @@ function Messagebar() {
         setInputValue(e.currentTarget.value)
     }
 
-    const handleClick = () => {
+    const submitMessage = () => {
         processOutgoingMessage(inputValue)
         setInputValue('')
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            submitMessage()
+        }
+    }
+
+    const handleClick = () => {
+        submitMessage()
     }
 
     return (
@@ -25,6 +35,7 @@ function Messagebar() {
                     placeholder="Type a message here ..."
                     value={inputValue}
                     onChange={handleChange}
+                    onKeyDown={handleKeyDown}
                 />
                 <button type="button" className="send-button" onClick={handleClick}>
                     <i className="bi bi-send-fill"></i>
