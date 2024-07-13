@@ -76,19 +76,13 @@ export const MessageProvider = ({ children }) => {
         }
 
         // Render the message in the chat window
-        appendMessageHistory(messageData)
+        appendMessageToChat(messageData)
 
         // Send the message to the server
         if (sendMessage(messageData) === false) {
             // show user that message was not delivered
         }
 
-    }
-
-    const appendMessageHistory = (messageData) => {
-        const msgHistoryCopy = [...messageHistory]
-        msgHistoryCopy.push(messageData)
-        setMessageHistory(msgHistoryCopy)
     }
 
     const sendMessage = (messageData) => {
