@@ -1,7 +1,7 @@
-import './App.css'
+import '../../styles/App.css'
 import PartnerTab from './PartnerTab.jsx'
 import {useEffect, useState, useContext} from "react";
-import {ChatContext} from './ChatContext.jsx'
+import {ChatContext} from '../../chat context/ChatContext.jsx'
 
 const placeholder = 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg'
 const placeholder2 = 'https://t3.ftcdn.net/jpg/03/85/20/64/360_F_385206426_wllRGLFfXeFHB7x41Jc2Lz5kZjo2PraC.jpg'

@@ -1,7 +1,7 @@
-import './App.css'
+import '../../styles/App.css'
 import {useContext} from 'react'
-import ChatBox from './ChatBox'
-import {ChatContext} from "./ChatContext.jsx";
+import ChatBox from './ChatBox.jsx'
+import {ChatContext} from "../../chat context/ChatContext.jsx";
 
 
 function ChatWindow() {

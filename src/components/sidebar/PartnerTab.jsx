@@ -1,5 +1,5 @@
-import './App.css'
-import {useEffect, useState, useContext} from 'react'
+import '../../styles/App.css'
+import {useEffect, useState} from 'react'
 
 function PartnerTab({ partnerData, newMessage, setChatPartner, partnerList, setPartnerList }) {
     const [unreadMessages, setUnreadMessages] = useState(8);

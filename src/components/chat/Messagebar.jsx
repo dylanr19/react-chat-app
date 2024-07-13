@@ -1,7 +1,7 @@
-import './App.css'
+import '../../styles/App.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {useContext, useEffect, useState} from 'react'
-import { ChatContext } from './ChatContext.jsx'
+import { ChatContext } from '../../chat context/ChatContext.jsx'
 
 function Messagebar() {
     const { processOutgoingMessage } = useContext(ChatContext)

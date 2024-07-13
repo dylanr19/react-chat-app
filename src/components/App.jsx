@@ -1,9 +1,9 @@
-import './App.css'
-import ChatWindow from './ChatWindow.jsx'
-import Sidebar from './Sidebar.jsx'
-import Searchbar from './Searchbar.jsx'
-import Recipientbar from './Recipientbar.jsx'
-import Messagebar from './Messagebar.jsx'
+import '../styles/App.css'
+import ChatWindow from './chat/ChatWindow.jsx'
+import Sidebar from './sidebar/Sidebar.jsx'
+import Searchbar from './sidebar/Searchbar.jsx'
+import Recipientbar from './chat/Recipientbar.jsx'
+import Messagebar from './chat/Messagebar.jsx'
 
 function App() {
 

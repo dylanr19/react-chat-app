@@ -42,10 +42,7 @@ export const ChatProvider = ({ children }) => {
 
         appendMessageToChat(messageData, messageHistory, setMessageHistory)
 
-        const messageReceived =
-            sendMessage(messageData, messageHistory, setMessageHistory)
-
-        if (messageReceived === false) {
+        if (sendMessage(messageData, messageHistory, setMessageHistory) === false) {
             // show user that message was not delivered
             setMessageFailed('xxx')
         }

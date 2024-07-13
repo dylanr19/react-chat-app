@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import {ChatContext} from "./ChatContext.jsx";
-import './App.css'
+import {ChatContext} from "../../chat context/ChatContext.jsx";
+import '../../styles/App.css'
 
 function Recipientbar() {
     const { chatPartner } = useContext(ChatContext)
