@@ -1,11 +1,11 @@
 import './App.css'
 import {useContext} from 'react'
 import ChatBox from './ChatBox'
-import {MessageContext} from "./MessageContext.jsx";
+import {ChatContext} from "./ChatContext.jsx";
 
 
 function ChatWindow() {
-    const { messageHistory } = useContext(MessageContext)
+    const { messageHistory } = useContext(ChatContext)
 
     return (
         <>

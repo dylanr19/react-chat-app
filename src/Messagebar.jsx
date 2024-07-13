@@ -1,10 +1,10 @@
 import './App.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {useContext, useEffect, useState} from 'react'
-import { MessageContext } from './MessageContext.jsx'
+import { ChatContext } from './ChatContext.jsx'
 
 function Messagebar() {
-    const { processOutgoingMessage } = useContext(MessageContext)
+    const { processOutgoingMessage } = useContext(ChatContext)
     const [inputValue, setInputValue] = useState('')
 
     const handleChange = (e) => {
