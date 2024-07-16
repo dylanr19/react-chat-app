@@ -2,9 +2,10 @@ import '../../styles/App.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {useContext, useEffect, useState} from 'react'
 import { ChatContext } from '../../chat context/ChatContext.jsx'
+import useWebSocket, { ReadyState } from "react-use-websocket";
 
 function Messagebar() {
-    const { processOutgoingMessage } = useContext(ChatContext)
+    const { processOutgoingMessage, readyState} = useContext(ChatContext)
     const [inputValue, setInputValue] = useState('')
 
     const handleChange = (e) => {
@@ -37,7 +38,7 @@ function Messagebar() {
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
                 />
-                <button type="button" className="send-button" onClick={handleClick}>
+                <button type="button" className="send-button" onClick={handleClick} disabled={readyState !== ReadyState.OPEN}>
                     <i className="bi bi-send-fill"></i>
                 </button>
             </div>

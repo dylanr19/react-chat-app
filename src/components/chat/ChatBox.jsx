@@ -1,5 +1,4 @@
 import '../../styles/App.css'
-import {useEffect, useState} from "react";
 
 function ChatBox({ photoURL, text, date, senderId }) {
 
