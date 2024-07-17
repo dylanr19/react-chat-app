@@ -1,11 +1,11 @@
 import '../../styles/App.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import {useContext, useEffect, useState} from 'react'
+import {useContext, useState} from 'react'
 import { ChatContext } from '../../chat context/ChatContext.jsx'
-import useWebSocket, { ReadyState } from "react-use-websocket";
+import { ReadyState } from "react-use-websocket";
 
 function Messagebar() {
-    const { processOutgoingMessage, readyState} = useContext(ChatContext)
+    const { sendChatMessage, readyState} = useContext(ChatContext)
     const [inputValue, setInputValue] = useState('')
 
     const handleChange = (e) => {
@@ -13,7 +13,7 @@ function Messagebar() {
     }
 
     const submitMessage = () => {
-        processOutgoingMessage(inputValue)
+        sendChatMessage(inputValue)
         setInputValue('')
     }
 

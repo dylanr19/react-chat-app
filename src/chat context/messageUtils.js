@@ -15,16 +15,13 @@
 // }
 
 const setMessageFailed = (senderId, messageHistory, setMessageHistory) => {
-    const copiedMessageHistory = [...messageHistory]
-    const messageData = copiedMessageHistory.find( message => message.userId === senderId)
+    const messageData = messageHistory.find( message => message.userId === senderId)
     messageData.delivered = false
-    setMessageHistory(copiedMessageHistory)
+    setMessageHistory((prev) => prev.concat(messageData))
 }
 
 const appendMessageToChat = (messageData, messageHistory, setMessageHistory) => {
-    const messageListCopy = [...messageHistory]
-    messageListCopy.push(messageData)
-    setMessageHistory(messageListCopy)
+    setMessageHistory((prev) => prev.concat(messageData))
 }
 
 export {

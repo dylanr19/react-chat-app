@@ -1,7 +1,7 @@
 import '../../styles/App.css'
 import {useEffect, useState} from 'react'
 
-function PartnerTab({ partnerData, newMessage, setChatPartner, partnerList, setPartnerList }) {
+function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat }) {
     const [unreadMessages, setUnreadMessages] = useState(8);
     const [truncatedMessage, setTruncatedMessage] = useState('')
 
@@ -44,7 +44,7 @@ function PartnerTab({ partnerData, newMessage, setChatPartner, partnerList, setP
         deactivatePreviousTab(copiedPartnerList)
         activateThisTab(copiedPartnerList)
         setPartnerList(copiedPartnerList)
-        setChatPartner(partnerData)
+        startNewChat(partnerData)
     }
 
     const handleTabClick = () => {
