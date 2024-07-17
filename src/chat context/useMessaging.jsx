@@ -87,10 +87,15 @@ function useMessaging ({chatPartner, createNewPartner, setPartnerLastMessage, ge
     }
 
     const setMessageNotDelivered = (senderId) => {
-        const messageData = messageHistory.find( message => message.userId === senderId)
-        messageData.delivered = false
-        setMessageHistory((prev) => prev.concat(messageData))
-    }
+        const updatedHistory = [...messageHistory].map(message => {
+            if (message.senderId === senderId) {
+                return { ...message, delivered: false };
+            }
+            return message;
+        });
+
+        setMessageHistory(updatedHistory);
+    };
 
     const addMessageToHistory = (messageData) => {
         setMessageHistory((prev) => prev.concat(messageData))
