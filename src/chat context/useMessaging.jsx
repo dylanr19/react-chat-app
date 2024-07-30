@@ -4,47 +4,54 @@ import {playNotificationSound, showDesktopNotification} from "./notificationUtil
 
 function useMessaging ({chatPartner, createNewPartner, setPartnerLastMessage, getPartnerData}) {
 
-    const [socketUrl, setSocketUrl] = useState('wss://localhost:8080')
+    const [socketUrl, setSocketUrl] = useState('ws://localhost:5046/ws')
     const [messageHistory, setMessageHistory] = useState([])
-    const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl);
+    const { sendJsonMessage, lastJsonMessage } = useWebSocket(
+        socketUrl,
+        {share: true}
+    );
 
     const CHAT_HISTORY = 'chatHistory'
     const CHAT_MESSAGE = 'chatMessage'
+    const REGISTER = 'register'
+
+    useEffect(() => {
+        sendJsonMessage({
+            userId: 'user2',
+            type: REGISTER,
+        })
+    }, []);
 
     const requestMessageHistory = (ownId, partnerId) => {
         sendJsonMessage({
-            initiatorId: ownId,
-            partnerId: partnerId,
-            type: 'chatHistory'
+            // initiatorId: ownId,
+            // partnerId: partnerId,
+            userId1: 'user2',
+            userId2: partnerId,
+            type: CHAT_HISTORY
         })
     }
 
     useEffect(() => {
-        const partnerData = getPartnerData(lastJsonMessage.senderId)
-        const isUnknownSender = partnerData == null
-        const isSenderChatPartner = chatPartner.userId === lastJsonMessage.senderId
+        if (lastJsonMessage == null){
+            return
+        }
+
         const isAppMinimized = true;
 
         const processIncomingHistory = () => {
-            if (isUnknownSender) {
-                createNewPartner(lastJsonMessage)
-                return
-            }
+            const lastMessage = lastJsonMessage.messages.findLast(m => m.senderId === chatPartner.userId)
 
-            setPartnerLastMessage(lastJsonMessage.history.length - 1, partnerData)
-            setMessageHistory(lastJsonMessage)
+            setPartnerLastMessage(chatPartner.userId, lastMessage.text)
+            setMessageHistory(lastJsonMessage.messages)
         }
 
         const processIncomingMessage = () => {
-            if (isUnknownSender) {
-                createNewPartner(lastJsonMessage)
-                return
-            }
+            const senderId = lastJsonMessage.senderId
+            const text = lastJsonMessage.text
+            setPartnerLastMessage(senderId, text)
 
-            setPartnerLastMessage(lastJsonMessage, partnerData)
-
-            if (isSenderChatPartner) {
-                // client currently has an open chat window with the sender
+            if (chatPartner.userId === senderId){
                 addMessageToHistory(lastJsonMessage)
             }
         }
@@ -72,11 +79,11 @@ function useMessaging ({chatPartner, createNewPartner, setPartnerLastMessage, ge
 
         const messageData = {
             photoURL: '',
-            senderId: 'ownId',
-            date: '1 January 1st 14:05:36',
+            senderId: 'user2',
+            receiverId: chatPartner.userId,
             text: text,
             delivered: true,
-            type: 'chatMessage'
+            type: CHAT_MESSAGE
         }
 
         addMessageToHistory(messageData)
@@ -84,6 +91,8 @@ function useMessaging ({chatPartner, createNewPartner, setPartnerLastMessage, ge
         if (sendJsonMessage(messageData) === false) {
             setMessageNotDelivered('xxx')
         }
+
+        console.log("send message")
     }
 
     const setMessageNotDelivered = (senderId) => {

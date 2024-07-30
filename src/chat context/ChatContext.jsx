@@ -25,11 +25,11 @@ export const ChatProvider = ({ children }) => {
     const processOutgoingMessage = messageObj.processOutgoingMessage
 
     useEffect(() => {
-        requestMessageHistory('xxx', 'xxx')
+        requestMessageHistory('xxx', chatPartner.userId)
     }, [chatPartner])
 
-    const startNewChat = (partnerId) => {
-        setChatPartner(partnerId)
+    const startNewChat = (partnerData) => {
+        setChatPartner(partnerData)
     }
 
     const sendChatMessage = (text) => {

@@ -3,7 +3,7 @@ import '../../styles/App.css'
 function ChatBox({ photoURL, text, date, senderId }) {
 
     const isOwnMessage = (senderId) => {
-        return senderId === 'ownId'
+        return senderId === 'user2'
     }
 
     return (

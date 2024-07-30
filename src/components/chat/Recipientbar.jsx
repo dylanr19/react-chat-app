@@ -8,7 +8,7 @@ function Recipientbar() {
     return (
         <>
             <div className="recipient-bar">
-                To: {chatPartner.name === '' ? 'name unavailable' : chatPartner.name}
+                To: {chatPartner?.name === '' ? 'name unavailable' : chatPartner?.name}
             </div>
         </>
     )
