@@ -6,7 +6,7 @@ import useMessaging from "./useMessaging.jsx";
 // const initialMessageData = {photoURL: '', senderId: '', date: '', text: '', delivered: true}
 // const placeholderPartner = {photoURL : 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg', name: 'Jacob', userId: 'user1', lastMessage: 'I am not sure if we can work that out.', isActive: false}
 // const placeholderMessage = {photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg', senderId: 'user1', date: '11:02 AM, January, 23rd', text: 'I am not sure if that can work out.', delivered: true}
-
+//TODO: This context serves no purpose anymore, get rid of it.
 export const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {

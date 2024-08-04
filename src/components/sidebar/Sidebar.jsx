@@ -1,7 +1,7 @@
 import '../../styles/App.css'
 import PartnerTab from './PartnerTab.jsx'
 import {useEffect, useState, useContext} from "react";
-import {ChatContext} from '../../chat context/ChatContext.jsx'
+import {ChatContext} from '../../Contexts/chat context/ChatContext.jsx'
 import { v4 as uuidv4 } from 'uuid'
 
 const placeholder = 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg'

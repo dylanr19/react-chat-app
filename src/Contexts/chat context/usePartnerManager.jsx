@@ -1,32 +1,31 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import useWebSocket from "react-use-websocket";
+import {LoginContext} from "/src/Contexts/login context/LoginContext.jsx";
 
 function usePartnerManager () {
     const [socketUrl, setSocketUrl] = useState('ws://localhost:5046/ws')
-    const { sendJsonMessage, lastJsonMessage } = useWebSocket(
-        socketUrl,
-        {share: true}
-    );
+    const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {share: true});
+    const { loggedInUserId } = useContext(LoginContext);
 
     // const [chatPartner, setChatPartner] = useState(null)
     const [chatPartner, setChatPartner] = useState({
         photoURL: '',
         name: 'Bob',
-        userId: 'user1',
+        userId: 'user2',
         lastMessage: 'lmao',
         isActive: false
     })
     const [partnerList, setPartnerList] = useState([])
 
-    useEffect(() => {
-        const fetchPartners = () => {
-            sendJsonMessage({
-                userId: 'user2',
-                type: 'friendList'
-            });
-        }
-        fetchPartners();
-    }, []);
+    // useEffect(() => {
+    //     const fetchPartners = () => {
+    //         sendJsonMessage({
+    //             userId: loggedInUserId,
+    //             type: 'friendList'
+    //         });
+    //     }
+    //     fetchPartners();
+    // }, [loggedInUserId]);
 
     useEffect(() => {
         if(lastJsonMessage == null){

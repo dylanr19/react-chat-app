@@ -1,32 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import useWebSocket from "react-use-websocket";
 import {playNotificationSound, showDesktopNotification} from "./notificationUtils.js";
+import {LoginContext} from "/src/Contexts/login context/LoginContext.jsx";
 
 function useMessaging ({chatPartner, createNewPartner, setPartnerLastMessage, getPartnerData}) {
+    const { loggenInUserId } = useContext(LoginContext)
 
     const [socketUrl, setSocketUrl] = useState('ws://localhost:5046/ws')
     const [messageHistory, setMessageHistory] = useState([])
-    const { sendJsonMessage, lastJsonMessage } = useWebSocket(
-        socketUrl,
-        {share: true}
-    );
+    const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {share: true})
 
     const CHAT_HISTORY = 'chatHistory'
     const CHAT_MESSAGE = 'chatMessage'
     const REGISTER = 'register'
 
-    useEffect(() => {
-        sendJsonMessage({
-            userId: 'user2',
-            type: REGISTER,
-        })
-    }, []);
+    // useEffect(() => {
+    //     sendJsonMessage({
+    //         userId: loggenInUserId,
+    //         type: REGISTER,
+    //     })
+    // }, [loggenInUserId]);
 
     const requestMessageHistory = (ownId, partnerId) => {
         sendJsonMessage({
-            // initiatorId: ownId,
-            // partnerId: partnerId,
-            userId1: 'user2',
+            userId1: loggenInUserId,
             userId2: partnerId,
             type: CHAT_HISTORY
         })
@@ -79,7 +76,7 @@ function useMessaging ({chatPartner, createNewPartner, setPartnerLastMessage, ge
 
         const messageData = {
             photoURL: '',
-            senderId: 'user2',
+            senderId: loggenInUserId,
             receiverId: chatPartner.userId,
             text: text,
             delivered: true,
@@ -91,8 +88,6 @@ function useMessaging ({chatPartner, createNewPartner, setPartnerLastMessage, ge
         if (sendJsonMessage(messageData) === false) {
             setMessageNotDelivered('xxx')
         }
-
-        console.log("send message")
     }
 
     const setMessageNotDelivered = (senderId) => {

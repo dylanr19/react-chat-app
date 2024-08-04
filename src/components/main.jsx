@@ -2,12 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import '../styles/index.css'
-import {ChatProvider} from "../chat context/ChatContext.jsx";
+import {ChatProvider} from "../Contexts/chat context/ChatContext.jsx";
+import {LoginProvider} from "../Contexts/login context/LoginContext.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <ChatProvider>
-          <App />
-      </ChatProvider>
+      <LoginProvider>
+          <ChatProvider>
+              <App />
+          </ChatProvider>
+      </LoginProvider>
   </React.StrictMode>,
 )
