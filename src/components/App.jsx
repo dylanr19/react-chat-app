@@ -4,6 +4,7 @@ import Sidebar from './sidebar/Sidebar.jsx'
 import Searchbar from './sidebar/Searchbar.jsx'
 import Recipientbar from './chat/Recipientbar.jsx'
 import Messagebar from './chat/Messagebar.jsx'
+import FriendWindow from "./friends/FriendWindow.jsx";
 
 function App() {
 
@@ -17,10 +18,14 @@ function App() {
                 <Sidebar></Sidebar>
             </div>
 
-            <div className={"chatWindow-container"}>
-                <Recipientbar></Recipientbar>
-                <ChatWindow></ChatWindow>
-                <Messagebar></Messagebar>
+            {/*<div className={"chatWindow-container"}>*/}
+            {/*    <Recipientbar></Recipientbar>*/}
+            {/*    <ChatWindow></ChatWindow>*/}
+            {/*    <Messagebar></Messagebar>*/}
+            {/*</div>*/}
+
+            <div className="friend-container">
+                <FriendWindow></FriendWindow>
             </div>
 
         </div>

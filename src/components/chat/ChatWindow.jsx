@@ -1,7 +1,7 @@
 import '../../styles/App.css'
 import {useContext} from 'react'
 import ChatBox from './ChatBox.jsx'
-import {ChatContext} from "../../chat context/ChatContext.jsx";
+import {ChatContext} from "../../Contexts/chat context/ChatContext.jsx";
 import {v4 as uuidv4} from 'uuid'
 
 

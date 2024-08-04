@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import {ChatContext} from "../../chat context/ChatContext.jsx";
+import {ChatContext} from "../../Contexts/chat context/ChatContext.jsx";
 import '../../styles/App.css'
 
 function Recipientbar() {

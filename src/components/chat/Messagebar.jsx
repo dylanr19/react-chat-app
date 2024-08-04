@@ -1,7 +1,7 @@
 import '../../styles/App.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {useContext, useState} from 'react'
-import { ChatContext } from '../../chat context/ChatContext.jsx'
+import { ChatContext } from '../../Contexts/chat context/ChatContext.jsx'
 import { ReadyState } from "react-use-websocket";
 
 function Messagebar() {
