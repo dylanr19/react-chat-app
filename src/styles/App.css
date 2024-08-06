@@ -32,34 +32,38 @@
 }
 
 .top-navigation-container {
-  /*border-width: 0;*/
-  /*border-bottom-width: 2px;*/
-  /*border-top-width: 2px;*/
-  /*border-style: solid;*/
-  /*font-weight: 500;*/
-  /*font-size: 15px;*/
-  /*border-color: #f3f5f7;*/
-  /*padding-left: 18px;*/
-  /*height: 8%;*/
-  /*min-height: 50px;*/
-  /*display: flex;*/
-  /*align-items: center;*/
-}
-
-.topnav {
   border-width: 0;
   border-bottom-width: 2px;
   border-top-width: 2px;
   height: 8%;
   min-height: 50px;
-  width: 390px;
+  max-width: 600px;
+  min-width: 500px;
   border-style: solid;
   border-color: #f3f5f7;
-  /*background-color: #333;*/
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.top-navigation-container .bi {
+  font-size: 30px;
+}
+
+.top-navigation-container .line {
+  width: 1px;
+  height: 30px;
+  background-color: #e2e2e2;
+  border-radius: 10px;
+}
+
+.topnav {
+  width: 350px;
   overflow: hidden;
   display: flex;
-  justify-content: space-around;
+  /*justify-content: space-between;*/
   align-items: center;
+  gap: 20px;
 }
 
 /* Style the links inside the navigation bar */
@@ -90,7 +94,11 @@
   box-sizing: border-box;
 }
 
-form.example input[type=text] {
+.example {
+  margin: 25px;
+}
+
+.example input[type=text] {
   padding: 10px;
   font-size: 17px;
   border: 1px solid grey;
@@ -99,7 +107,7 @@ form.example input[type=text] {
   background: #f1f1f1;
 }
 
-form.example button {
+.example button {
   float: left;
   width: 20%;
   padding: 10px;
@@ -111,11 +119,11 @@ form.example button {
   cursor: pointer;
 }
 
-form.example button:hover {
+.example button:hover {
   background: #0b7dda;
 }
 
-form.example::after {
+.example::after {
   content: "";
   clear: both;
   display: table;
