@@ -95,39 +95,44 @@
 }
 
 .example {
-  margin: 25px;
+  margin: 15px 25px;
+  display: flex;
 }
 
 .example input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
+  width: 100%;
+  /*max-width: 1000px;*/
+  background: #e2e2e2;
+  border: none;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding: 5px 8px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 .example button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
+  width: 30px;
+  background: #e2e2e2;
+  border: none;
+  /*border-radius: 3px;*/
+  border-radius: 0 3px 3px 0;
+  padding: 5px 8px;
+  font: inherit;
   cursor: pointer;
+  outline: inherit;
 }
 
-.example button:hover {
-  background: #0b7dda;
-}
+/*.example button:hover {*/
+/*  background: #0b7dda;*/
+/*}*/
 
-.example::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+/*.example::after {*/
+/*  content: "";*/
+/*  clear: both;*/
+/*  display: table;*/
+/*}*/
 
 .friend-container {
   background-color: #f8f9fd;
