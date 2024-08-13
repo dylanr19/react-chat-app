@@ -31,29 +31,61 @@
   align-items: stretch;
 }
 
+.top-navigation-container {
+  border-width: 0;
+  border-bottom-width: 2px;
+  border-top-width: 2px;
+  height: 8%;
+  min-height: 50px;
+  max-width: 600px;
+  min-width: 500px;
+  border-style: solid;
+  border-color: #f3f5f7;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.top-navigation-container .bi {
+  font-size: 27px;
+}
+
+.top-navigation-container .line {
+  width: 1px;
+  height: 30px;
+  background-color: #e2e2e2;
+  border-radius: 10px;
+}
+
 .topnav {
-  background-color: #333;
+  width: 350px;
   overflow: hidden;
+  display: flex;
+  /*justify-content: space-between;*/
+  align-items: center;
+  gap: 20px;
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+  color: black;
   font-size: 17px;
+  padding: 1px 5px;
+  border-radius: 6px;
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: rgba(211, 211, 211, 0.31);
   color: black;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
+  background-color: #e2e2e2;
+}
+
+.topnav a.add {
   background-color: #04AA6D;
   color: white;
 }
@@ -62,36 +94,45 @@
   box-sizing: border-box;
 }
 
-form.example input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
+.example {
+  margin: 15px 25px;
+  display: flex;
 }
 
-form.example button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
+.example input[type=text] {
+  width: 100%;
+  max-width: 700px;
+  background: #e2e2e2;
+  border: none;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding: 5px 8px;
+  font: inherit;
   cursor: pointer;
+  outline: inherit;
 }
 
-form.example button:hover {
-  background: #0b7dda;
+.example button {
+  width: 30px;
+  background: #e2e2e2;
+  border: none;
+  /*border-radius: 3px;*/
+  border-radius: 0 3px 3px 0;
+  padding: 5px 8px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
-form.example::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+/*.example button:hover {*/
+/*  background: #0b7dda;*/
+/*}*/
+
+/*.example::after {*/
+/*  content: "";*/
+/*  clear: both;*/
+/*  display: table;*/
+/*}*/
 
 .friend-container {
   background-color: #f8f9fd;
@@ -106,24 +147,60 @@ form.example::after {
 }
 
 .friend-item {
-  background-color: #157347;
   display: flex;
-  justify-content: space-evenly;
+  max-width: 725px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-color: rgba(139, 139, 139, 0.31);
+  height: 60px;
+  margin: 0 25px;
 }
 
-.top-navigation-container {
-  border-width: 0;
-  border-bottom-width: 2px;
-  border-top-width: 2px;
-  border-style: solid;
-  font-weight: 500;
-  font-size: 15px;
-  border-color: #f3f5f7;
-  padding-left: 18px;
-  height: 8%;
-  min-height: 50px;
+.friend-item .info {
   display: flex;
   align-items: center;
+}
+
+.friend-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.friend-item .credentials {
+  margin-left: 10px;
+  font-size: 13px;
+}
+
+.friend-item .credentials .name {
+  margin: 0 0 -4px;
+}
+
+.friend-item .credentials .userID {
+  margin: 0;
+}
+
+.friend-item .buttons {
+  margin-left: auto;
+  align-self: center;
+}
+
+.friend-item .chat-button {
+  background-color: rgba(211, 211, 211, 0.31);
+}
+
+.friend-item .chat-button:hover {
+  background-color: rgba(234, 235, 238, 0.67);
+}
+
+.friend-item .delete-button:hover {
+  background-color: rgba(253, 68, 68, 0.58);
+}
+
+.friend-item .delete-button {
+  background-color: #ff4545;
+  color: white;
+  margin-left: 10px;
 }
 
 .sidebar-container {
@@ -147,7 +224,6 @@ form.example::after {
   display: flex;
 }
 
-/* bootstrap search icon */
 .search-bar .bi.bi-search {
   font-size: 16px;
   color: dimgray;

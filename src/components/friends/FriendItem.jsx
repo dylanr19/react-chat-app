@@ -5,14 +5,26 @@ function FriendItem ({ name, photoURL, userId, isPending }) {
     return(
         <>
             <div className="friend-item">
-                <h2 className="name">{name}</h2>
-                <p className="userID">{userId}</p>
-                <img className="photo" src={photoURL}  alt="Photo of this user"/>
+                <div className="info">
+                    <img className="photo"
+                         src="https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg"
+                         alt="Photo of this user"/>
+                    <div className="credentials">
+                        <h2 className="name">{name}</h2>
+                        <p className="userID">{userId}</p>
+                    </div>
+                </div>
                 {
                     isPending ? null : (
                         <>
-                            <button className="chat-button"></button>
-                            <button className="delete-button"></button>
+                            <div className="buttons">
+                                <button className="chat-button">
+                                    <i className="bi bi-chat-fill"></i>
+                                </button>
+                                <button className="delete-button">
+                                    <i className="bi bi-x"></i>
+                                </button>
+                            </div>
                         </>
                     )
                 }
