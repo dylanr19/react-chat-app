@@ -1,11 +1,14 @@
 import {useContext, useEffect, useState} from 'react';
 import useWebSocket from "react-use-websocket";
-import {LoginContext} from "/src/Contexts/login context/LoginContext.jsx";
+import {LoginContext} from "/src/Contexts/LoginContext.jsx";
+import {useApi} from "./useApi.js";
 
 function usePartnerManager () {
-    const [socketUrl, setSocketUrl] = useState('ws://localhost:5046/ws')
-    const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {share: true});
-    const { loggedInUserId } = useContext(LoginContext);
+    // const [socketUrl, setSocketUrl] = useState('ws://localhost:5046/ws')
+    // const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {share: true});
+    const { userId: loggedInUserId } = useContext(LoginContext);
+    const [url, setUrl] = useState(null);
+    const { data, isLoading, error, callApi } = useApi()
 
     // const [chatPartner, setChatPartner] = useState(null)
     const [chatPartner, setChatPartner] = useState({
@@ -17,34 +20,41 @@ function usePartnerManager () {
     })
     const [partnerList, setPartnerList] = useState([])
 
-    // useEffect(() => {
-    //     const fetchPartners = () => {
-    //         sendJsonMessage({
-    //             userId: loggedInUserId,
-    //             type: 'friendList'
-    //         });
-    //     }
-    //     fetchPartners();
-    // }, [loggedInUserId]);
+    useEffect(() => {
+        setUrl(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)
+    }, [loggedInUserId]);
 
     useEffect(() => {
-        if(lastJsonMessage == null){
-            return;
-        }
+            callApi(url)
+    }, [url]);
 
-        const initializePartnerList = () => {
-            const test = lastJsonMessage.friends[0]
-            test.photoURL = ""
-            test.lastMessage = ""
-            setPartnerList(lastJsonMessage.friends)
-            createNewPartner()
-        }
+    useEffect(() => {
+        setPartnerList(data)
+    }, [data]);
 
-        if (lastJsonMessage.type === 'friendList'){
-            initializePartnerList()
-        }
+    useEffect(() => {
+        console.log(partnerList)
+    }, [partnerList]);
 
-    }, [lastJsonMessage]);
+    //
+    // useEffect(() => {
+    //     if(lastJsonMessage == null){
+    //         return;
+    //     }
+    //
+    //     const initializePartnerList = () => {
+    //         const test = lastJsonMessage.friends[0]
+    //         test.photoURL = ""
+    //         test.lastMessage = ""
+    //         setPartnerList(lastJsonMessage.friends)
+    //         createNewPartner()
+    //     }
+    //
+    //     if (lastJsonMessage.type === 'friendList'){
+    //         initializePartnerList()
+    //     }
+    //
+    // }, [lastJsonMessage]);
 
     const getPartnerData = (Id, list = partnerList) => {
         return list.find(partner => partner.userId === Id)
