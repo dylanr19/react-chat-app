@@ -47,7 +47,7 @@
 }
 
 .top-navigation-container .bi {
-  font-size: 30px;
+  font-size: 27px;
 }
 
 .top-navigation-container .line {
@@ -101,7 +101,7 @@
 
 .example input[type=text] {
   width: 100%;
-  /*max-width: 1000px;*/
+  max-width: 700px;
   background: #e2e2e2;
   border: none;
   border-top-left-radius: 3px;
@@ -147,9 +147,60 @@
 }
 
 .friend-item {
-  background-color: #157347;
   display: flex;
-  justify-content: space-evenly;
+  max-width: 725px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-color: rgba(139, 139, 139, 0.31);
+  height: 60px;
+  margin: 0 25px;
+}
+
+.friend-item .info {
+  display: flex;
+  align-items: center;
+}
+
+.friend-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.friend-item .credentials {
+  margin-left: 10px;
+  font-size: 13px;
+}
+
+.friend-item .credentials .name {
+  margin: 0 0 -4px;
+}
+
+.friend-item .credentials .userID {
+  margin: 0;
+}
+
+.friend-item .buttons {
+  margin-left: auto;
+  align-self: center;
+}
+
+.friend-item .chat-button {
+  background-color: rgba(211, 211, 211, 0.31);
+}
+
+.friend-item .chat-button:hover {
+  background-color: rgba(234, 235, 238, 0.67);
+}
+
+.friend-item .delete-button:hover {
+  background-color: rgba(253, 68, 68, 0.58);
+}
+
+.friend-item .delete-button {
+  background-color: #ff4545;
+  color: white;
+  margin-left: 10px;
 }
 
 .sidebar-container {
@@ -173,7 +224,6 @@
   display: flex;
 }
 
-/* bootstrap search icon */
 .search-bar .bi.bi-search {
   font-size: 16px;
   color: dimgray;
