@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from 'react';
-import {ChatContext} from "../../Contexts/chat context/ChatContext.jsx";
+import {ChatContext} from "../../Contexts/ChatContext.jsx";
 import FriendItem from "./FriendItem.jsx";
 
 function FriendRequestList () {

@@ -1,9 +1,9 @@
 import {useContext, useEffect, useState} from 'react';
-import {ChatContext} from "../../Contexts/chat context/ChatContext.jsx";
+import usePartnerManager from "../hooks/usePartnerManager.jsx";
 import FriendItem from "./FriendItem.jsx";
 
 function FriendList () {
-    const { partnerList } = useContext(ChatContext)
+    const { partnerObj } = usePartnerManager()
     const [ friendList, setFriendList ] = useState([{
         name: "bob",
         userId: "user1",
@@ -16,6 +16,12 @@ function FriendList () {
             photoURL: "none",
             isPending: false,
         }])
+
+    useEffect(() => {
+        if (partnerObj.partnerList !== null){
+            setFriendList(partnerObj.partnerList)
+        }
+    }, [partnerObj.partnerList]);
 
     // useEffect(() => {
     //     setFriendList(
