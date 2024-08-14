@@ -1,6 +1,7 @@
 import {useContext, useEffect, useState} from 'react';
 import usePartnerManager from "../hooks/usePartnerManager.jsx";
 import FriendItem from "./FriendItem.jsx";
+import {LoginContext} from "../../Contexts/LoginContext.jsx";
 
 function FriendList () {
     const { partnerObj } = usePartnerManager()
@@ -9,13 +10,7 @@ function FriendList () {
         userId: "user1",
         photoURL: "none",
         isPending: false,
-    },
-        {
-            name: "bob2",
-            userId: "user2",
-            photoURL: "none",
-            isPending: false,
-        }])
+    }])
 
     useEffect(() => {
         if (partnerObj.partnerList !== null){
@@ -23,11 +18,9 @@ function FriendList () {
         }
     }, [partnerObj.partnerList]);
 
-    // useEffect(() => {
-    //     setFriendList(
-    //         partnerList.filter(p => p.isPending === false)
-    //     )
-    // }, [partnerList]);
+    useEffect(() => {
+        partnerObj.fetchFriends()
+    }, []);
 
     return(
         <>
@@ -38,7 +31,7 @@ function FriendList () {
                             name={p.name}
                             userId={p.userId}
                             photoURL={p.photoURL}
-                            isPending={p.isPending}
+                            isPending={false}
                             key={p.userId}
                         />)
                 }
