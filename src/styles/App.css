@@ -197,16 +197,25 @@
   align-self: center;
 }
 
+.friend-item .buttons button {
+  border-style: hidden;
+  transition: background-color 0.3s;
+}
+
+.friend-item .buttons button:focus {
+  outline: 0;
+}
+
 .friend-item .chat-button {
   background-color: rgba(211, 211, 211, 0.31);
 }
 
 .friend-item .chat-button:hover {
-  background-color: rgba(234, 235, 238, 0.67);
+  background-color: rgba(202, 202, 202, 0.67);
 }
 
 .friend-item .delete-button:hover {
-  background-color: rgba(253, 68, 68, 0.58);
+  background-color: rgb(240, 42, 42);
 }
 
 .friend-item .delete-button {
