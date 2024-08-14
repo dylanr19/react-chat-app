@@ -4,10 +4,8 @@ import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 import {useApi} from "./useApi.js";
 
 function usePartnerManager () {
-    // const [socketUrl, setSocketUrl] = useState('ws://localhost:5046/ws')
-    // const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {share: true});
     const { userId: loggedInUserId } = useContext(LoginContext);
-    const [url, setUrl] = useState(null);
+    // const [url, setUrl] = useState(null);
     const { data, isLoading, error, callApi } = useApi()
 
     // const [chatPartner, setChatPartner] = useState(null)
@@ -21,20 +19,16 @@ function usePartnerManager () {
     const [partnerList, setPartnerList] = useState([])
 
     useEffect(() => {
-        setUrl(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)
-    }, [loggedInUserId]);
-
-    useEffect(() => {
-            callApi(url)
-    }, [url]);
-
-    useEffect(() => {
         setPartnerList(data)
     }, [data]);
 
-    useEffect(() => {
-        console.log(partnerList)
-    }, [partnerList]);
+    const fetchFriends = () => {
+        callApi(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)
+    }
+
+    const fetchPotentialFriends = () => {
+        callApi(`http://localhost:5046/api/Friend/FetchPotentialFriends/${loggedInUserId}`)
+    }
 
     //
     // useEffect(() => {
@@ -88,6 +82,8 @@ function usePartnerManager () {
             getPartnerData,
             createNewPartner,
             setPartnerLastMessage,
+            fetchFriends,
+            fetchPotentialFriends,
             chatPartner,
             partnerList,
             setChatPartner,
