@@ -23,5 +23,5 @@ export const useApi = () => {
         fetchData(url, options)
     }
 
-    return { data, isLoading, error, callApi }
+    return { data, isLoading, error, setError, callApi }
 }

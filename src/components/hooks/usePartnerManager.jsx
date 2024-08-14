@@ -5,7 +5,7 @@ import {useApi} from "./useApi.js";
 
 function usePartnerManager () {
     const { userId: loggedInUserId } = useContext(LoginContext);
-    const { data, isLoading, error, callApi } = useApi()
+    const { data, isLoading, error, setError, callApi } = useApi()
 
     // const [chatPartner, setChatPartner] = useState(null)
     const [chatPartner, setChatPartner] = useState({
@@ -27,6 +27,13 @@ function usePartnerManager () {
 
     const fetchPotentialFriends = () => {
         callApi(`http://localhost:5046/api/Friend/FetchPotentialFriends/${loggedInUserId}`)
+    }
+
+    const sendFriendRequest = (receiverId) => {
+        callApi(`http://localhost:5046/api/Friend/SendFriendRequest`, { method: 'POST', data: {
+                initiatorId: loggedInUserId,
+                acceptorId: receiverId,
+            }})
     }
 
     const getPartnerData = (Id, list = partnerList) => {
@@ -59,6 +66,10 @@ function usePartnerManager () {
             setPartnerLastMessage,
             fetchFriends,
             fetchPotentialFriends,
+            sendFriendRequest,
+            error,
+            setError,
+            isLoading,
             chatPartner,
             partnerList,
             setChatPartner,
