@@ -5,7 +5,6 @@ import {useApi} from "./useApi.js";
 
 function usePartnerManager () {
     const { userId: loggedInUserId } = useContext(LoginContext);
-    // const [url, setUrl] = useState(null);
     const { data, isLoading, error, callApi } = useApi()
 
     // const [chatPartner, setChatPartner] = useState(null)
@@ -30,41 +29,17 @@ function usePartnerManager () {
         callApi(`http://localhost:5046/api/Friend/FetchPotentialFriends/${loggedInUserId}`)
     }
 
-    //
-    // useEffect(() => {
-    //     if(lastJsonMessage == null){
-    //         return;
-    //     }
-    //
-    //     const initializePartnerList = () => {
-    //         const test = lastJsonMessage.friends[0]
-    //         test.photoURL = ""
-    //         test.lastMessage = ""
-    //         setPartnerList(lastJsonMessage.friends)
-    //         createNewPartner()
-    //     }
-    //
-    //     if (lastJsonMessage.type === 'friendList'){
-    //         initializePartnerList()
-    //     }
-    //
-    // }, [lastJsonMessage]);
-
     const getPartnerData = (Id, list = partnerList) => {
         return list.find(partner => partner.userId === Id)
     }
 
-    const createNewPartner = (messageData) => {
+    const createNewPartner = () => {
         const newPartner = {
             photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
             name: 'Bobilev',
             userId: 'user31',
             lastMessage: 'lmao',
             isActive: false
-            //photoURL : messageData.photoURL,
-            //name: messageData.name,
-            //userId: messageData.senderId,
-            //lastMessage: messageData.text,
         }
 
         setPartnerList((prev) => prev.concat(newPartner))
