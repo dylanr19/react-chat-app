@@ -67,26 +67,38 @@
 }
 
 /* Style the links inside the navigation bar */
-.topnav a {
+.topnav button {
   color: black;
   font-size: 17px;
-  padding: 1px 5px;
+  padding: 2px 5px;
   border-radius: 6px;
+  border-style: hidden;
+  transition: background-color 0.3s;
+}
+
+.topnav button:focus {
+  outline: none;
 }
 
 /* Change the color of links on hover */
-.topnav a:hover {
+.topnav button:hover {
   background-color: rgba(211, 211, 211, 0.31);
   color: black;
+  border-style: hidden;
 }
 
 /* Add a color to the active/current link */
-.topnav a.active {
+.topnav button.active {
   background-color: #e2e2e2;
 }
 
-.topnav a.add {
+.topnav button.add {
   background-color: #04AA6D;
+  color: white;
+}
+
+.topnav button.add:hover {
+  background-color: #0dba7a;
   color: white;
 }
 
