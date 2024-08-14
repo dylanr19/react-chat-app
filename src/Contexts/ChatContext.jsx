@@ -1,6 +1,6 @@
 import {createContext, useEffect} from 'react';
-import usePartnerManager from "./usePartnerManager.jsx";
-import useMessaging from "./useMessaging.jsx";
+import usePartnerManager from "../components/hooks/usePartnerManager.jsx";
+import useMessaging from "../components/hooks/useMessaging.jsx";
 
 // const initialPartnerData = {photoURL : '', name: '', userId: '', lastMessage: '', isActive: false}
 // const initialMessageData = {photoURL: '', senderId: '', date: '', text: '', delivered: true}
@@ -35,6 +35,10 @@ export const ChatProvider = ({ children }) => {
     const sendChatMessage = (text) => {
         processOutgoingMessage(text)
     }
+
+    useEffect(() => {
+
+    }, []);
 
     return (
         <ChatContext.Provider value={{

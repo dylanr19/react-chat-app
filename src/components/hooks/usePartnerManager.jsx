@@ -1,11 +1,11 @@
 import {useContext, useEffect, useState} from 'react';
 import useWebSocket from "react-use-websocket";
-import {LoginContext} from "/src/Contexts/login context/LoginContext.jsx";
+import {LoginContext} from "/src/Contexts/LoginContext.jsx";
+import {useApi} from "./useApi.js";
 
 function usePartnerManager () {
-    const [socketUrl, setSocketUrl] = useState('ws://localhost:5046/ws')
-    const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {share: true});
-    const { loggedInUserId } = useContext(LoginContext);
+    const { userId: loggedInUserId } = useContext(LoginContext);
+    const { data, isLoading, error, callApi } = useApi()
 
     // const [chatPartner, setChatPartner] = useState(null)
     const [chatPartner, setChatPartner] = useState({
@@ -17,50 +17,29 @@ function usePartnerManager () {
     })
     const [partnerList, setPartnerList] = useState([])
 
-    // useEffect(() => {
-    //     const fetchPartners = () => {
-    //         sendJsonMessage({
-    //             userId: loggedInUserId,
-    //             type: 'friendList'
-    //         });
-    //     }
-    //     fetchPartners();
-    // }, [loggedInUserId]);
-
     useEffect(() => {
-        if(lastJsonMessage == null){
-            return;
-        }
+        setPartnerList(data)
+    }, [data]);
 
-        const initializePartnerList = () => {
-            const test = lastJsonMessage.friends[0]
-            test.photoURL = ""
-            test.lastMessage = ""
-            setPartnerList(lastJsonMessage.friends)
-            createNewPartner()
-        }
+    const fetchFriends = () => {
+        callApi(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)
+    }
 
-        if (lastJsonMessage.type === 'friendList'){
-            initializePartnerList()
-        }
-
-    }, [lastJsonMessage]);
+    const fetchPotentialFriends = () => {
+        callApi(`http://localhost:5046/api/Friend/FetchPotentialFriends/${loggedInUserId}`)
+    }
 
     const getPartnerData = (Id, list = partnerList) => {
         return list.find(partner => partner.userId === Id)
     }
 
-    const createNewPartner = (messageData) => {
+    const createNewPartner = () => {
         const newPartner = {
             photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
             name: 'Bobilev',
             userId: 'user31',
             lastMessage: 'lmao',
             isActive: false
-            //photoURL : messageData.photoURL,
-            //name: messageData.name,
-            //userId: messageData.senderId,
-            //lastMessage: messageData.text,
         }
 
         setPartnerList((prev) => prev.concat(newPartner))
@@ -78,6 +57,8 @@ function usePartnerManager () {
             getPartnerData,
             createNewPartner,
             setPartnerLastMessage,
+            fetchFriends,
+            fetchPotentialFriends,
             chatPartner,
             partnerList,
             setChatPartner,

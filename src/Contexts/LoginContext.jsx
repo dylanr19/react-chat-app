@@ -3,7 +3,7 @@ import {createContext, useEffect, useState} from 'react';
 export const LoginContext = createContext()
 
 export const LoginProvider = ({ children }) => {
-    const [loggedInUserId, setLoggedInUserId] = useState('')
+    const [loggedInUserId, setLoggedInUserId] = useState(null)
 
     useEffect(() => {
         setLoggedInUserId('user1')

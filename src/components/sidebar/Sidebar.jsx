@@ -1,7 +1,7 @@
 import '../../styles/App.css'
 import PartnerTab from './PartnerTab.jsx'
 import {useEffect, useState, useContext} from "react";
-import {ChatContext} from '../../Contexts/chat context/ChatContext.jsx'
+import {ChatContext} from '../../Contexts/ChatContext.jsx'
 import { v4 as uuidv4 } from 'uuid'
 
 const placeholder = 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg'
@@ -15,15 +15,15 @@ function Sidebar() {
         <>
             <div className="side-bar">
                 {
-                    partnerList.map((partner) => (
-                    <PartnerTab
-                        partnerData={partner}
-                        partnerList={partnerList}
-                        setPartnerList={setPartnerList}
-                        startNewChat={startNewChat}
-                        //key={partner.userId}
-                        key={uuidv4()}
-                    />))
+                    // partnerList.map((partner) => (
+                    // <PartnerTab
+                    //     partnerData={partner}
+                    //     partnerList={partnerList}
+                    //     setPartnerList={setPartnerList}
+                    //     startNewChat={startNewChat}
+                    //     //key={partner.userId}
+                    //     key={uuidv4()}
+                    // />))
                 }
             </div>
         </>

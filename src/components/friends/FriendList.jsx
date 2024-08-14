@@ -1,27 +1,26 @@
 import {useContext, useEffect, useState} from 'react';
-import {ChatContext} from "../../Contexts/chat context/ChatContext.jsx";
+import usePartnerManager from "../hooks/usePartnerManager.jsx";
 import FriendItem from "./FriendItem.jsx";
+import {LoginContext} from "../../Contexts/LoginContext.jsx";
 
 function FriendList () {
-    const { partnerList } = useContext(ChatContext)
+    const { partnerObj } = usePartnerManager()
     const [ friendList, setFriendList ] = useState([{
         name: "bob",
         userId: "user1",
         photoURL: "none",
         isPending: false,
-    },
-        {
-            name: "bob2",
-            userId: "user2",
-            photoURL: "none",
-            isPending: false,
-        }])
+    }])
 
-    // useEffect(() => {
-    //     setFriendList(
-    //         partnerList.filter(p => p.isPending === false)
-    //     )
-    // }, [partnerList]);
+    useEffect(() => {
+        if (partnerObj.partnerList !== null){
+            setFriendList(partnerObj.partnerList)
+        }
+    }, [partnerObj.partnerList]);
+
+    useEffect(() => {
+        partnerObj.fetchFriends()
+    }, []);
 
     return(
         <>
@@ -32,7 +31,7 @@ function FriendList () {
                             name={p.name}
                             userId={p.userId}
                             photoURL={p.photoURL}
-                            isPending={p.isPending}
+                            isPending={false}
                             key={p.userId}
                         />)
                 }
