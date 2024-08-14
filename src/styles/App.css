@@ -136,6 +136,11 @@
   outline: inherit;
 }
 
+.success-message {
+  margin: -10px 25px;
+  font-size: 13px;
+}
+
 /*.example button:hover {*/
 /*  background: #0b7dda;*/
 /*}*/
@@ -156,6 +161,9 @@
   display: flex;
   flex-direction: column;
   min-width: 350px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .friend-item {
