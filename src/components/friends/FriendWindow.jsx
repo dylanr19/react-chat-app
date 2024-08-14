@@ -2,18 +2,20 @@ import React, {useState} from 'react';
 import FriendList from "./FriendList.jsx";
 import SearchBar from "./SearchBar.jsx";
 import TopNavigationBar from "./TopNavigationBar.jsx";
+import FriendRequestList from "./FriendRequestList.jsx";
+import AddFriend from "./AddFriend.jsx";
+import {WINDOW_STATES} from "./WINDOW_STATES.js";
 
 function FriendWindow () {
-    const [ displayFriends, setDisplayFriends ] = useState()
-    const [ displayFriendRequests, setDisplayFriendRequests ] = useState()
-    const [ displayAddFriends, setDisplayAddFriends ] = useState()
-
+    const [ currentWindow, setCurrentWindow ] = useState(WINDOW_STATES.FRIENDS);
 
     return (
       <>
-          <TopNavigationBar></TopNavigationBar>
+          <TopNavigationBar setCurrentWindow={setCurrentWindow}></TopNavigationBar>
           <SearchBar></SearchBar>
-          <FriendList></FriendList>
+          {currentWindow === WINDOW_STATES.FRIENDS && <FriendList />}
+          {currentWindow === WINDOW_STATES.FRIENDREQUESTS && <FriendRequestList />}
+          {currentWindow === WINDOW_STATES.ADDFRIENDS && <AddFriend />}
       </>
     );
 }
