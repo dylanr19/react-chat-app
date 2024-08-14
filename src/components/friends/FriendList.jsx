@@ -1,16 +1,12 @@
-import {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import usePartnerManager from "../hooks/usePartnerManager.jsx";
 import FriendItem from "./FriendItem.jsx";
 import {LoginContext} from "../../Contexts/LoginContext.jsx";
+import FriendSearchBar from "./FriendSearchBar.jsx";
 
 function FriendList () {
     const { partnerObj } = usePartnerManager()
-    const [ friendList, setFriendList ] = useState([{
-        name: "bob",
-        userId: "user1",
-        photoURL: "none",
-        isPending: false,
-    }])
+    const [ friendList, setFriendList ] = useState([])
 
     useEffect(() => {
         if (partnerObj.partnerList !== null){
@@ -24,6 +20,8 @@ function FriendList () {
 
     return(
         <>
+            <FriendSearchBar list={friendList} setList={setFriendList} placeholder="Search Friends..."></FriendSearchBar>
+
             <div className="friend-list">
                 {
                     friendList.map(p =>
