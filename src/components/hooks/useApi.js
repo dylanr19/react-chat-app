@@ -5,6 +5,7 @@ export const useApi = () => {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [status, setStatus] = useState(null);
 
     const fetchData = async (url, options) => {
         setIsLoading(true);
@@ -12,6 +13,7 @@ export const useApi = () => {
         try {
             const response = await axios(url, options)
             setData(response.data)
+            setStatus(response.status)
         } catch (error) {
             setError(error);
         }
@@ -23,5 +25,5 @@ export const useApi = () => {
         fetchData(url, options)
     }
 
-    return { data, isLoading, error, setError, callApi }
+    return { data, isLoading, error, status, callApi }
 }
