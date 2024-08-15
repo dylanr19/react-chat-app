@@ -1,6 +1,12 @@
 import React from "react";
 
-function FriendItem ({ name, photoURL, userId, isPending }) {
+function FriendItem ({ name, photoURL, userId, isPending, setOriginalList, setFriendList, removeFriend, }) {
+
+    const onDeleteClick = () => {
+        setOriginalList((prev) => prev.filter(f => f.userId !== userId));
+        setFriendList((prev) => prev.filter(f => f.userId !== userId));
+        removeFriend(userId)
+    }
 
     return(
         <>
@@ -21,7 +27,7 @@ function FriendItem ({ name, photoURL, userId, isPending }) {
                                 <button className="chat-button">
                                     <i className="bi bi-chat-fill"></i>
                                 </button>
-                                <button className="delete-button">
+                                <button className="delete-button" onClick={onDeleteClick}>
                                     <i className="bi bi-x"></i>
                                 </button>
                             </div>
