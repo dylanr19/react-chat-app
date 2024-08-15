@@ -1,19 +1,17 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {ChatContext} from "../../Contexts/ChatContext.jsx";
+import React, {useEffect, useState} from 'react';
 import FriendItem from "./FriendItem.jsx";
-import {LoginContext} from "../../Contexts/LoginContext.jsx";
 import usePartnerManager from "../hooks/usePartnerManager.jsx";
 import FriendSearchBar from "./FriendSearchBar.jsx";
-import friendList from "./FriendList.jsx";
 
 function FriendRequestList () {
     const { partnerObj } = usePartnerManager()
-    const [ friendRequestList, setFriendRequestList ] = useState([])
+    const [ currentFriendRequestList, setCurrentFriendRequestList ] = useState([])
 
     useEffect(() => {
-        if (partnerObj.partnerList != null){
-            setFriendRequestList(partnerObj.partnerList)
-        }
+
+        if (partnerObj.partnerList != null)
+            setCurrentFriendRequestList(partnerObj.partnerList)
+
     }, [partnerObj.partnerList]);
 
     useEffect(() => {
@@ -22,11 +20,16 @@ function FriendRequestList () {
 
     return(
         <>
-            <FriendSearchBar list={friendRequestList} setList={setFriendRequestList} placeholder="Search Friend Requests..."></FriendSearchBar>
+            <FriendSearchBar
+                originalList={partnerObj.partnerList}
+                list={currentFriendRequestList}
+                setList={setCurrentFriendRequestList}
+                placeholder="Search Friend Requests...">
+            </FriendSearchBar>
 
             <div className="friend-list">
                 {
-                    friendRequestList.map(p =>
+                    currentFriendRequestList.map(p =>
                         <FriendItem
                             name={p.name}
                             userId={p.userId}

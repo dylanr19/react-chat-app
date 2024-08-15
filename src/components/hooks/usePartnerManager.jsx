@@ -18,7 +18,8 @@ function usePartnerManager () {
     const [partnerList, setPartnerList] = useState([])
 
     useEffect(() => {
-        setPartnerList(data)
+        if(data !== '')
+            setPartnerList(data)
     }, [data]);
 
     const fetchFriends = () => {
@@ -34,6 +35,10 @@ function usePartnerManager () {
                 initiatorId: loggedInUserId,
                 acceptorId: receiverId,
             }})
+    }
+
+    const removeFriend = (friendId) => {
+        callApi(`http://localhost:5046/api/Friend/RemoveFriend/${loggedInUserId}/${friendId}`, { method: 'DELETE' })
     }
 
     const getPartnerData = (Id, list = partnerList) => {
@@ -67,6 +72,7 @@ function usePartnerManager () {
             fetchFriends,
             fetchPotentialFriends,
             sendFriendRequest,
+            removeFriend,
             error,
             setError,
             isLoading,
