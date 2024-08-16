@@ -20,8 +20,12 @@ function useFriendApi () {
         return await callApi(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)
     }
 
-    const fetchPotentialFriends = async () => {
-        return await callApi(`http://localhost:5046/api/Friend/FetchPotentialFriends/${loggedInUserId}`)
+    const fetchIncomingFriendRequests = async () => {
+        return await callApi(`http://localhost:5046/api/Friend/FetchIncomingFriendRequests/${loggedInUserId}`)
+    }
+
+    const fetchOutgoingFriendRequests = async () => {
+        return await callApi(`http://localhost:5046/api/Friend/FetchOutgoingFriendRequests/${loggedInUserId}`)
     }
 
     const sendFriendRequest = async (receiverId) => {
@@ -77,7 +81,8 @@ function useFriendApi () {
         createNewPartner,
         setPartnerLastMessage,
         fetchFriends,
-        fetchPotentialFriends,
+        fetchIncomingFriendRequests,
+        fetchOutgoingFriendRequests,
         sendFriendRequest,
         removeFriend,
         acceptFriendRequest,

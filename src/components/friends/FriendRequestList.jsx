@@ -4,16 +4,26 @@ import useFriendApi from "../hooks/useFriendApi.jsx";
 import FriendSearchBar from "./FriendSearchBar.jsx";
 
 function FriendRequestList () {
-    const { fetchPotentialFriends, acceptFriendRequest, declineFriendRequest } = useFriendApi()
-    const [ originalFriendRequestList, setOriginalFriendRequestList ] = useState([])
-    const [ currentFriendRequestList, setCurrentFriendRequestList ] = useState([])
+    const { fetchIncomingFriendRequests, fetchOutgoingFriendRequests, acceptFriendRequest, declineFriendRequest } = useFriendApi()
+
+    const [ originalOutgoingList, setOriginalOutgoingList ] = useState([])
+    const [ currentOutgoingList, setCurrentOutgoingList ] = useState([])
+
+    const [ originalIncomingList, setOriginalIncomingList ] = useState([])
+    const [ currentIncomingList, setCurrentIncomingList ] = useState([])
 
     const fetch = async () => {
-        const response = await fetchPotentialFriends()
+        const response1 = await fetchIncomingFriendRequests()
+        const response2 = await fetchOutgoingFriendRequests()
 
-        if (response.status === 200) {
-            setOriginalFriendRequestList(response.data)
-            setCurrentFriendRequestList(response.data)
+        if (response1.status === 200) {
+            setOriginalIncomingList(response1.data)
+            setCurrentIncomingList(response1.data)
+        }
+
+        if (response2.status === 200) {
+            setOriginalOutgoingList(response2.data)
+            setCurrentOutgoingList(response2.data)
         }
     }
 
@@ -40,15 +50,15 @@ function FriendRequestList () {
     return(
         <>
             <FriendSearchBar
-                originalList={originalFriendRequestList}
-                list={currentFriendRequestList}
-                setList={setCurrentFriendRequestList}
+                friendLists={[
+                    {originalList: originalIncomingList, setCurrentList: setCurrentIncomingList},
+                    {originalList: originalOutgoingList, setCurrentList: setCurrentOutgoingList}]}
                 placeholder="Search Friend Requests...">
             </FriendSearchBar>
 
             <div className="friend-list">
                 {
-                    currentFriendRequestList.map(p =>
+                    currentOutgoingList.map(p =>
                         <FriendItem
                             name={p.name}
                             userId={p.userId}
