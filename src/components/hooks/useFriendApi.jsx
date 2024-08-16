@@ -31,6 +31,20 @@ function useFriendApi () {
             }})
     }
 
+    const acceptFriendRequest = async (initiatorId) => {
+        return await callApi(`http://localhost:5046/api/Friend/AcceptFriendRequest`, { method: 'PUT', data: {
+                initiatorId:initiatorId,
+                acceptorId:loggedInUserId
+            }})
+    }
+
+    const declineFriendRequest = async (initiatorId) => {
+        return await callApi(`http://localhost:5046/api/Friend/DeclineFriendRequest`, { method: 'DELETE', data: {
+                initiatorId:initiatorId,
+                acceptorId:loggedInUserId
+            }})
+    }
+
     const removeFriend = async (friendId) => {
         return await callApi(`http://localhost:5046/api/Friend/RemoveFriend/${loggedInUserId}/${friendId}`, { method: 'DELETE' })
     }
@@ -66,6 +80,8 @@ function useFriendApi () {
         fetchPotentialFriends,
         sendFriendRequest,
         removeFriend,
+        acceptFriendRequest,
+        declineFriendRequest,
         chatPartner,
         partnerList,
         setChatPartner,
