@@ -3,7 +3,7 @@ import useWebSocket from "react-use-websocket";
 import {playNotificationSound, showDesktopNotification} from "../../notificationUtils.js";
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
-function useMessaging ({chatPartner, createNewPartner, setPartnerLastMessage, getPartnerData}) {
+function useMessaging (chatPartner, createNewPartner, setPartnerLastMessage, getPartnerData) {
     const { loggenInUserId } = useContext(LoginContext)
 
     const [socketUrl, setSocketUrl] = useState('ws://localhost:5046/ws')
