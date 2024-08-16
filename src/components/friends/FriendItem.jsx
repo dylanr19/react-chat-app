@@ -1,11 +1,9 @@
 import React from "react";
 
-function FriendItem ({ name, photoURL, userId, isPending, setOriginalList, setFriendList, removeFriend, }) {
+function FriendItem ({ name, photoURL, userId, isPending, onDelete }) {
 
     const onDeleteClick = () => {
-        setOriginalList((prev) => prev.filter(f => f.userId !== userId));
-        setFriendList((prev) => prev.filter(f => f.userId !== userId));
-        removeFriend(userId)
+        onDelete(userId)
     }
 
     return(
