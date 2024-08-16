@@ -56,9 +56,26 @@ function FriendRequestList () {
                 placeholder="Search Friend Requests...">
             </FriendSearchBar>
 
+            <h4 className="friend-requests-header">Outgoing</h4>
             <div className="friend-list">
                 {
                     currentOutgoingList.map(p =>
+                        <FriendItem
+                            name={p.name}
+                            userId={p.userId}
+                            photoURL={p.photoURL}
+                            isPending={true}
+                            key={p.userId}
+                            onAccept={onAccept}
+                            onDelete={onDecline}
+                        />)
+                }
+            </div>
+
+            <h4 className="friend-requests-header">Incoming</h4>
+            <div className="friend-list">
+                {
+                    currentIncomingList.map(p =>
                         <FriendItem
                             name={p.name}
                             userId={p.userId}
