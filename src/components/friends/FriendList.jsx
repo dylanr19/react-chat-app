@@ -32,9 +32,7 @@ function FriendList () {
     return(
         <>
             <FriendSearchBar
-                originalList={originalFriendList}
-                list={currentFriendList}
-                setList={setCurrentFriendList}
+                friendLists={[{originalList: originalFriendList, setCurrentList: setCurrentFriendList}]}
                 placeholder="Search Friends...">
             </FriendSearchBar>
 
