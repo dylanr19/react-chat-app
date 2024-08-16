@@ -1,11 +1,10 @@
-import {useContext, useEffect, useState} from 'react';
-import useWebSocket from "react-use-websocket";
+import {useContext, useState} from 'react';
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 import {useApi} from "./useApi.js";
 
-function usePartnerManager () {
+function useFriendApi () {
     const { userId: loggedInUserId } = useContext(LoginContext);
-    const { data, isLoading, error, setError, callApi } = useApi()
+    const { callApi } = useApi()
 
     // const [chatPartner, setChatPartner] = useState(null)
     const [chatPartner, setChatPartner] = useState({
@@ -17,28 +16,23 @@ function usePartnerManager () {
     })
     const [partnerList, setPartnerList] = useState([])
 
-    useEffect(() => {
-        if(data !== '')
-            setPartnerList(data)
-    }, [data]);
-
-    const fetchFriends = () => {
-        callApi(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)
+    const fetchFriends = async () => {
+        return await callApi(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)
     }
 
-    const fetchPotentialFriends = () => {
-        callApi(`http://localhost:5046/api/Friend/FetchPotentialFriends/${loggedInUserId}`)
+    const fetchPotentialFriends = async () => {
+        return await callApi(`http://localhost:5046/api/Friend/FetchPotentialFriends/${loggedInUserId}`)
     }
 
-    const sendFriendRequest = (receiverId) => {
-        callApi(`http://localhost:5046/api/Friend/SendFriendRequest`, { method: 'POST', data: {
+    const sendFriendRequest = async (receiverId) => {
+        return await callApi(`http://localhost:5046/api/Friend/SendFriendRequest`, { method: 'POST', data: {
                 initiatorId: loggedInUserId,
                 acceptorId: receiverId,
             }})
     }
 
-    const removeFriend = (friendId) => {
-        callApi(`http://localhost:5046/api/Friend/RemoveFriend/${loggedInUserId}/${friendId}`, { method: 'DELETE' })
+    const removeFriend = async (friendId) => {
+        return await callApi(`http://localhost:5046/api/Friend/RemoveFriend/${loggedInUserId}/${friendId}`, { method: 'DELETE' })
     }
 
     const getPartnerData = (Id, list = partnerList) => {
@@ -65,23 +59,18 @@ function usePartnerManager () {
     }
 
     return {
-        partnerObj: {
-            getPartnerData,
-            createNewPartner,
-            setPartnerLastMessage,
-            fetchFriends,
-            fetchPotentialFriends,
-            sendFriendRequest,
-            removeFriend,
-            error,
-            setError,
-            isLoading,
-            chatPartner,
-            partnerList,
-            setChatPartner,
-            setPartnerList
-        }
+        getPartnerData,
+        createNewPartner,
+        setPartnerLastMessage,
+        fetchFriends,
+        fetchPotentialFriends,
+        sendFriendRequest,
+        removeFriend,
+        chatPartner,
+        partnerList,
+        setChatPartner,
+        setPartnerList
     }
 }
 
-export default usePartnerManager
+export default useFriendApi

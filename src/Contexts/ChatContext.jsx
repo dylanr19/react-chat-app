@@ -1,5 +1,5 @@
 import {createContext, useEffect} from 'react';
-import usePartnerManager from "../components/hooks/usePartnerManager.jsx";
+import useFriendApi from "../components/hooks/useFriendApi.jsx";
 import useMessaging from "../components/hooks/useMessaging.jsx";
 
 // const initialPartnerData = {photoURL : '', name: '', userId: '', lastMessage: '', isActive: false}
@@ -11,13 +11,8 @@ export const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
 
-    const { partnerObj } = usePartnerManager()
-    const { messageObj } = useMessaging(partnerObj)
-
-    const chatPartner = partnerObj.chatPartner
-    const setChatPartner = partnerObj.setChatPartner
-    const partnerList = partnerObj.partnerList
-    const setPartnerList = partnerObj.setPartnerList
+    const { chatPartner, setChatPartner, partnerList, setPartnerList, getPartnerData } = useFriendApi()
+    const { messageObj } = useMessaging(chatPartner, setChatPartner, getPartnerData)
 
     const readyState = messageObj.readyState
     const messageHistory = messageObj.messageHistory
