@@ -32,26 +32,31 @@ function FriendList () {
     return(
         <>
             <FriendSearchBar
-                originalList={originalFriendList}
-                list={currentFriendList}
-                setList={setCurrentFriendList}
+                friendLists={[{originalList: originalFriendList, setCurrentList: setCurrentFriendList}]}
                 placeholder="Search Friends...">
             </FriendSearchBar>
 
-            <div className="friend-list">
-                {
-                    currentFriendList?.map(p =>
-                        <FriendItem
-                            name={p.name}
-                            userId={p.userId}
-                            photoURL={p.photoURL}
-                            isPending={false}
-                            key={p.userId}
-                            onDelete={onDeleteClick}
-                            // onChat={}
-                        />)
-                }
-            </div>
+            {
+                currentFriendList.length === 0
+                    ?
+                    <p className="empty-friend-message">You have no friends.</p>
+                    :
+                    <div className="friend-list">
+                        {
+                            currentFriendList.map(p =>
+                                <FriendItem
+                                    name={p.name}
+                                    userId={p.userId}
+                                    photoURL={p.photoURL}
+                                    isPending={true}
+                                    key={p.userId}
+                                    showChatButton={true}
+                                    showDeleteButton={true}
+                                    onDelete={onDeleteClick}
+                                />)
+                        }
+                    </div>
+            }
         </>
     )
 }

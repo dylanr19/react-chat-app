@@ -20,14 +20,32 @@ function useFriendApi () {
         return await callApi(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)
     }
 
-    const fetchPotentialFriends = async () => {
-        return await callApi(`http://localhost:5046/api/Friend/FetchPotentialFriends/${loggedInUserId}`)
+    const fetchIncomingFriendRequests = async () => {
+        return await callApi(`http://localhost:5046/api/Friend/FetchIncomingFriendRequests/${loggedInUserId}`)
+    }
+
+    const fetchOutgoingFriendRequests = async () => {
+        return await callApi(`http://localhost:5046/api/Friend/FetchOutgoingFriendRequests/${loggedInUserId}`)
     }
 
     const sendFriendRequest = async (receiverId) => {
         return await callApi(`http://localhost:5046/api/Friend/SendFriendRequest`, { method: 'POST', data: {
                 initiatorId: loggedInUserId,
                 acceptorId: receiverId,
+            }})
+    }
+
+    const acceptFriendRequest = async (initiatorId) => {
+        return await callApi(`http://localhost:5046/api/Friend/AcceptFriendRequest`, { method: 'PUT', data: {
+                initiatorId:initiatorId,
+                acceptorId:loggedInUserId
+            }})
+    }
+
+    const declineFriendRequest = async (initiatorId) => {
+        return await callApi(`http://localhost:5046/api/Friend/DeclineFriendRequest`, { method: 'DELETE', data: {
+                initiatorId:initiatorId,
+                acceptorId:loggedInUserId
             }})
     }
 
@@ -63,9 +81,12 @@ function useFriendApi () {
         createNewPartner,
         setPartnerLastMessage,
         fetchFriends,
-        fetchPotentialFriends,
+        fetchIncomingFriendRequests,
+        fetchOutgoingFriendRequests,
         sendFriendRequest,
         removeFriend,
+        acceptFriendRequest,
+        declineFriendRequest,
         chatPartner,
         partnerList,
         setChatPartner,

@@ -1,9 +1,17 @@
 import React from "react";
 
-function FriendItem ({ name, photoURL, userId, isPending, onDelete }) {
+function FriendItem ({ name, photoURL, userId, showChatButton, showAcceptButton, showDeleteButton, onDelete, onChat, onAccept }) {
 
     const onDeleteClick = () => {
         onDelete(userId)
+    }
+
+    const onChatClick = () => {
+        onChat(userId)
+    }
+
+    const onAcceptClick = () => {
+        onAccept(userId)
     }
 
     return(
@@ -18,20 +26,25 @@ function FriendItem ({ name, photoURL, userId, isPending, onDelete }) {
                         <p className="userID">{userId}</p>
                     </div>
                 </div>
-                {
-                    isPending ? null : (
-                        <>
-                            <div className="buttons">
-                                <button className="chat-button">
-                                    <i className="bi bi-chat-fill"></i>
-                                </button>
-                                <button className="delete-button" onClick={onDeleteClick}>
-                                    <i className="bi bi-x"></i>
-                                </button>
-                            </div>
-                        </>
-                    )
-                }
+                <div className="buttons">
+                    { showChatButton !== true ? null :
+                        <button className="chat-button" onClick={onChatClick}>
+                            <i className="bi bi-chat-fill"></i>
+                        </button>
+                    }
+
+                    { showAcceptButton !== true ? null :
+                        <button className="accept-button" onClick={onAcceptClick}>
+                            <i className="bi bi-check-lg"></i>
+                        </button>
+                    }
+
+                    { showDeleteButton !== true ? null :
+                        <button className="delete-button" onClick={onDeleteClick}>
+                            <i className="bi bi-x"></i>
+                        </button>
+                    }
+                </div>
             </div>
         </>
     )
