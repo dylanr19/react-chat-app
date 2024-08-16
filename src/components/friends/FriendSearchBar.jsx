@@ -1,14 +1,7 @@
 import React, {useEffect, useState} from "react";
 
-function FriendSearchBar({ originalList, list, setList, placeholder }) {
-    // const [ originalList, setOriginalList ] = useState(null);
+function FriendSearchBar({ originalList, setList, placeholder }) {
     const [ input, setInput ] = useState('');
-
-    // useEffect(() => {
-    //     if (originalList == null && list.length > 0) {
-    //         setOriginalList(list)
-    //     }
-    // }, [list]);
 
     useEffect(() => {
         if (input.length === 0){
