@@ -4,21 +4,36 @@ import useFriendApi from "../hooks/useFriendApi.jsx";
 import FriendSearchBar from "./FriendSearchBar.jsx";
 
 function FriendRequestList () {
-    const { fetchPotentialFriends } = useFriendApi()
+    const { fetchPotentialFriends, acceptFriendRequest, declineFriendRequest } = useFriendApi()
     const [ originalFriendRequestList, setOriginalFriendRequestList ] = useState([])
     const [ currentFriendRequestList, setCurrentFriendRequestList ] = useState([])
 
-    useEffect(() => {
+    const fetch = async () => {
+        const response = await fetchPotentialFriends()
 
-        const fetch = async () => {
-            const response = await fetchPotentialFriends()
-
-            if (response.status === 200) {
-                setOriginalFriendRequestList(response.data)
-                setCurrentFriendRequestList(response.data)
-            }
+        if (response.status === 200) {
+            setOriginalFriendRequestList(response.data)
+            setCurrentFriendRequestList(response.data)
         }
+    }
 
+    const onAccept = async (userId) => {
+        const response = await acceptFriendRequest(userId)
+
+        if (response.status === 200){
+            fetch()
+        }
+    }
+
+    const onDecline = async (userId) => {
+        const response = await declineFriendRequest(userId)
+
+        if (response.status === 200){
+            fetch()
+        }
+    }
+
+    useEffect(() => {
         fetch()
     }, []);
 
@@ -40,6 +55,8 @@ function FriendRequestList () {
                             photoURL={p.photoURL}
                             isPending={true}
                             key={p.userId}
+                            onAccept={onAccept}
+                            onDelete={onDecline}
                         />)
                 }
             </div>
