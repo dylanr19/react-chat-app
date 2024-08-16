@@ -1,29 +1,19 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const useApi = () => {
-    const [data, setData] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [status, setStatus] = useState(null);
 
-    const fetchData = async (url, options) => {
-        setIsLoading(true);
+    const callApi = async (url, options) => {
+        let response;
 
         try {
-            const response = await axios(url, options)
-            setData(response.data)
-            setStatus(response.status)
+            response = await axios(url, options)
         } catch (error) {
-            setError(error);
+            if (error.response != null)
+                response = error.response
         }
 
-        setIsLoading(false);
+        return response
     }
 
-    const callApi = (url, options) => {
-        fetchData(url, options)
-    }
-
-    return { data, isLoading, error, status, callApi }
+    return { callApi }
 }
