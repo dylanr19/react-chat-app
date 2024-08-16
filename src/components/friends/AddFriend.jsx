@@ -1,44 +1,33 @@
-import React, {useEffect, useState} from "react";
-import usePartnerManager from "../hooks/usePartnerManager.jsx";
+import React, {useState} from "react";
+import useFriendApi from "../hooks/useFriendApi.jsx";
 
 function AddFriend() {
-    const { partnerObj } = usePartnerManager()
+    const { sendFriendRequest } = useFriendApi()
     const [ input, setInput ] = useState('');
-    const [ successMessage, setSuccessMessage ] = useState('');
+    const [ message, setMessage ] = useState('');
 
-    useEffect(() => {
+    const onSendClick = async (userId) => {
+        const response = await sendFriendRequest(userId)
 
-        if (partnerObj.isLoading === true) {
-            return
+        if (response.status === 201 || response.status === 204) {
+            setMessage(`Your friend request to ${userId} was sent.`)
         }
-
-        if (input.length === 0) {
-            return
+        if (response.status === 409) {
+            setMessage('This user is either already a friend or has a pending friend request.')
         }
-
-        if (partnerObj.error == null) {
-            setSuccessMessage(`Your friend request to ${input} was sent.`)
+        else if (response.status === 500) {
+            setMessage('Server error, please try again.')
         }
-
-        else if (partnerObj.error.response.status === 409) {
-            setSuccessMessage('This user is either already a friend or has a pending friend request.')
-            partnerObj.setError(null);
-        }
-        else if (partnerObj.error.response.status === 500) {
-            setSuccessMessage('Server error, please try again.')
-            partnerObj.setError(null);
-        }
-
-    }, [partnerObj.isLoading]);
+    }
 
     return(
         <>
             <div className="example">
                 <input type="text" placeholder="Add Friend..." name="search"
                        onChange={(e) => setInput(e.target.value)}/>
-                <button type="submit"><i className="bi bi-search" onClick={() => partnerObj.sendFriendRequest(input)}></i></button>
+                <button type="submit"><i className="bi bi-search" onClick={() => onSendClick(input)}></i></button>
             </div>
-            <p className="success-message">{successMessage}</p>
+            <p className="success-message">{message}</p>
         </>
     )
 }

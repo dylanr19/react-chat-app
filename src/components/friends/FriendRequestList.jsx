@@ -1,27 +1,31 @@
 import React, {useEffect, useState} from 'react';
 import FriendItem from "./FriendItem.jsx";
-import usePartnerManager from "../hooks/usePartnerManager.jsx";
+import useFriendApi from "../hooks/useFriendApi.jsx";
 import FriendSearchBar from "./FriendSearchBar.jsx";
 
 function FriendRequestList () {
-    const { partnerObj } = usePartnerManager()
+    const { fetchPotentialFriends } = useFriendApi()
+    const [ originalFriendRequestList, setOriginalFriendRequestList ] = useState([])
     const [ currentFriendRequestList, setCurrentFriendRequestList ] = useState([])
 
     useEffect(() => {
 
-        if (partnerObj.partnerList != null)
-            setCurrentFriendRequestList(partnerObj.partnerList)
+        const fetch = async () => {
+            const response = await fetchPotentialFriends()
 
-    }, [partnerObj.partnerList]);
+            if (response.status === 200) {
+                setOriginalFriendRequestList(response.data)
+                setCurrentFriendRequestList(response.data)
+            }
+        }
 
-    useEffect(() => {
-        partnerObj.fetchPotentialFriends()
+        fetch()
     }, []);
 
     return(
         <>
             <FriendSearchBar
-                originalList={partnerObj.partnerList}
+                originalList={originalFriendRequestList}
                 list={currentFriendRequestList}
                 setList={setCurrentFriendRequestList}
                 placeholder="Search Friend Requests...">

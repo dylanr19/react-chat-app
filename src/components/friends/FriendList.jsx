@@ -1,24 +1,32 @@
 import React, {useEffect, useState} from 'react';
-import usePartnerManager from "../hooks/usePartnerManager.jsx";
+import useFriendApi from "../hooks/useFriendApi.jsx";
 import FriendItem from "./FriendItem.jsx";
 import FriendSearchBar from "./FriendSearchBar.jsx";
 
 function FriendList () {
-    const { partnerObj } = usePartnerManager()
+    const { fetchFriends, removeFriend } = useFriendApi()
     const [ originalFriendList, setOriginalFriendList ] = useState([])
     const [ currentFriendList, setCurrentFriendList ] = useState([])
 
-    useEffect(() => {
+    const fetch = async () => {
+        const response = await fetchFriends()
 
-        if (partnerObj.partnerList !== null){
-            setOriginalFriendList(partnerObj.partnerList)
-            setCurrentFriendList(partnerObj.partnerList)
+        if (response.status === 200) {
+            setOriginalFriendList(response.data)
+            setCurrentFriendList(response.data)
         }
+    }
 
-    }, [partnerObj.partnerList]);
+    const onDeleteClick = async (userId) => {
+        const response = await removeFriend(userId)
+
+        if (response.status === 200){
+            fetch()
+        }
+    }
 
     useEffect(() => {
-        partnerObj.fetchFriends()
+        fetch()
     }, []);
 
     return(
@@ -32,17 +40,15 @@ function FriendList () {
 
             <div className="friend-list">
                 {
-                    currentFriendList.map(p =>
+                    currentFriendList?.map(p =>
                         <FriendItem
                             name={p.name}
                             userId={p.userId}
                             photoURL={p.photoURL}
                             isPending={false}
                             key={p.userId}
-                            setOriginalList={setOriginalFriendList}
-                            friendList={currentFriendList}
-                            setFriendList={setCurrentFriendList}
-                            removeFriend={partnerObj.removeFriend}
+                            onDelete={onDeleteClick}
+                            // onChat={}
                         />)
                 }
             </div>
