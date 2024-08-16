@@ -57,36 +57,52 @@ function FriendRequestList () {
             </FriendSearchBar>
 
             <h4 className="friend-requests-header">Outgoing</h4>
-            <div className="friend-list">
-                {
-                    currentOutgoingList.map(p =>
-                        <FriendItem
-                            name={p.name}
-                            userId={p.userId}
-                            photoURL={p.photoURL}
-                            isPending={true}
-                            key={p.userId}
-                            onAccept={onAccept}
-                            onDelete={onDecline}
-                        />)
-                }
-            </div>
+
+            {
+                currentOutgoingList.length === 0
+                    ?
+                    <p className="empty-friend-message">You have no outgoing friend requests.</p>
+                    :
+                    <div className="friend-list">
+                        {
+                            currentOutgoingList.map(p =>
+                                <FriendItem
+                                    name={p.name}
+                                    userId={p.userId}
+                                    photoURL={p.photoURL}
+                                    isPending={true}
+                                    key={p.userId}
+                                    showDeleteButton={true}
+                                    onAccept={onAccept}
+                                    onDelete={onDecline}
+                                />)
+                        }
+                    </div>
+            }
 
             <h4 className="friend-requests-header">Incoming</h4>
-            <div className="friend-list">
-                {
-                    currentIncomingList.map(p =>
-                        <FriendItem
-                            name={p.name}
-                            userId={p.userId}
-                            photoURL={p.photoURL}
-                            isPending={true}
-                            key={p.userId}
-                            onAccept={onAccept}
-                            onDelete={onDecline}
-                        />)
-                }
-            </div>
+            {
+                currentIncomingList.length === 0
+                    ?
+                    <p className="empty-friend-message">You have no incoming friend requests.</p>
+                    :
+                    <div className="friend-list">
+                        {
+                            currentIncomingList.map(p =>
+                                <FriendItem
+                                    name={p.name}
+                                    userId={p.userId}
+                                    photoURL={p.photoURL}
+                                    isPending={true}
+                                    key={p.userId}
+                                    showAcceptButton={true}
+                                    showDeleteButton={true}
+                                    onAccept={onAccept}
+                                    onDelete={onDecline}
+                                />)
+                        }
+                    </div>
+            }
         </>
     )
 }

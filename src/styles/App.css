@@ -232,9 +232,24 @@
   margin-left: 10px;
 }
 
+.friend-item .accept-button:hover {
+  background-color: rgb(21, 144, 89);
+}
+
+.friend-item .accept-button {
+  background-color: #1ba769;
+  color: white;
+  margin-left: 10px;
+}
+
 .friend-requests-header {
   color: black;
-  margin: 15px 25px;
+  margin: 0 25px 15px;
+}
+
+.empty-friend-message {
+  margin: -12px 25px 5px;
+  font-size: 13px;
 }
 
 .sidebar-container {
