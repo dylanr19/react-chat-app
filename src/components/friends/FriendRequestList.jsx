@@ -18,12 +18,10 @@ function FriendRequestList () {
 
         if (response1.status === 200) {
             setOriginalIncomingList(response1.data)
-            setCurrentIncomingList(response1.data)
         }
 
         if (response2.status === 200) {
             setOriginalOutgoingList(response2.data)
-            setCurrentOutgoingList(response2.data)
         }
     }
 
@@ -50,7 +48,7 @@ function FriendRequestList () {
     return(
         <>
             <FriendSearchBar
-                friendLists={[
+                friendListStates={[
                     {originalList: originalIncomingList, setCurrentList: setCurrentIncomingList},
                     {originalList: originalOutgoingList, setCurrentList: setCurrentOutgoingList}]}
                 placeholder="Search Friend Requests...">
