@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import useFriendApi from "../hooks/useFriendApi.jsx";
 import FriendItem from "./FriendItem.jsx";
 import FriendSearchBar from "./FriendSearchBar.jsx";
+import {ChatContext} from "../../Contexts/ChatContext.jsx";
 
 function FriendList () {
+    const { startNewChat } = useContext(ChatContext);
     const { fetchFriends, removeFriend } = useFriendApi()
     const [ originalFriendList, setOriginalFriendList ] = useState([])
     const [ currentFriendList, setCurrentFriendList ] = useState([])
@@ -24,6 +26,10 @@ function FriendList () {
         }
     }
 
+    const onChatClick = async (user) => {
+        startNewChat(user)
+    }
+
     useEffect(() => {
         fetch()
     }, []);
@@ -42,16 +48,14 @@ function FriendList () {
                     :
                     <div className="friend-list">
                         {
-                            currentFriendList.map(p =>
+                            currentFriendList.map(fr =>
                                 <FriendItem
-                                    name={p.name}
-                                    userId={p.userId}
-                                    photoURL={p.photoURL}
-                                    isPending={true}
-                                    key={p.userId}
+                                    userData={fr}
+                                    key={fr.userId}
                                     showChatButton={true}
                                     showDeleteButton={true}
                                     onDelete={onDeleteClick}
+                                    onChat={onChatClick}
                                 />)
                         }
                     </div>

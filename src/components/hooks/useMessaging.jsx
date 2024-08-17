@@ -3,27 +3,20 @@ import useWebSocket from "react-use-websocket";
 import {playNotificationSound, showDesktopNotification} from "../../notificationUtils.js";
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
-function useMessaging (chatPartner, createNewPartner, setPartnerLastMessage, getPartnerData) {
-    const { loggenInUserId } = useContext(LoginContext)
+function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPartner, setChatPartnerLastMessage) {
+    const { userId: loggedInUserId } = useContext(LoginContext)
 
-    const [socketUrl, setSocketUrl] = useState('ws://localhost:5046/ws')
+    const [socketUrl, setSocketUrl] = useState(`ws://localhost:5046/ws?userID=${loggedInUserId}`)
     const [messageHistory, setMessageHistory] = useState([])
     const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {share: true})
 
     const CHAT_HISTORY = 'chatHistory'
     const CHAT_MESSAGE = 'chatMessage'
-    const REGISTER = 'register'
 
-    // useEffect(() => {
-    //     sendJsonMessage({
-    //         userId: loggenInUserId,
-    //         type: REGISTER,
-    //     })
-    // }, [loggenInUserId]);
 
-    const requestMessageHistory = (ownId, partnerId) => {
+    const requestMessageHistory = (partnerId) => {
         sendJsonMessage({
-            userId1: loggenInUserId,
+            userId1: loggedInUserId,
             userId2: partnerId,
             type: CHAT_HISTORY
         })
@@ -37,18 +30,22 @@ function useMessaging (chatPartner, createNewPartner, setPartnerLastMessage, get
         const isAppMinimized = true;
 
         const processIncomingHistory = () => {
-            const lastMessage = lastJsonMessage.messages.findLast(m => m.senderId === chatPartner.userId)
-
-            setPartnerLastMessage(chatPartner.userId, lastMessage.text)
+            const lastMessage = lastJsonMessage.messages.findLast(m => m.senderId === currentChatPartner.userId)
+            setChatPartnerLastMessage(currentChatPartner.userId, lastMessage?.text)
             setMessageHistory(lastJsonMessage.messages)
         }
 
         const processIncomingMessage = () => {
             const senderId = lastJsonMessage.senderId
             const text = lastJsonMessage.text
-            setPartnerLastMessage(senderId, text)
 
-            if (chatPartner.userId === senderId){
+            if (checkPartnerExists(lastJsonMessage.senderId) === false){
+                createNewChatPartner(lastJsonMessage)
+                return
+            }
+
+            setChatPartnerLastMessage(senderId, text)
+            if (currentChatPartner.userId === senderId){
                 addMessageToHistory(lastJsonMessage)
             }
         }
@@ -76,8 +73,8 @@ function useMessaging (chatPartner, createNewPartner, setPartnerLastMessage, get
 
         const messageData = {
             photoURL: '',
-            senderId: loggenInUserId,
-            receiverId: chatPartner.userId,
+            senderId: loggedInUserId,
+            receiverId: currentChatPartner.userId,
             text: text,
             delivered: true,
             type: CHAT_MESSAGE
@@ -106,12 +103,10 @@ function useMessaging (chatPartner, createNewPartner, setPartnerLastMessage, get
     }
 
     return {
-        messageObj: {
-            messageHistory,
-            setMessageHistory,
-            processOutgoingMessage,
-            requestMessageHistory
-        }
+        messageHistory,
+        setMessageHistory,
+        processOutgoingMessage,
+        requestMessageHistory
     }
 
 }

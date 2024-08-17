@@ -261,7 +261,7 @@
   flex-direction: column;
 }
 
-.search-bar {
+.toggle-window-button {
   border-width: 2px;
   border-left-width: 0;
   border-right-width: 0;
@@ -273,7 +273,7 @@
   display: flex;
 }
 
-.search-bar .bi.bi-search {
+.toggle-window-button .bi.bi-search {
   font-size: 16px;
   color: dimgray;
   opacity: 0.5;
@@ -283,7 +283,7 @@
   width: 30%;
 }
 
-.search-bar .input {
+.toggle-window-button .input {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   opacity: 0.5;

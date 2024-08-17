@@ -1,9 +1,12 @@
 import '../../styles/App.css'
+import {useContext} from "react";
+import {LoginContext} from "../../Contexts/LoginContext.jsx";
 
 function ChatBox({ photoURL, text, date, senderId }) {
+    const { userId: loggedInUserid } = useContext(LoginContext)
 
     const isOwnMessage = (senderId) => {
-        return senderId === 'user2'
+        return senderId === loggedInUserid
     }
 
     return (

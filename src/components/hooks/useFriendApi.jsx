@@ -1,20 +1,10 @@
-import {useContext, useState} from 'react';
+import {useContext} from 'react';
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 import {useApi} from "./useApi.js";
 
 function useFriendApi () {
     const { userId: loggedInUserId } = useContext(LoginContext);
     const { callApi } = useApi()
-
-    // const [chatPartner, setChatPartner] = useState(null)
-    const [chatPartner, setChatPartner] = useState({
-        photoURL: '',
-        name: 'Bob',
-        userId: 'user2',
-        lastMessage: 'lmao',
-        isActive: false
-    })
-    const [partnerList, setPartnerList] = useState([])
 
     const fetchFriends = async () => {
         return await callApi(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)
@@ -53,33 +43,7 @@ function useFriendApi () {
         return await callApi(`http://localhost:5046/api/Friend/RemoveFriend/${loggedInUserId}/${friendId}`, { method: 'DELETE' })
     }
 
-    const getPartnerData = (Id, list = partnerList) => {
-        return list.find(partner => partner.userId === Id)
-    }
-
-    const createNewPartner = () => {
-        const newPartner = {
-            photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
-            name: 'Bobilev',
-            userId: 'user31',
-            lastMessage: 'lmao',
-            isActive: false
-        }
-
-        setPartnerList((prev) => prev.concat(newPartner))
-    }
-
-    const setPartnerLastMessage = (userId, message) => {
-        const partnerListCopy = [...partnerList]
-        const partner = getPartnerData(userId)
-        partner.lastMessage = message
-        setPartnerList(partnerListCopy)
-    }
-
     return {
-        getPartnerData,
-        createNewPartner,
-        setPartnerLastMessage,
         fetchFriends,
         fetchIncomingFriendRequests,
         fetchOutgoingFriendRequests,
@@ -87,10 +51,6 @@ function useFriendApi () {
         removeFriend,
         acceptFriendRequest,
         declineFriendRequest,
-        chatPartner,
-        partnerList,
-        setChatPartner,
-        setPartnerList
     }
 }
 
