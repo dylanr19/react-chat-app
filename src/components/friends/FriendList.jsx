@@ -13,7 +13,6 @@ function FriendList () {
 
         if (response.status === 200) {
             setOriginalFriendList(response.data)
-            setCurrentFriendList(response.data)
         }
     }
 
@@ -32,7 +31,7 @@ function FriendList () {
     return(
         <>
             <FriendSearchBar
-                friendLists={[{originalList: originalFriendList, setCurrentList: setCurrentFriendList}]}
+                friendListStates={[{originalList: originalFriendList, setCurrentList: setCurrentFriendList}]}
                 placeholder="Search Friends...">
             </FriendSearchBar>
 

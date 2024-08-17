@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 
-function FriendSearchBar( { friendLists, placeholder } ) {
+function FriendSearchBar( { friendListStates, placeholder } ) {
     const [ input, setInput ] = useState('');
 
     useEffect(() => {
         if (input.length === 0){
-            friendLists.forEach(fr => {fr.setCurrentList(fr.originalList)})
+            friendListStates.forEach(fr => {fr.setCurrentList(fr.originalList)})
             return
         }
 
@@ -15,12 +15,12 @@ function FriendSearchBar( { friendLists, placeholder } ) {
             return containsName || containsId;
         }
 
-        friendLists.forEach(fr =>
+        friendListStates.forEach(fr =>
          fr.setCurrentList(
                 fr.originalList.filter((item) => filterUser(item, input))
          ))
 
-    }, [input]);
+    }, [input, ...friendListStates.map(({ originalList }) => originalList)]);
 
     return(
         <>
