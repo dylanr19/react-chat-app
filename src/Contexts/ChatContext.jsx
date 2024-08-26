@@ -27,10 +27,12 @@ export const ChatProvider = ({ children }) => {
 
     const createNewChatPartner = (user) => {
         const newPartner = {
-            photoURL: user.photoURL,
-            name: user.name,
-            userId: user.userId,
-            lastMessage: user.message,
+            //photoURL: user.photoURL,
+            photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
+            //name: user.name,
+            name: 'test',
+            userId: user.senderId,
+            lastMessage: user.text,
             isActive: false
         }
 
@@ -42,10 +44,10 @@ export const ChatProvider = ({ children }) => {
     }
 
     const setChatPartnerLastMessage = (userId, message) => {
-        const partnerListCopy = [...chatPartners]
-        const partner = getChatPartnerData(userId)
-        partner.lastMessage = message
-        setChatPartners(partnerListCopy)
+        //const partnerListCopy = [...chatPartners]
+        //const partner = getChatPartnerData(userId)
+        //partner.lastMessage = message
+        //setChatPartners(partnerListCopy)
     }
 
     const startNewChat = (partnerData) => {

@@ -1,18 +1,33 @@
 import { useState, useEffect, useContext } from 'react';
-import useWebSocket from "react-use-websocket";
+import useWebSocket, {ReadyState} from "react-use-websocket";
 import {playNotificationSound, showDesktopNotification} from "../../notificationUtils.js";
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
 function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPartner, setChatPartnerLastMessage) {
     const { userId: loggedInUserId } = useContext(LoginContext)
 
-    const [socketUrl, setSocketUrl] = useState(`ws://localhost:5046/ws?userID=${loggedInUserId}`)
+    const [socketUrl, setSocketUrl] = useState(null)
     const [messageHistory, setMessageHistory] = useState([])
-    const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {share: true})
+    const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true})
 
     const CHAT_HISTORY = 'chatHistory'
     const CHAT_MESSAGE = 'chatMessage'
 
+    const connectionStatus = {
+        [ReadyState.CONNECTING]: 'Connecting',
+        [ReadyState.OPEN]: 'Open',
+        [ReadyState.CLOSING]: 'Closing',
+        [ReadyState.CLOSED]: 'Closed',
+        [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
+    }[readyState];
+
+    useEffect(() => {
+        console.log('The WebSocket is currently ' + connectionStatus)
+    }, [readyState]);
+
+    useEffect(() => {
+        setSocketUrl(`ws://localhost:5046/ws?userID=${loggedInUserId}`)
+    }, [loggedInUserId]);
 
     const requestMessageHistory = (partnerId) => {
         sendJsonMessage({
@@ -36,17 +51,18 @@ function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPart
         }
 
         const processIncomingMessage = () => {
-            const senderId = lastJsonMessage.senderId
-            const text = lastJsonMessage.text
+            const message = lastJsonMessage.chatMessage;
+            const senderId = message.senderId
+            const text = message.text
 
-            if (checkPartnerExists(lastJsonMessage.senderId) === false){
-                createNewChatPartner(lastJsonMessage)
+            if (checkPartnerExists(message.senderId) === false){
+                createNewChatPartner(message)
                 return
             }
 
             setChatPartnerLastMessage(senderId, text)
             if (currentChatPartner.userId === senderId){
-                addMessageToHistory(lastJsonMessage)
+                addMessageToHistory(message)
             }
         }
 
