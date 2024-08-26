@@ -18,42 +18,65 @@ export const ChatProvider = ({ children }) => {
     //     isActive: false
     // })
     const [currentChatPartner, setCurrentChatPartner] = useState(null)
-
+    const [previousChatPartner, setPreviousChatPartner] = useState(null)
     const [chatPartners, setChatPartners] = useState([])
 
     const checkPartnerExists = (userId) => {
         return chatPartners.some((cp) => cp.userId === userId)
     }
 
-    const createNewChatPartner = (user) => {
+    const createNewChatPartner = (userId, name, lastMessage, photoURL) => {
         const newPartner = {
-            //photoURL: user.photoURL,
             photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
-            //name: user.name,
-            name: 'test',
-            userId: user.senderId,
-            lastMessage: user.text,
+            name: name,
+            userId: userId,
+            lastMessage: lastMessage,
             isActive: false
         }
 
         setChatPartners((prev) => prev.concat(newPartner))
     }
 
-    const getChatPartnerData = (Id, list = chatPartners) => {
-        return list.find(partner => partner.userId === Id)
+    const removeChatPartner = (userId) => {
+        const filteredPartners = chatPartners.filter(p => p.userId !== userId)
+        setChatPartners(filteredPartners)
+
+        if (currentChatPartner?.userId === userId)
+            setCurrentChatPartner(null)
+
+        if (previousChatPartner?.userId === userId)
+            setPreviousChatPartner(null)
     }
 
-    const setChatPartnerLastMessage = (userId, message) => {
-        //const partnerListCopy = [...chatPartners]
-        //const partner = getChatPartnerData(userId)
-        //partner.lastMessage = message
-        //setChatPartners(partnerListCopy)
+    const setPartnerActive = (userId, isActive) => {
+        const copy = [...chatPartners]
+        const partner = copy.find(p => p.userId === userId)
+        partner.isActive = isActive
+        setChatPartners(copy)
     }
 
-    const startNewChat = (partnerData) => {
-        setCurrentChatPartner(partnerData)
-        requestMessageHistory(partnerData.userId)
+    const setChatPartnerLastMessage = (userId, lastMessage) => {
+        currentChatPartner.lastMessage = lastMessage;
+        setCurrentChatPartner(currentChatPartner)
     }
+
+    const startNewChat = (partner) => {
+        if (checkPartnerExists(partner.userId) === false) {
+            createNewChatPartner(partner.userId, partner.name, '', '')
+        }
+
+        setPreviousChatPartner(currentChatPartner)
+        setCurrentChatPartner(partner)
+        requestMessageHistory(partner.userId)
+    }
+
+    useEffect(() => {
+        if (previousChatPartner != null)
+            setPartnerActive(previousChatPartner.userId, false)
+
+        if (currentChatPartner != null)
+            setPartnerActive(currentChatPartner.userId, true)
+    }, [currentChatPartner]);
 
     const {
         readyState,
@@ -66,6 +89,7 @@ export const ChatProvider = ({ children }) => {
         <ChatContext.Provider value={{
             readyState,
             messageHistory,
+            removeChatPartner,
             processOutgoingMessage,
             startNewChat,
             currentChatPartner,

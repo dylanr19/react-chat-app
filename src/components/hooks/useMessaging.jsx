@@ -3,7 +3,7 @@ import useWebSocket, {ReadyState} from "react-use-websocket";
 import {playNotificationSound, showDesktopNotification} from "../../notificationUtils.js";
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
-function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPartner, setChatPartnerLastMessage) {
+function useMessaging (currentChatPartner, setChatPartnerLastMessage, checkPartnerExists, createNewChatPartner) {
     const { userId: loggedInUserId } = useContext(LoginContext)
 
     const [socketUrl, setSocketUrl] = useState(null)
@@ -52,11 +52,12 @@ function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPart
 
         const processIncomingMessage = () => {
             const message = lastJsonMessage.chatMessage;
+            const name = message.name
             const senderId = message.senderId
             const text = message.text
 
             if (checkPartnerExists(message.senderId) === false){
-                createNewChatPartner(message)
+                createNewChatPartner(senderId, name, text)
                 return
             }
 

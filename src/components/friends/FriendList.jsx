@@ -5,7 +5,7 @@ import FriendSearchBar from "./FriendSearchBar.jsx";
 import {ChatContext} from "../../Contexts/ChatContext.jsx";
 
 function FriendList () {
-    const { startNewChat } = useContext(ChatContext);
+    const { startNewChat, removeChatPartner } = useContext(ChatContext);
     const { fetchFriends, removeFriend } = useFriendApi()
     const [ originalFriendList, setOriginalFriendList ] = useState([])
     const [ currentFriendList, setCurrentFriendList ] = useState([])
@@ -22,11 +22,12 @@ function FriendList () {
         const response = await removeFriend(userId)
 
         if (response.status === 200){
+            removeChatPartner(userId)
             fetch()
         }
     }
 
-    const onChatClick = async (user) => {
+    const onChatClick = async (user)=> {
         startNewChat(user)
     }
 
