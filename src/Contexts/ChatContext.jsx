@@ -1,6 +1,6 @@
-import {createContext, useEffect} from 'react';
-import useFriendApi from "../components/hooks/useFriendApi.jsx";
+import {createContext, useContext, useEffect, useState} from 'react';
 import useMessaging from "../components/hooks/useMessaging.jsx";
+import {LoginContext} from "./LoginContext.jsx";
 
 // const initialPartnerData = {photoURL : '', name: '', userId: '', lastMessage: '', isActive: false}
 // const initialMessageData = {photoURL: '', senderId: '', date: '', text: '', delivered: true}
@@ -10,40 +10,91 @@ import useMessaging from "../components/hooks/useMessaging.jsx";
 export const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
+    // const [currentChatPartner, setCurrentChatPartner] = useState({
+    //     photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
+    //     name: 'Bob',
+    //     userId: 'user2',
+    //     lastMessage: 'lmao',
+    //     isActive: false
+    // })
+    const [currentChatPartner, setCurrentChatPartner] = useState(null)
+    const [previousChatPartner, setPreviousChatPartner] = useState(null)
+    const [chatPartners, setChatPartners] = useState([])
 
-    const { chatPartner, setChatPartner, partnerList, setPartnerList, getPartnerData } = useFriendApi()
-    const { messageObj } = useMessaging(chatPartner, setChatPartner, getPartnerData)
-
-    const readyState = messageObj.readyState
-    const messageHistory = messageObj.messageHistory
-    const requestMessageHistory = messageObj.requestMessageHistory
-    const processOutgoingMessage = messageObj.processOutgoingMessage
-
-    useEffect(() => {
-        requestMessageHistory('xxx', chatPartner.userId)
-    }, [chatPartner])
-
-    const startNewChat = (partnerData) => {
-        setChatPartner(partnerData)
+    const checkPartnerExists = (userId) => {
+        return chatPartners.some((cp) => cp.userId === userId)
     }
 
-    const sendChatMessage = (text) => {
-        processOutgoingMessage(text)
+    const createNewChatPartner = (userId, name, lastMessage, photoURL) => {
+        const newPartner = {
+            photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
+            name: name,
+            userId: userId,
+            lastMessage: lastMessage,
+            isActive: false
+        }
+
+        setChatPartners((prev) => prev.concat(newPartner))
+    }
+
+    const removeChatPartner = (userId) => {
+        const filteredPartners = chatPartners.filter(p => p.userId !== userId)
+        setChatPartners(filteredPartners)
+
+        if (currentChatPartner?.userId === userId)
+            setCurrentChatPartner(null)
+
+        if (previousChatPartner?.userId === userId)
+            setPreviousChatPartner(null)
+    }
+
+    const setPartnerActive = (userId, isActive) => {
+        const copy = [...chatPartners]
+        const partner = copy.find(p => p.userId === userId)
+        partner.isActive = isActive
+        setChatPartners(copy)
+    }
+
+    const setChatPartnerLastMessage = (userId, lastMessage) => {
+        currentChatPartner.lastMessage = lastMessage;
+        setCurrentChatPartner(currentChatPartner)
+    }
+
+    const startNewChat = (partner) => {
+        if (checkPartnerExists(partner.userId) === false) {
+            createNewChatPartner(partner.userId, partner.name, '', '')
+        }
+
+        setPreviousChatPartner(currentChatPartner)
+        setCurrentChatPartner(partner)
+        requestMessageHistory(partner.userId)
     }
 
     useEffect(() => {
+        if (previousChatPartner != null)
+            setPartnerActive(previousChatPartner.userId, false)
 
-    }, []);
+        if (currentChatPartner != null)
+            setPartnerActive(currentChatPartner.userId, true)
+    }, [currentChatPartner]);
+
+    const {
+        readyState,
+        messageHistory,
+        requestMessageHistory,
+        processOutgoingMessage
+    } = useMessaging(currentChatPartner, setChatPartnerLastMessage, checkPartnerExists, createNewChatPartner)
 
     return (
         <ChatContext.Provider value={{
             readyState,
             messageHistory,
-            sendChatMessage,
+            removeChatPartner,
+            processOutgoingMessage,
             startNewChat,
-            chatPartner,
-            partnerList,
-            setPartnerList,
+            currentChatPartner,
+            chatPartners,
+            setChatPartners,
         }}>
             {children}
         </ChatContext.Provider>

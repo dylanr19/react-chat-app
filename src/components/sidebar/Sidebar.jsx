@@ -9,21 +9,20 @@ const placeholder2 = 'https://t3.ftcdn.net/jpg/03/85/20/64/360_F_385206426_wllRG
 const placeholder3 = 'https://media.glamour.com/photos/5695c14716d0dc3747ede10d/master/w_1600,c_limit/entertainment-2013-07-patrick-j-adams-main.jpg'
 
 function Sidebar() {
-    const { partnerList, setPartnerList, startNewChat } = useContext(ChatContext)
+    const { chatPartners, setChatPartners, startNewChat } = useContext(ChatContext)
 
     return (
         <>
             <div className="side-bar">
                 {
-                    // partnerList.map((partner) => (
-                    // <PartnerTab
-                    //     partnerData={partner}
-                    //     partnerList={partnerList}
-                    //     setPartnerList={setPartnerList}
-                    //     startNewChat={startNewChat}
-                    //     //key={partner.userId}
-                    //     key={uuidv4()}
-                    // />))
+                    chatPartners.map((partner) => (
+                    <PartnerTab
+                        partnerData={partner}
+                        partnerList={chatPartners}
+                        setPartnerList={setChatPartners}
+                        startNewChat={startNewChat}
+                        key={uuidv4()}
+                    />))
                 }
             </div>
         </>

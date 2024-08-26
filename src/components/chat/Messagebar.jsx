@@ -5,7 +5,7 @@ import { ChatContext } from '../../Contexts/ChatContext.jsx'
 import { ReadyState } from "react-use-websocket";
 
 function Messagebar() {
-    const { sendChatMessage, readyState} = useContext(ChatContext)
+    const { readyState, processOutgoingMessage  } = useContext(ChatContext)
     const [inputValue, setInputValue] = useState('')
 
     const handleChange = (e) => {
@@ -13,7 +13,7 @@ function Messagebar() {
     }
 
     const submitMessage = () => {
-        sendChatMessage(inputValue)
+        processOutgoingMessage(inputValue)
         setInputValue('')
     }
 

@@ -11,6 +11,10 @@ function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat }) 
     }, [partnerData.lastMessage]);
 
     const truncateMessage = (message) => {
+        if (!message){
+            return
+        }
+
         if (message.length > 16) {
             setTruncatedMessage(message.slice(0, 16) + '...')
         } else {

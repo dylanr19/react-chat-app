@@ -1,13 +1,18 @@
 import React from "react";
 
-function FriendItem ({ name, photoURL, userId, showChatButton, showAcceptButton, showDeleteButton, onDelete, onChat, onAccept }) {
+function FriendItem ({ userData, showChatButton, showAcceptButton, showDeleteButton, onDelete, onChat, onAccept }) {
+    const {
+        name,
+        userId,
+        photoURL,
+    } = userData
 
     const onDeleteClick = () => {
         onDelete(userId)
     }
 
     const onChatClick = () => {
-        onChat(userId)
+        onChat(userData)
     }
 
     const onAcceptClick = () => {

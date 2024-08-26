@@ -63,13 +63,10 @@ function FriendRequestList () {
                     :
                     <div className="friend-list">
                         {
-                            currentOutgoingList.map(p =>
+                            currentOutgoingList.map(fr =>
                                 <FriendItem
-                                    name={p.name}
-                                    userId={p.userId}
-                                    photoURL={p.photoURL}
-                                    isPending={true}
-                                    key={p.userId}
+                                    userData={fr}
+                                    key={fr.userId}
                                     showDeleteButton={true}
                                     onAccept={onAccept}
                                     onDelete={onDecline}
@@ -86,13 +83,10 @@ function FriendRequestList () {
                     :
                     <div className="friend-list">
                         {
-                            currentIncomingList.map(p =>
+                            currentIncomingList.map(fr =>
                                 <FriendItem
-                                    name={p.name}
-                                    userId={p.userId}
-                                    photoURL={p.photoURL}
-                                    isPending={true}
-                                    key={p.userId}
+                                    userData={fr}
+                                    key={fr.userId}
                                     showAcceptButton={true}
                                     showDeleteButton={true}
                                     onAccept={onAccept}
