@@ -26,6 +26,7 @@ function App() {
             <div className={"sidebar-container"}>
                 <PartnerSearchContainer isChatVisible={isChatVisible} setIsChatVisible={setIsChatVisible} ></PartnerSearchContainer>
                 <WindowToggle isChatVisible={isChatVisible} setIsChatVisible={setIsChatVisible} ></WindowToggle>
+                <div className={"direct-messages-header"}>DIRECT MESSAGES</div>
                 <Sidebar></Sidebar>
             </div>
             { isChatVisible
