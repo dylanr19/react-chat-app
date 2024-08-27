@@ -7,6 +7,7 @@ import Messagebar from './chat/Messagebar.jsx'
 import FriendWindow from "./friends/FriendWindow.jsx";
 import {useContext, useEffect, useState} from "react";
 import {ChatContext} from "../Contexts/ChatContext.jsx";
+import PartnerSearchContainer from "./sidebar/PartnerSearchContainer.jsx";
 
 function App() {
     const { currentChatPartner } = useContext(ChatContext)
@@ -23,6 +24,7 @@ function App() {
         <div className="app-container">
 
             <div className={"sidebar-container"}>
+                <PartnerSearchContainer isChatVisible={isChatVisible} setIsChatVisible={setIsChatVisible} ></PartnerSearchContainer>
                 <WindowToggle isChatVisible={isChatVisible} setIsChatVisible={setIsChatVisible} ></WindowToggle>
                 <Sidebar></Sidebar>
             </div>

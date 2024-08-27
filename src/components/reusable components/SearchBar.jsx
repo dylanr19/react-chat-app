@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 
-function FriendSearchBar( { friendListStates, placeholder } ) {
+function SearchBar({ ListStates, placeholder, SearchComponent } ) {
     const [ input, setInput ] = useState('');
 
     useEffect(() => {
         if (input.length === 0){
-            friendListStates.forEach(fr => {fr.setCurrentList(fr.originalList)})
+            ListStates.forEach(fr => {fr.setCurrentList(fr.originalList)})
             return
         }
 
@@ -15,21 +15,16 @@ function FriendSearchBar( { friendListStates, placeholder } ) {
             return containsName || containsId;
         }
 
-        friendListStates.forEach(fr =>
+        ListStates.forEach(fr =>
          fr.setCurrentList(
                 fr.originalList.filter((item) => filterUser(item, input))
          ))
 
-    }, [input, ...friendListStates.map(({ originalList }) => originalList)]);
+    }, [input, ...ListStates.map(({ originalList }) => originalList)]);
 
     return(
-        <>
-            <div className="example">
-                <input type="text" placeholder={placeholder} name="search" onChange={(e) => setInput(e.target.value)} />
-                <button type="submit"><i className="bi bi-search"></i></button>
-            </div>
-        </>
+        <SearchComponent placeholder={placeholder} onChange={(e) => setInput(e.target.value)}></SearchComponent>
     )
 }
 
-export default FriendSearchBar;
+export default SearchBar;

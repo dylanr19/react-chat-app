@@ -35,7 +35,7 @@
   border-width: 0;
   border-bottom-width: 2px;
   border-top-width: 2px;
-  height: 8%;
+  height: 6%;
   min-height: 50px;
   max-width: 600px;
   min-width: 500px;
@@ -104,6 +104,21 @@
 
 * {
   box-sizing: border-box;
+}
+
+.partner-search-bar {
+  margin: 11px 10px;
+  display: flex;
+}
+
+.partner-search-bar input[type=text] {
+  width: 100%;
+  background: #e2e2e2;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 8px;
+  cursor: pointer;
+  outline: inherit;
 }
 
 .example {
@@ -261,14 +276,29 @@
   flex-direction: column;
 }
 
-.toggle-window-button {
+.partner-search-container {
   border-width: 2px;
   border-left-width: 0;
   border-right-width: 0;
+  /*border-bottom-width: 0;*/
   border-style: solid;
   border-color: #f3f5f7;
   min-height: 50px;
-  height: 8%;
+  height: 6%;
+  width: 100%;
+  display: flex;
+}
+
+.toggle-window-button {
+  /*border-width: 2px;*/
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 2px;
+  border-style: solid;
+  border-color: #f3f5f7;
+  min-height: 50px;
+  height: 6%;
   width: 100%;
   display: flex;
 }
@@ -297,6 +327,7 @@
 .side-bar {
   overflow: auto;
   height: 92%;
+  width: 200px;
 }
 
 .partner-tab {
@@ -384,7 +415,7 @@
   font-size: 15px;
   border-color: #f3f5f7;
   padding-left: 18px;
-  height: 8%;
+  height: 6%;
   min-height: 50px;
   display: flex;
   align-items: center;

@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import useFriendApi from "../hooks/useFriendApi.jsx";
 import FriendItem from "./FriendItem.jsx";
-import FriendSearchBar from "./FriendSearchBar.jsx";
+import SearchBar from "../reusable components/SearchBar.jsx";
 import {ChatContext} from "../../Contexts/ChatContext.jsx";
+import FriendSearchComponent from "./FriendSearchComponent.jsx";
 
 function FriendList () {
     const { startNewChat, removeChatPartner } = useContext(ChatContext);
@@ -37,10 +38,12 @@ function FriendList () {
 
     return(
         <>
-            <FriendSearchBar
-                friendListStates={[{originalList: originalFriendList, setCurrentList: setCurrentFriendList}]}
-                placeholder="Search Friends...">
-            </FriendSearchBar>
+            <SearchBar
+                ListStates={[{originalList: originalFriendList, setCurrentList: setCurrentFriendList}]}
+                placeholder="Search Friends..."
+                SearchComponent={FriendSearchComponent}
+            >
+            </SearchBar>
 
             {
                 currentFriendList.length === 0

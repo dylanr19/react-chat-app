@@ -20,6 +20,7 @@ export const ChatProvider = ({ children }) => {
     const [currentChatPartner, setCurrentChatPartner] = useState(null)
     const [previousChatPartner, setPreviousChatPartner] = useState(null)
     const [chatPartners, setChatPartners] = useState([])
+    const [filteredChatPartners, setFilteredChatPartners] = useState([])
 
     const checkPartnerExists = (userId) => {
         return chatPartners.some((cp) => cp.userId === userId)
@@ -38,8 +39,13 @@ export const ChatProvider = ({ children }) => {
     }
 
     const removeChatPartner = (userId) => {
-        const filteredPartners = chatPartners.filter(p => p.userId !== userId)
-        setChatPartners(filteredPartners)
+        setChatPartners(
+            chatPartners.filter(p => p.userId !== userId)
+        )
+
+        setFilteredChatPartners(
+            filteredChatPartners.filter(p => p.userId !== userId)
+        )
 
         if (currentChatPartner?.userId === userId)
             setCurrentChatPartner(null)
@@ -95,6 +101,8 @@ export const ChatProvider = ({ children }) => {
             currentChatPartner,
             chatPartners,
             setChatPartners,
+            filteredChatPartners,
+            setFilteredChatPartners
         }}>
             {children}
         </ChatContext.Provider>

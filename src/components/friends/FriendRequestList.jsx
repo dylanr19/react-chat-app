@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import FriendItem from "./FriendItem.jsx";
 import useFriendApi from "../hooks/useFriendApi.jsx";
-import FriendSearchBar from "./FriendSearchBar.jsx";
+import SearchBar from "../reusable components/SearchBar.jsx";
+import FriendSearchComponent from "./FriendSearchComponent.jsx";
 
 function FriendRequestList () {
     const { fetchIncomingFriendRequests, fetchOutgoingFriendRequests, acceptFriendRequest, declineFriendRequest } = useFriendApi()
@@ -47,12 +48,14 @@ function FriendRequestList () {
 
     return(
         <>
-            <FriendSearchBar
-                friendListStates={[
+            <SearchBar
+                ListStates={[
                     {originalList: originalIncomingList, setCurrentList: setCurrentIncomingList},
                     {originalList: originalOutgoingList, setCurrentList: setCurrentOutgoingList}]}
-                placeholder="Search Friend Requests...">
-            </FriendSearchBar>
+                placeholder="Search Friend Requests..."
+                SearchComponent={FriendSearchComponent}
+            >
+            </SearchBar>
 
             <h4 className="friend-requests-header">Outgoing</h4>
 
