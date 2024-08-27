@@ -6,16 +6,6 @@ import React, {useEffect} from "react";
 
 function WindowToggle({ isChatVisible, setIsChatVisible } ) {
 
-    useEffect(() => {
-
-        if (isChatVisible){
-            // Show Go-To-Friends Button
-        } else {
-            // Render Go-To-Chat Button
-        }
-
-    }, [isChatVisible]);
-
     const onButtonClick = () => {
         setIsChatVisible((prev) => !prev);
     }
