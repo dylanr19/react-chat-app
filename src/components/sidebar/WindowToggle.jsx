@@ -2,7 +2,7 @@
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 import '../../styles/App.css'
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 
 function WindowToggle({ isChatVisible, setIsChatVisible } ) {
 
@@ -23,8 +23,10 @@ function WindowToggle({ isChatVisible, setIsChatVisible } ) {
     return (
         <>
             <div className="toggle-window-button">
-                <i className="bi bi-search"></i>
-                <button type="text" className="input" onClick={onButtonClick}/>
+                <button type="text" className="input" onClick={onButtonClick}>
+                    <div className="bi bi-person-raised-hand"></div>
+                    <div className="text">Friends</div>
+                </button>
             </div>
         </>
     )
