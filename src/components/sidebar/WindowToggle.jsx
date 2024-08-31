@@ -2,7 +2,8 @@
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 import '../../styles/App.css'
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
+import {ChatContext} from "../../Contexts/ChatContext.jsx";
 
 function WindowToggle({ isChatVisible, setIsChatVisible } ) {
 
