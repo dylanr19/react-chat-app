@@ -61,6 +61,13 @@ export const ChatProvider = ({ children }) => {
         setChatPartners(copy)
     }
 
+    const setPartnerInactive = () => {
+        const copy = [...chatPartners]
+        const partner = copy.find(p => p.isActive === true)
+        partner.isActive = false
+        setChatPartners(copy)
+    }
+
     const setChatPartnerLastMessage = (userId, lastMessage) => {
         currentChatPartner.lastMessage = lastMessage;
         setCurrentChatPartner(currentChatPartner)
@@ -98,6 +105,7 @@ export const ChatProvider = ({ children }) => {
             removeChatPartner,
             processOutgoingMessage,
             startNewChat,
+            setPartnerInactive,
             currentChatPartner,
             chatPartners,
             setChatPartners,
