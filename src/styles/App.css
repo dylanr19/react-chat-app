@@ -57,6 +57,10 @@
   border-radius: 10px;
 }
 
+.top-navigation-container .title {
+  color: #294255;
+}
+
 .topnav {
   width: 350px;
   overflow: hidden;
@@ -69,6 +73,7 @@
 /* Style the links inside the navigation bar */
 .topnav button {
   color: black;
+  background-color: #f8f9fd;
   font-size: 17px;
   padding: 2px 5px;
   border-radius: 6px;
@@ -205,6 +210,7 @@
 .friend-item .credentials {
   margin-left: 10px;
   font-size: 13px;
+  color: #294255;
 }
 
 .friend-item .credentials .name {
@@ -320,7 +326,7 @@
   justify-content: flex-start;
   gap: 5px;
   transition: background-color 0.3s;
-  background-color: #fbfbfb;
+  background-color: rgba(211, 211, 211, 0.31);
 }
 
 .toggle-window-button .input:hover {
@@ -342,6 +348,18 @@
   overflow: auto;
   height: 92%;
   width: 200px;
+}
+
+.direct-messages-header {
+  color: #294255;
+}
+
+.empty-friend-message {
+  color: black;
+}
+
+.friend-requests-header {
+  color: #294255;
 }
 
 .partner-tab {
@@ -433,6 +451,7 @@
   min-height: 50px;
   display: flex;
   align-items: center;
+  color: #294255;
 }
 
 .chat-window {
@@ -448,6 +467,7 @@
   margin: 5px;
   border-radius: 8px;
   padding: 10px;
+  color: #294255;
 }
 
 .chat-box-received .photo-container {
@@ -557,3 +577,5 @@
 .message-bar .send-button .bi {
   color: #f8f9fd;
 }
+
+
