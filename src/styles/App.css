@@ -159,6 +159,7 @@
 .success-message {
   margin: -10px 25px;
   font-size: 13px;
+  color: black;
 }
 
 /*.example button:hover {*/
@@ -500,6 +501,10 @@
 .chat-box-received .message-container .date {
   font-size: 10px;
   align-self: flex-start;
+}
+
+.chat-box-sent .message-container .date {
+  color: black;
 }
 
 
