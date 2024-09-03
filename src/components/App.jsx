@@ -8,6 +8,7 @@ import FriendWindow from "./friends/FriendWindow.jsx";
 import {useContext, useEffect, useState} from "react";
 import {ChatContext} from "../Contexts/ChatContext.jsx";
 import PartnerSearchContainer from "./sidebar/PartnerSearchContainer.jsx";
+import {PersonalInfo} from "./personal info/PersonalInfo.jsx";
 
 function App() {
     const { currentChatPartner } = useContext(ChatContext)
@@ -41,6 +42,9 @@ function App() {
                     <FriendWindow></FriendWindow>
                 </div>
             }
+            <div className="personal-info-container">
+                <PersonalInfo></PersonalInfo>
+            </div>
         </div>
     </>
   )

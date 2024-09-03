@@ -175,6 +175,7 @@
   background-color: #f8f9fd;
   border-width: 0;
   border-left-width: 2px;
+  border-right-width: 2px;
   border-style: solid;
   border-color: #f3f5f7;
   width: 100%;
@@ -430,6 +431,7 @@
   background-color: #f8f9fd;
   border-width: 0;
   border-left-width: 2px;
+  border-right-width: 2px;
   border-style: solid;
   border-color: #f3f5f7;
   width: 100%;
@@ -578,4 +580,193 @@
   color: #f8f9fd;
 }
 
+.personal-info-container {
+  width: 350px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-behavior: auto;
+}
 
+.personal-info-container .photo {
+  width: 100px;
+  border-radius: 50%;
+  margin-top: 50px;
+}
+
+.personal-info-container .credentials {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.personal-info-container .credentials .name {
+  margin-top: 8px;
+  margin-bottom: -3px;
+}
+
+.personal-info-container .credentials .userID {
+  margin: 0;
+}
+
+.personal-info-container .member-since-container {
+  color: black;
+  margin-top: 8px;
+  background-color: rgba(189, 189, 189, 0.31);
+  border-radius: 8px;
+  width: 90%;
+  padding: 8px;
+}
+
+.personal-info-container .member-since-container .header {
+  font-size: 13px;
+  padding-bottom: 4px;
+  margin: 0;
+}
+
+.personal-info-container .member-since-container .date {
+  font-size: 13px;
+  margin: 0;
+}
+
+.personal-info-container .logout-button-container {
+  margin-top: auto;
+  margin-bottom: 10px;
+  width: 90%;
+}
+
+.personal-info-container .logout-button {
+  background-color: #ee3939;
+  color: #f2f2f2;
+  float: right;
+  outline: none;
+}
+
+.personal-info-container .logout-button:hover {
+  background-color: #e23636;
+}
+
+.personal-info-container .logout-button:active {
+  background-color: #c32e2e;
+}
+
+.options-container {
+  color: black;
+  margin-top: 8px;
+  background-color: rgba(189, 189, 189, 0.31);
+  border-radius: 8px;
+  width: 90%;
+}
+
+.options-container .header {
+  font-size: 13px;
+  padding: 6px;
+  padding-bottom: 4px;
+  margin: 0;
+}
+
+.options-container .text {
+  margin: 0;
+  padding: 6px;
+  font-size: 13px;
+}
+
+.options-container .username {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  padding-bottom: 2px;
+}
+
+.options-container .username .bi,
+.options-container .delete-account .bi {
+  margin-left: auto;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.options-container .edit-username {
+  display: flex;
+  padding: 6px;
+  padding-top: 0;
+}
+
+.options-container .password-prompt {
+  display: flex;
+  padding: 6px;
+  padding-top: 0px;
+  padding-bottom: 8px;
+}
+
+.options-container .input {
+  border-radius: 2px;
+  border: none;
+  margin-right: 5px;
+  outline: none;
+  padding: 6px;
+}
+
+.options-container .password-prompt .submit {
+  background-color: red;
+  width: 60px;
+}
+
+.options-container .password-prompt .submit:hover {
+  background-color: #eb0404;
+}
+
+.options-container .password-prompt .submit:active {
+  background-color: #c70606;
+}
+
+.options-container .submit {
+  background-color: #2eaf5c;
+  font-size: 12px;
+  color: #eeeeee;
+  padding: 6px;
+  width: 40px;
+  border-radius: 3px;
+  outline: none;
+}
+
+.options-container .submit:hover {
+  background-color: #2aa052;
+}
+
+.options-container .submit:active {
+  background-color: #218040;
+}
+
+.options-container .delete-account {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  padding-top: 2px;
+}
+
+.options-container .username .text {
+  margin: 0;
+  padding: 0;
+}
+
+.options-container .delete-account .text {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 1000px) {
+  .personal-info-container {
+    display: none;
+  }
+}
