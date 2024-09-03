@@ -133,7 +133,7 @@
 
 .example input[type=text] {
   width: 100%;
-  max-width: 700px;
+  /*max-width: 700px;*/
   background: #e2e2e2;
   border: none;
   border-top-left-radius: 3px;
@@ -190,7 +190,7 @@
 
 .friend-item {
   display: flex;
-  max-width: 725px;
+  /*max-width: 725px;*/
   border-top-style: solid;
   border-top-width: 1px;
   border-color: rgba(139, 139, 139, 0.31);
