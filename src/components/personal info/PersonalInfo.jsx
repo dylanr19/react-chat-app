@@ -4,9 +4,7 @@ import {LoginContext} from "../../Contexts/LoginContext.jsx";
 
 export const PersonalInfo = () => {
     const [usernameInput, setUsernameInput] = useState('')
-    useEffect(() => {
-        console.log(usernameInput)
-    }, [usernameInput]);
+
     const [isChangeUsernameOpen, setIsChangeUsernameOpen] = useState(false)
     const [isDeleteAccountOpen, setIsDeleteAccountOpen] = useState(false)
 
@@ -17,13 +15,24 @@ export const PersonalInfo = () => {
         password: null,
         photoURL: null,
         name: null,
+        joinDate: null
     })
 
     useEffect(() => {
+        const formatDate = ( response ) => {
+            const utcDateString = response.data.joinDate
+            const utcDate = new Date(utcDateString);
+            const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: timeZone };
+            response.data.joinDate = utcDate.toLocaleDateString('en-US', options);
+        }
+
         const fetchUserData = async () => {
             const response = await fetchUser()
-            if (response.status === 200)
+            if (response.status === 200) {
+                formatDate(response)
                 setUserData(response.data)
+            }
         }
 
         fetchUserData()
@@ -65,7 +74,7 @@ export const PersonalInfo = () => {
             </div>
             <div className="member-since-container">
                 <h5 className="header">Member Since</h5>
-                <p className="date">May 23, 2020</p>
+                <p className="date">{userData.joinDate}</p>
             </div>
 
             <div className="options-container">
