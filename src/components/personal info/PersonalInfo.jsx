@@ -1,15 +1,57 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import {usePersonalApi} from "../hooks/usePersonalApi.jsx";
+import {LoginContext} from "../../Contexts/LoginContext.jsx";
 
 export const PersonalInfo = () => {
-    const [isChangeUsernameOpen, setIsChangeUsernameOpen] = useState(false);
-    const [isDeleteAccountOpen, setIsDeleteAccountOpen] = useState(false);
+    const [usernameInput, setUsernameInput] = useState('')
+    useEffect(() => {
+        console.log(usernameInput)
+    }, [usernameInput]);
+    const [isChangeUsernameOpen, setIsChangeUsernameOpen] = useState(false)
+    const [isDeleteAccountOpen, setIsDeleteAccountOpen] = useState(false)
+
+    const {userId: loggedInUserId, setUserId: setLoggedInUserId} = useContext(LoginContext)
+    const {fetchUser, deleteUser, changeUsername} = usePersonalApi()
+    const [userData, setUserData] = useState({
+        userId: null,
+        password: null,
+        photoURL: null,
+        name: null,
+    })
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const response = await fetchUser()
+            if (response.status === 200)
+                setUserData(response.data)
+        }
+
+        fetchUserData()
+    }, [loggedInUserId]);
+
+    const apiChangeUsername = async () => {
+        const response = await changeUsername(usernameInput)
+        if (response.status === 200){
+            setUserData((prev) => ({
+                ...prev,
+                name: usernameInput,
+            }))
+        }
+    }
+
+    const apiDeleteUser = async () => {
+        const response = await deleteUser()
+        if (response.status === 200){
+            setLoggedInUserId(null)
+        }
+    }
 
     const toggleChangeUsername = () => {
-        setIsChangeUsernameOpen(!isChangeUsernameOpen);
+        setIsChangeUsernameOpen(!isChangeUsernameOpen)
     }
 
     const toggleDeleteAccount = () => {
-        setIsDeleteAccountOpen(!isDeleteAccountOpen);
+        setIsDeleteAccountOpen(!isDeleteAccountOpen)
     }
 
     return (
@@ -18,8 +60,8 @@ export const PersonalInfo = () => {
                  src="https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg"
                  alt="Photo of this user"/>
             <div className="credentials">
-                <h3 className="name">Bobby Brian</h3>
-                <p className="userID">Bobby23</p>
+                <h3 className="name">{userData.name}</h3>
+                <p className="userID">{userData.userId}</p>
             </div>
             <div className="member-since-container">
                 <h5 className="header">Member Since</h5>
@@ -35,8 +77,8 @@ export const PersonalInfo = () => {
                 {
                     isChangeUsernameOpen === false ? null :
                         <div className="edit-username">
-                            <input type="text" className="input" placeholder="Bobby Brian"></input>
-                            <button className="submit">Save</button>
+                            <input type="text" className="input" placeholder={userData.name} onChange={(e) => setUsernameInput(e.target.value)}></input>
+                            <button className="submit" onClick={() => apiChangeUsername()}>Save</button>
                         </div>
                 }
                 <div className="delete-account">
@@ -47,12 +89,12 @@ export const PersonalInfo = () => {
                     isDeleteAccountOpen === false ? null :
                         <div className="password-prompt">
                             <input type="text" className="input" placeholder="Type your password..."></input>
-                            <button className="submit">Confirm</button>
+                            <button className="submit" onClick={() => apiDeleteUser()}>Confirm</button>
                         </div>
                 }
             </div>
             <div className="logout-button-container">
-                <button className="logout-button">logout</button>
+                <button className="logout-button">Logout</button>
             </div>
         </>
     )
