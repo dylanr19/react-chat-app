@@ -6,7 +6,7 @@ const createWindow = () => {
         width: 1024,
         height: 768,
         minWidth: 600,
-        minHeight: 400,
+        minHeight: 450,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
         },
