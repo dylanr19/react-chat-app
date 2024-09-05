@@ -103,7 +103,7 @@ export const PersonalInfo = () => {
                 }
             </div>
             <div className="logout-button-container">
-                <button className="logout-button">Logout</button>
+                <button className="logout-button" onClick={() => setLoggedInUserId(null)}>Logout</button>
             </div>
         </>
     )

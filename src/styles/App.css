@@ -775,3 +775,117 @@
     display: none;
   }
 }
+
+.login-flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: url('src/assets/freepik purple.jpg'); /* Path to your image */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 350px;
+  border-radius: 15px;
+  background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+  z-index: 2;
+}
+
+.login-container h2 {
+  color: black;
+}
+
+form {
+  display: flex;
+  flex-direction: column;;
+  justify-content: space-between;
+  height: 120px;
+  width: 250px;
+}
+
+form .input-container {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  align-self: center;
+}
+
+form .input-container .icon-container {
+  display: flex;
+  align-items: center;
+  width: 12%;
+  height: 100%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background: #dad7f7;
+  color: black;
+  padding-left: 5px;
+}
+
+form .input-container i {
+  font-size: 19px;
+  height: 28px;
+}
+
+form .input-container input {
+  border: none;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  width: 90%;
+  outline: none;
+  background: #dad7f7;
+  box-shadow: none;
+  padding: 6px;
+  margin: 0;
+  font: inherit;
+  font-size: 14px;
+  color: black;
+}
+
+.login-container .login-button {
+  background: linear-gradient(135deg, #6e60f8, #5348bd);
+  width: 90px;
+  align-self: center;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  margin: 0;
+  outline: none;
+  box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.1),
+  0 1px 3px rgba(0, 0, 0, 0.08);
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container .login-button:hover {
+  background: linear-gradient(135deg, #5a4fdc, #3f2b9a);
+  box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.15),
+  0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-container .login-button:active {
+  background: linear-gradient(135deg, #4a3eaf, #2f1e6d);
+  box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+}
+
+.login-flex-container .freepik-attribution {
+  align-self: flex-end;
+  justify-self: flex-end;
+  position: absolute;
+  right: 15px;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.33);
+}
