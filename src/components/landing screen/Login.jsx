@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Login = () => {
+export const Login = ({ setIsRegistering }) => {
 
     return (
         <>
@@ -19,10 +19,12 @@ export const Login = () => {
                             <div className="icon-container">
                                 <i className="bi bi-shield-lock"></i>
                             </div>
-                            <input type="text" placeholder="Password"/>
+                            <input type="password" placeholder="Password"/>
                         </div>
                         <input className="login-button" type="submit" value="Login Now"/>
                     </form>
+
+                    <p className="register-paragraph">Need an account? <span onClick={() => setIsRegistering(true)}>Register</span></p>
                 </div>
 
                 <p className="freepik-attribution">Designed by Freepik.com</p>
