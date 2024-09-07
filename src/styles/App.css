@@ -910,6 +910,7 @@ form .input-container input {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow-y: scroll;
 }
 
 .register-header {
@@ -919,8 +920,9 @@ form .input-container input {
 .register-container {
   display: flex;
   flex-direction: column;
+  border-radius: 15px;
   width: 400px;
-  height: 450px;
+  height: 650px;
   align-items: center;
   justify-content: center;
   background: linear-gradient(to bottom, #f0f0f0, #ffffff);
@@ -929,12 +931,12 @@ form .input-container input {
 .register-container form {
   display: flex;
   width: 300px;
-  height: 250px;
+  height: 400px;
   color: black;
 }
 
 .register-container label {
-  margin-bottom: -20px;
+  /*margin-bottom: -20px;*/
   font-size: 14px;
 }
 
@@ -949,36 +951,57 @@ form .input-container input {
   font: inherit;
   font-size: 14px;
   color: black;
+  width: 100%;
+}
+
+.register-container .input-container {
+  display: block;
+  width: 100%;
 }
 
 .register-container form button {
-  background: linear-gradient(135deg, #6e60f8, #5348bd);
   width: inherit;
   align-self: center;
   border: none;
   border-radius: 8px;
   padding: 8px;
-  margin: 0;
+  margin-top: 20px;
+  /*margin: 0;*/
   outline: none;
   box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.1),
   0 1px 3px rgba(0, 0, 0, 0.08);
   color: whitesmoke;
   font: inherit;
   font-size: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  /*transition: background-color 0.3s ease;*/
 }
 
-.register-container form button:hover {
+.register-container form button.disabled {
+  background: rgba(128, 128, 128, 0.58);
+  cursor: initial;
+}
+
+.register-container form button.enabled {
+  background: linear-gradient(135deg, #6e60f8, #5348bd);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.register-container form button.enabled:hover {
   background: linear-gradient(135deg, #5a4fdc, #3f2b9a);
   box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.15),
   0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.register-container form button:active {
+.register-container form button.enabled:active {
   background: linear-gradient(135deg, #4a3eaf, #2f1e6d);
   box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.2);
   transform: translateY(2px);
+}
+
+.register-container .validation-message {
+  color: red;
+  font-size: 12px;
 }
 
 .login-paragraph {
