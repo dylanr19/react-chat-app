@@ -14,12 +14,16 @@ export const useUserApi = () => {
         return await callApi(`http://localhost:5046/api/User/ChangeUsername/${loggedInUserId}/${username}`, { method: 'PUT' });
     }
 
+    const loginUser = async (userId, password) => {
+        return await callApi(`http://localhost:5046/api/User/LoginUser/${userId}/${password}`, { method: 'POST' })
+    }
+
     const createUser = async (displayname, username, password) => {
         return await callApi(`http://localhost:5046/api/User/CreateUser/`, { method: 'POST', data: {
                 userId: username,
                 password: password,
                 name: displayname
-            }});
+            }})
     }
 
     const deleteUser = async () => {
@@ -28,6 +32,7 @@ export const useUserApi = () => {
 
     return {
         fetchUser,
+        loginUser,
         createUser,
         deleteUser,
         changeUsername
