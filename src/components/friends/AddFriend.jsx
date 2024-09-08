@@ -23,7 +23,7 @@ function AddFriend() {
     return(
         <>
             <div className="example">
-                <input type="text" placeholder="Add Friend..." name="search"
+                <input type="text" placeholder="Search by username..." name="search"
                        onChange={(e) => setInput(e.target.value)}/>
                 <button type="submit"><i className="bi bi-search" onClick={() => onSendClick(input)}></i></button>
             </div>

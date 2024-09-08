@@ -52,7 +52,7 @@ function FriendRequestList () {
                 ListStates={[
                     {originalList: originalIncomingList, setCurrentList: setCurrentIncomingList},
                     {originalList: originalOutgoingList, setCurrentList: setCurrentOutgoingList}]}
-                placeholder="Search Friend Requests..."
+                placeholder="Find a friend request..."
                 SearchComponent={FriendSearchComponent}
             >
             </SearchBar>

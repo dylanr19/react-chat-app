@@ -40,7 +40,7 @@ function FriendList () {
         <>
             <SearchBar
                 ListStates={[{originalList: originalFriendList, setCurrentList: setCurrentFriendList}]}
-                placeholder="Search Friends..."
+                placeholder="Find a friend..."
                 SearchComponent={FriendSearchComponent}
             >
             </SearchBar>
