@@ -1,6 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import {useApi} from "../hooks/useApi.js";
+import {LoginContext} from "../../Contexts/LoginContext.jsx";
+import {useUserApi} from "../hooks/useUserApi.jsx";
 
 export const Registration = ({ setIsRegistering }) => {
+    const { callApi } = useApi()
+    const { createUser } = useUserApi()
+    const { setUserId: setLoggedInUserId } = useContext(LoginContext)
+
     const [displayName, setDisplayName] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -17,6 +24,7 @@ export const Registration = ({ setIsRegistering }) => {
     const [ confirmPasswordValidationMessage, setConfirmPasswordValidationMessage ] = useState('')
 
     const [ canRegister, setCanRegister ] = useState(false)
+    const [ isRegistrationComplete, setIsRegistrationComplete ] = useState(false)
 
     const hasSpecialCharacters = (str) => {
         return /[^a-zA-Z0-9 ]/.test(str);
@@ -34,6 +42,25 @@ export const Registration = ({ setIsRegistering }) => {
         return isEmpty(name) === false
             && hasSpecialCharacters(name) === false
             && isWithinLength(name, 6, 30)
+    }
+
+    const doesUsernameAlreadyExist = async () => {
+        const response = await callApi(`http://localhost:5046/api/User/CheckUsernameExists/${username}`, { method: 'POST' })
+        return response.status === 200
+    }
+
+    const registerUser = async (e) => {
+        e.preventDefault()
+
+        const canRegister = isDisplayNameValid
+            && isUsernameValid
+            && isPasswordValid
+            && isConfirmPasswordValid
+
+        if (canRegister){
+            const response = await createUser(displayName, username, password)
+            if (response.status === 201) setIsRegistrationComplete(true)
+        }
     }
 
     useEffect(() => {
@@ -54,19 +81,27 @@ export const Registration = ({ setIsRegistering }) => {
     }, [displayName]);
 
     useEffect(() => {
-        setIsUsernameValid(isNameValid(username))
+        const validateUsername = async () => {
+            const doesUsernameExist = await doesUsernameAlreadyExist()
+            setIsUsernameValid(isNameValid(username) && doesUsernameExist === false)
 
-        if (isEmpty(username))
-            setUsernameValidationMessage(null)
+            if (isEmpty(username))
+                setUsernameValidationMessage(null)
 
-        else if (isWithinLength(username, 6, 30) === false)
-            setUsernameValidationMessage('Your username name must be between 6 and 30 characters')
+            else if (isWithinLength(username, 6, 30) === false)
+                setUsernameValidationMessage('Your username name must be between 6 and 30 characters')
 
-        else if (hasSpecialCharacters(username))
-            setUsernameValidationMessage('Your username name should not contain any special characters')
+            else if (hasSpecialCharacters(username))
+                setUsernameValidationMessage('Your username name should not contain any special characters')
 
-        else
-            setUsernameValidationMessage(null)
+            else if (doesUsernameExist)
+                setUsernameValidationMessage('Your username already exists')
+
+            else
+                setUsernameValidationMessage(null)
+        }
+
+        validateUsername()
 
     }, [username])
 
@@ -131,24 +166,10 @@ export const Registration = ({ setIsRegistering }) => {
 
     }, [isDisplayNameValid, isUsernameValid, isPasswordValid, isConfirmPasswordValid]);
 
-    const test = (e) => {
-        e.preventDefault()
-
-        const canRegister = isDisplayNameValid
-        && isUsernameValid
-        && isPasswordValid
-        && isConfirmPasswordValid
-
-        if (canRegister){
-            // Send form to API
-            // Server side validation
-            // return OK response
-            // login
-            // return Bad response
-            // show user which field is wrong
-            // prompt user to try again
-        }
-    }
+    useEffect(() => {
+        if (isRegistrationComplete)
+            setLoggedInUserId(username)
+    }, [isRegistrationComplete]);
 
     return (
         <>
@@ -158,7 +179,7 @@ export const Registration = ({ setIsRegistering }) => {
 
                     <h2 className="register-header">Create an account</h2>
 
-                    <form onSubmit={test}>
+                    <form onSubmit={registerUser}>
                         <div className="input-container">
                             <label>DISPLAY NAME</label>
                             <input

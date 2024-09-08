@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {usePersonalApi} from "../hooks/usePersonalApi.jsx";
+import {useUserApi} from "../hooks/useUserApi.jsx";
 import {LoginContext} from "../../Contexts/LoginContext.jsx";
 
 export const PersonalInfo = () => {
@@ -9,7 +9,7 @@ export const PersonalInfo = () => {
     const [isDeleteAccountOpen, setIsDeleteAccountOpen] = useState(false)
 
     const {userId: loggedInUserId, setUserId: setLoggedInUserId} = useContext(LoginContext)
-    const {fetchUser, deleteUser, changeUsername} = usePersonalApi()
+    const {fetchUser, deleteUser, changeUsername} = useUserApi()
     const [userData, setUserData] = useState({
         userId: null,
         password: null,
