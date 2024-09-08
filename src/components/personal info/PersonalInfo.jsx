@@ -1,10 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useUserApi} from "../hooks/useUserApi.jsx";
 import {LoginContext} from "../../Contexts/LoginContext.jsx";
+import {ChatContext} from "../../Contexts/ChatContext.jsx";
 
 export const PersonalInfo = () => {
-    const [usernameInput, setUsernameInput] = useState('')
+    const { clearChatContext } = useContext(ChatContext)
 
+    const [usernameInput, setUsernameInput] = useState('')
     const [isChangeUsernameOpen, setIsChangeUsernameOpen] = useState(false)
     const [isDeleteAccountOpen, setIsDeleteAccountOpen] = useState(false)
 
@@ -103,7 +105,7 @@ export const PersonalInfo = () => {
                 }
             </div>
             <div className="logout-button-container">
-                <button className="logout-button" onClick={() => setLoggedInUserId(null)}>Logout</button>
+                <button className="logout-button" onClick={() => { setLoggedInUserId(null); clearChatContext();}}>Logout</button>
             </div>
         </>
     )

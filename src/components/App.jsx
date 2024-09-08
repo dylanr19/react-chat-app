@@ -18,9 +18,7 @@ function App() {
     const [ isChatVisible, setIsChatVisible ] = useState(false)
 
     useEffect(() => {
-        if (currentChatPartner != null){
-            setIsChatVisible(true)
-        }
+        setIsChatVisible(currentChatPartner != null)
     }, [currentChatPartner])
 
   return (

@@ -10,17 +10,17 @@ import {LoginContext} from "./LoginContext.jsx";
 export const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
-    // const [currentChatPartner, setCurrentChatPartner] = useState({
-    //     photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
-    //     name: 'Bob',
-    //     userId: 'user2',
-    //     lastMessage: 'lmao',
-    //     isActive: false
-    // })
     const [currentChatPartner, setCurrentChatPartner] = useState(null)
     const [previousChatPartner, setPreviousChatPartner] = useState(null)
     const [chatPartners, setChatPartners] = useState([])
     const [filteredChatPartners, setFilteredChatPartners] = useState([])
+
+    const clearChatContext = () => {
+        setCurrentChatPartner(null)
+        setPreviousChatPartner(null)
+        setChatPartners([])
+        setFilteredChatPartners([])
+    }
 
     const checkPartnerExists = (userId) => {
         return chatPartners.some((cp) => cp.userId === userId)
@@ -102,6 +102,7 @@ export const ChatProvider = ({ children }) => {
         <ChatContext.Provider value={{
             readyState,
             messageHistory,
+            clearChatContext,
             removeChatPartner,
             processOutgoingMessage,
             startNewChat,
