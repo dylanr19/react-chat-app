@@ -537,7 +537,7 @@
 .chat-box-sent .message-container .date {
   font-size: 10px;
   margin-top: -3px;
-  align-self: flex-start;
+  align-self: flex-end;
 }
 
 .message-bar {
