@@ -188,8 +188,8 @@ export const Registration = ({ setIsRegistering }) => {
                                 onChange={(e) => setDisplayName(e.target.value)}
                             />
                         </div>
-
-                        <div className="validation-message">{displayNameValidationMessage}</div>
+                        
+                        {isDisplayNameValid ? null : <div className="validation-message">{displayNameValidationMessage}</div>}
 
                         <div className="input-container">
                             <label>USERNAME</label>
