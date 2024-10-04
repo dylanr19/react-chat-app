@@ -51,8 +51,11 @@ function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat, re
                 </div>
                 {
                     partnerData.unreadMessageCount === 0
-                    ? <div className="placeholder" style={{width: '15px', height: '15px'}}></div>
-                    : <div className="unread-icon">{partnerData.unreadMessageCount}</div>
+                        ? <div className="placeholder" style={{width: '15px', height: '15px'}}></div>
+                        : <div className="unread-icon-container">
+                            <i className="bi bi-chat-left-dots-fill"></i>
+                            <div className="unread-count">{partnerData.unreadMessageCount}</div>
+                        </div>
                 }
             </button>
         </>
