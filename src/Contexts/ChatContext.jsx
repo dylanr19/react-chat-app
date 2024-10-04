@@ -81,8 +81,10 @@ export const ChatProvider = ({ children }) => {
     const resetUnreadMessageCount = (userId) => {
         const copy = [...chatPartners]
         const partner = copy.find(p => p.userId === userId)
-        partner.unreadMessageCount = 0
-        setChatPartners(copy)
+        if (partner != null) {
+            partner.unreadMessageCount = 0
+            setChatPartners(copy)
+        }
     }
 
     const startNewChat = (partner) => {
