@@ -121,6 +121,7 @@ function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPart
     }
 
     return {
+        readyState,
         messageHistory,
         setMessageHistory,
         processOutgoingMessage,

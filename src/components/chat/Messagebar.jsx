@@ -1,6 +1,6 @@
 import '../../styles/App.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import {useContext, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import { ChatContext } from '../../Contexts/ChatContext.jsx'
 import { ReadyState } from "react-use-websocket";
 
