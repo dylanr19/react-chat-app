@@ -35,7 +35,6 @@ function ChatBox({ photoURL, text, date, senderId }) {
                 // Chat Message was sent on another date
                 setLocalisedDate(messageSentDate.toLocaleString([], {
                     weekday: 'long',
-                    year: 'numeric',
                     month: 'short',
                     day: 'numeric',
                     hour: 'numeric',
