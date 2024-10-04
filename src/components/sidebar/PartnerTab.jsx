@@ -1,8 +1,12 @@
 import '../../styles/App.css'
 import {useEffect, useState} from 'react'
 
-function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat }) {
-    const [unreadMessages, setUnreadMessages] = useState(8);
+function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat, resetUnreadMessageCount }) {
+    const [unreadMessages, setUnreadMessages] = useState(0);
+
+    useEffect(() => {
+        console.log(unreadMessages)
+    }, [partnerData.unreadMessageCount]);
 
     const incrementUnreadMessages = () => {
         setUnreadMessages((prevState) => prevState++ );
@@ -34,7 +38,7 @@ function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat }) 
     }
 
     const handleTabClick = () => {
-        resetUnreadMessages()
+        resetUnreadMessageCount(partnerData.userId)
         switchActiveTab()
     }
 
@@ -46,9 +50,9 @@ function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat }) 
                     <div className="name">{partnerData.name}</div>
                 </div>
                 {
-                    unreadMessages === 0
+                    partnerData.unreadMessageCount === 0
                     ? <div className="placeholder" style={{width: '15px', height: '15px'}}></div>
-                    : <div className="unread-icon">{unreadMessages}</div>
+                    : <div className="unread-icon">{partnerData.unreadMessageCount}</div>
                 }
             </button>
         </>

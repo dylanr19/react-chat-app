@@ -13,13 +13,18 @@ import {LoginContext} from "../Contexts/LoginContext.jsx";
 import {LandingScreen} from "./landing screen/LandingScreen.jsx";
 
 function App() {
-    const { currentChatPartner } = useContext(ChatContext)
+    const { currentChatPartner, setPartnerInactive } = useContext(ChatContext)
     const { userId: loggedInUserId } = useContext(LoginContext)
     const [ isChatVisible, setIsChatVisible ] = useState(false)
 
     useEffect(() => {
         setIsChatVisible(currentChatPartner != null)
     }, [currentChatPartner])
+
+    useEffect(() => {
+        if (isChatVisible === false)
+            setPartnerInactive()
+    }, [isChatVisible]);
 
   return (
     <>

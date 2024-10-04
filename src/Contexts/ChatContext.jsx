@@ -31,7 +31,8 @@ export const ChatProvider = ({ children }) => {
             photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
             name: name,
             userId: userId,
-            isActive: false
+            isActive: false,
+            unreadMessageCount: 0
         }
 
         setChatPartners((prev) => prev.concat(newPartner))
@@ -63,7 +64,24 @@ export const ChatProvider = ({ children }) => {
     const setPartnerInactive = () => {
         const copy = [...chatPartners]
         const partner = copy.find(p => p.isActive === true)
-        partner.isActive = false
+        if (partner != null) {
+            partner.isActive = false
+            setChatPartners(copy)
+            setCurrentChatPartner(null)
+        }
+    }
+
+    const incrementPartnerUnreadMessageCount = (userId) => {
+        const copy = [...chatPartners]
+        const partner = copy.find(p => p.userId === userId)
+        partner.unreadMessageCount++
+        setChatPartners(copy)
+    }
+
+    const resetUnreadMessageCount = (userId) => {
+        const copy = [...chatPartners]
+        const partner = copy.find(p => p.userId === userId)
+        partner.unreadMessageCount = 0
         setChatPartners(copy)
     }
 
@@ -74,6 +92,7 @@ export const ChatProvider = ({ children }) => {
 
         setPreviousChatPartner(currentChatPartner)
         setCurrentChatPartner(partner)
+        resetUnreadMessageCount(partner.userId)
         requestMessageHistory(partner.userId)
     }
 
@@ -90,7 +109,7 @@ export const ChatProvider = ({ children }) => {
         messageHistory,
         requestMessageHistory,
         processOutgoingMessage
-    } = useMessaging(currentChatPartner, checkPartnerExists, createNewChatPartner)
+    } = useMessaging(currentChatPartner, checkPartnerExists, createNewChatPartner, incrementPartnerUnreadMessageCount)
 
     return (
         <ChatContext.Provider value={{
@@ -105,7 +124,8 @@ export const ChatProvider = ({ children }) => {
             chatPartners,
             setChatPartners,
             filteredChatPartners,
-            setFilteredChatPartners
+            setFilteredChatPartners,
+            resetUnreadMessageCount
         }}>
             {children}
         </ChatContext.Provider>

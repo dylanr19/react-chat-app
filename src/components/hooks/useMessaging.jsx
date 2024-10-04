@@ -3,7 +3,7 @@ import useWebSocket, {ReadyState} from "react-use-websocket";
 import {playNotificationSound, showDesktopNotification} from "../../notificationUtils.js";
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
-function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPartner) {
+function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPartner, incrementPartnerUnreadMessageCount) {
     const { userId: loggedInUserId } = useContext(LoginContext)
 
     const [socketUrl, setSocketUrl] = useState(null)
@@ -54,13 +54,17 @@ function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPart
             const senderId = message.senderId
             const text = message.text
 
-            if (checkPartnerExists(message.senderId) === false){
+            if (checkPartnerExists(senderId) === false){
                 createNewChatPartner(senderId, name, text)
+                incrementPartnerUnreadMessageCount(senderId)
                 return
             }
 
-            if (currentChatPartner.userId === senderId){
+            if (currentChatPartner != null && currentChatPartner.userId === senderId){
                 addMessageToHistory(message)
+            }
+            else {
+                incrementPartnerUnreadMessageCount(senderId)
             }
         }
 
