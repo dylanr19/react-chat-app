@@ -3,7 +3,7 @@ import useWebSocket, {ReadyState} from "react-use-websocket";
 import {playNotificationSound, showDesktopNotification} from "../../notificationUtils.js";
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
-function useMessaging (currentChatPartner, setChatPartnerLastMessage, checkPartnerExists, createNewChatPartner) {
+function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPartner) {
     const { userId: loggedInUserId } = useContext(LoginContext)
 
     const [socketUrl, setSocketUrl] = useState(null)
@@ -45,8 +45,6 @@ function useMessaging (currentChatPartner, setChatPartnerLastMessage, checkPartn
         const isAppMinimized = true;
 
         const processIncomingHistory = () => {
-            const lastMessage = lastJsonMessage.messages.findLast(m => m.senderId === currentChatPartner.userId)
-            setChatPartnerLastMessage(currentChatPartner.userId, lastMessage?.text)
             setMessageHistory(lastJsonMessage.messages)
         }
 
@@ -61,7 +59,6 @@ function useMessaging (currentChatPartner, setChatPartnerLastMessage, checkPartn
                 return
             }
 
-            setChatPartnerLastMessage(senderId, text)
             if (currentChatPartner.userId === senderId){
                 addMessageToHistory(message)
             }

@@ -3,24 +3,6 @@ import {useEffect, useState} from 'react'
 
 function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat }) {
     const [unreadMessages, setUnreadMessages] = useState(8);
-    const [truncatedMessage, setTruncatedMessage] = useState('')
-
-    useEffect(() => {
-        truncateMessage(partnerData.lastMessage)
-        incrementUnreadMessages()
-    }, [partnerData.lastMessage]);
-
-    const truncateMessage = (message) => {
-        if (!message){
-            return
-        }
-
-        if (message.length > 16) {
-            setTruncatedMessage(message.slice(0, 16) + '...')
-        } else {
-            setTruncatedMessage(message)
-        }
-    }
 
     const incrementUnreadMessages = () => {
         setUnreadMessages((prevState) => prevState++ );
@@ -62,7 +44,6 @@ function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat }) 
                 <img className="photo" src={partnerData.photoURL} alt={"photo of " + partnerData.name}/>
                 <div className="info-container">
                     <div className="name">{partnerData.name}</div>
-                    <div className="last-message">{truncatedMessage}</div>
                 </div>
                 {
                     unreadMessages === 0

@@ -26,12 +26,11 @@ export const ChatProvider = ({ children }) => {
         return chatPartners.some((cp) => cp.userId === userId)
     }
 
-    const createNewChatPartner = (userId, name, lastMessage, photoURL) => {
+    const createNewChatPartner = (userId, name, photoURL) => {
         const newPartner = {
             photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
             name: name,
             userId: userId,
-            lastMessage: lastMessage,
             isActive: false
         }
 
@@ -68,11 +67,6 @@ export const ChatProvider = ({ children }) => {
         setChatPartners(copy)
     }
 
-    const setChatPartnerLastMessage = (userId, lastMessage) => {
-        currentChatPartner.lastMessage = lastMessage;
-        setCurrentChatPartner(currentChatPartner)
-    }
-
     const startNewChat = (partner) => {
         if (checkPartnerExists(partner.userId) === false) {
             createNewChatPartner(partner.userId, partner.name, '', '')
@@ -96,7 +90,7 @@ export const ChatProvider = ({ children }) => {
         messageHistory,
         requestMessageHistory,
         processOutgoingMessage
-    } = useMessaging(currentChatPartner, setChatPartnerLastMessage, checkPartnerExists, createNewChatPartner)
+    } = useMessaging(currentChatPartner, checkPartnerExists, createNewChatPartner)
 
     return (
         <ChatContext.Provider value={{
