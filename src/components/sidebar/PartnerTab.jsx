@@ -2,19 +2,6 @@ import '../../styles/App.css'
 import {useEffect, useState} from 'react'
 
 function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat, resetUnreadMessageCount }) {
-    const [unreadMessages, setUnreadMessages] = useState(0);
-
-    useEffect(() => {
-        console.log(unreadMessages)
-    }, [partnerData.unreadMessageCount]);
-
-    const incrementUnreadMessages = () => {
-        setUnreadMessages((prevState) => prevState++ );
-    }
-
-    const resetUnreadMessages = () => {
-        setUnreadMessages(0)
-    }
 
     const deactivatePreviousTab = (partnerList) => {
         const activePartner = partnerList.find( partner => partner.isActive === true )
