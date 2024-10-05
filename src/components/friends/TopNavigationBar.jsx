@@ -35,6 +35,7 @@ function TopNavigationBar({ setCurrentWindow }) {
 
     return(
         <>
+            <div className="test123">
             <div className="top-navigation-container">
                 {/*<div className="bi bi-person-raised-hand"></div>*/}
                 <h3 className="title">Friends</h3>
@@ -72,6 +73,7 @@ function TopNavigationBar({ setCurrentWindow }) {
                     </button>
 
                 </div>
+            </div>
             </div>
         </>
     )

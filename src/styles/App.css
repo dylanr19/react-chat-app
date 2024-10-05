@@ -31,16 +31,22 @@
   align-items: stretch;
 }
 
-.top-navigation-container {
+.test123 {
   border-width: 0;
   border-bottom-width: 2px;
   border-top-width: 2px;
+  border-style: solid;
+  border-color: #efeff4;
+  height: 6%;
+  min-height: 50px;
+  min-width: 500px;
+}
+
+.top-navigation-container {
   height: 6%;
   min-height: 50px;
   max-width: 600px;
   min-width: 500px;
-  border-style: solid;
-  border-color: #efeff4;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -184,7 +190,7 @@
   flex-direction: column;
   min-width: 350px;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
