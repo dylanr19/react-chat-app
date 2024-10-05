@@ -2,7 +2,6 @@ import '../../styles/App.css'
 import PartnerTab from './PartnerTab.jsx'
 import {useEffect, useState, useContext} from "react";
 import {ChatContext} from '../../Contexts/ChatContext.jsx'
-import { v4 as uuidv4 } from 'uuid'
 
 const placeholder = 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg'
 const placeholder2 = 'https://t3.ftcdn.net/jpg/03/85/20/64/360_F_385206426_wllRGLFfXeFHB7x41Jc2Lz5kZjo2PraC.jpg'
@@ -22,7 +21,7 @@ function Sidebar() {
                         setPartnerList={setFilteredChatPartners}
                         startNewChat={startNewChat}
                         resetUnreadMessageCount={resetUnreadMessageCount}
-                        key={uuidv4()}
+                        key={partner.userId}
                     />))
                 }
             </div>
