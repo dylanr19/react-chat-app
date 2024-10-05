@@ -31,7 +31,7 @@ function PartnerTab({ partnerData, partnerList, setPartnerList, startNewChat, re
 
     return (
         <>
-            <button className="partner-tab" style={{ background: partnerData.isActive ? '#f8f9fd' : 'white' }} id={partnerData.userId} onClick={() => handleTabClick()}>
+            <button className="partner-tab" style={{ background: partnerData.isActive ? '#ededed' : 'white' }} id={partnerData.userId} onClick={() => handleTabClick()}>
                 <img className="photo" src={partnerData.photoURL} alt={"photo of " + partnerData.name}/>
                 <div className="info-container">
                     <div className="name">{partnerData.name}</div>

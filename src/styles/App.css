@@ -477,6 +477,7 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
+  background: #ededed;
 }
 
 .chat-box-received {
