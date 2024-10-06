@@ -92,10 +92,10 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             senderId: loggedInUserId,
             receiverId: openChatTab.userId,
             text: text,
-            delivered: true,
             type: CHAT_MESSAGE
         }
 
+        sendJsonMessage(messageData)
         addMessageToHistory(messageData)
     }
 
