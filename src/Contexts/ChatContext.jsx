@@ -121,6 +121,7 @@ export const ChatProvider = ({ children }) => {
             removeChatPartner,
             processOutgoingMessage,
             startNewChat,
+            setPartnerActive,
             setPartnerInactive,
             currentChatPartner,
             chatPartners,
