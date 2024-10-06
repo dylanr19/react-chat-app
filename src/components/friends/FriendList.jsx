@@ -6,7 +6,7 @@ import {ChatContext} from "../../Contexts/ChatContext.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
 
 function FriendList () {
-    const { startNewChat, removeChatPartner } = useContext(ChatContext);
+    const { startNewChat, removeChatTab } = useContext(ChatContext);
     const { fetchFriends, removeFriend } = useFriendApi()
     const [ originalFriendList, setOriginalFriendList ] = useState([])
     const [ currentFriendList, setCurrentFriendList ] = useState([])
@@ -23,7 +23,7 @@ function FriendList () {
         const response = await removeFriend(userId)
 
         if (response.status === 200){
-            removeChatPartner(userId)
+            removeChatTab(userId)
             fetch()
         }
     }

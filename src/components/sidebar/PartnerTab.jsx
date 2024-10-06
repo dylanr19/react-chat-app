@@ -5,15 +5,15 @@ import {ChatContext} from "../../Contexts/ChatContext.jsx";
 function PartnerTab({ partnerData }) {
     const {
         startNewChat,
-        resetUnreadMessageCount,
-        setPartnerActive,
-        setPartnerInactive
+        resetUnreadMessages,
+        highlightChatTab,
+        unhighlightChatTab
     } = useContext(ChatContext)
 
     const handleTabClick = () => {
-        resetUnreadMessageCount(partnerData.userId)
-        setPartnerInactive()
-        setPartnerActive(partnerData.userId)
+        resetUnreadMessages(partnerData.userId)
+        unhighlightChatTab()
+        highlightChatTab(partnerData.userId)
         startNewChat(partnerData)
     }
 
@@ -21,7 +21,7 @@ function PartnerTab({ partnerData }) {
         <>
             <button
                 className="partner-tab"
-                style={{ background: partnerData.isActive ? '#ededed' : 'white' }}
+                style={{ background: partnerData.isHighlighted ? '#ededed' : 'white' }}
                 id={partnerData.userId}
                 onClick={() => handleTabClick()}
             >
@@ -44,7 +44,7 @@ function PartnerTab({ partnerData }) {
                             <div className="unread-count">{partnerData.unreadMessageCount}</div>
                         </div>
                 }
-                
+
             </button>
         </>
     )

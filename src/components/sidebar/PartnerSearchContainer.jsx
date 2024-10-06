@@ -5,12 +5,12 @@ import PartnerSearchComponent from "./PartnerSearchComponent.jsx";
 import {ChatContext} from "../../Contexts/ChatContext.jsx";
 
 function PartnerSearchContainer() {
-    const { chatPartners,  setFilteredChatPartners } = useContext(ChatContext)
+    const { chatTabs,  setFilteredChatTabs } = useContext(ChatContext)
 
     return (
         <SearchBar
             placeholder={"Find a conversation"}
-            ListStates={[{originalList: chatPartners, setCurrentList: setFilteredChatPartners}]}
+            ListStates={[{originalList: chatTabs, setCurrentList: setFilteredChatTabs}]}
             SearchComponent={PartnerSearchComponent}>
         </SearchBar>
     )

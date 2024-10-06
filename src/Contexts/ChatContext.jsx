@@ -1,6 +1,5 @@
-import {createContext, useContext, useEffect, useState} from 'react';
+import {createContext, useState} from 'react';
 import useMessaging from "../components/hooks/useMessaging.jsx";
-import {LoginContext} from "./LoginContext.jsx";
 
 // const initialPartnerData = {photoURL : '', name: '', userId: '', lastMessage: '', isActive: false}
 // const initialMessageData = {photoURL: '', senderId: '', date: '', text: '', delivered: true}
@@ -10,125 +9,121 @@ import {LoginContext} from "./LoginContext.jsx";
 export const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
-    const [currentChatPartner, setCurrentChatPartner] = useState(null)
-    const [previousChatPartner, setPreviousChatPartner] = useState(null)
-    const [chatPartners, setChatPartners] = useState([])
-    const [filteredChatPartners, setFilteredChatPartners] = useState([])
+    const [openChatTab, setOpenChatTab] = useState(null)
+    const [chatTabs, setChatTabs] = useState([])
+    const [filteredChatTabs, setFilteredChatTabs] = useState([])
 
     const clearChatContext = () => {
-        setCurrentChatPartner(null)
-        setPreviousChatPartner(null)
-        setChatPartners([])
-        setFilteredChatPartners([])
+        setOpenChatTab(null)
+        setChatTabs([])
+        setFilteredChatTabs([])
     }
 
-    const checkPartnerExists = (userId) => {
-        return chatPartners.some((cp) => cp.userId === userId)
+    const checkChatTabExists = (userId) => {
+        return chatTabs.some((cp) => cp.userId === userId)
     }
 
-    const createNewChatPartner = (userId, name, photoURL) => {
+    const createNewChatTab = (userId, name, photoURL, isHighlighted, unreadMessageCount) => {
         const newPartner = {
             photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
             name: name,
             userId: userId,
-            isActive: false,
-            unreadMessageCount: 0
+            isHighlighted: isHighlighted,
+            unreadMessageCount: unreadMessageCount
         }
 
-        setChatPartners((prev) => prev.concat(newPartner))
+        setChatTabs((prev) => prev.concat(newPartner))
     }
 
-    const removeChatPartner = (userId) => {
-        setChatPartners(
-            chatPartners.filter(p => p.userId !== userId)
+    const removeChatTab = (userId) => {
+        setChatTabs(
+            chatTabs.filter(p => p.userId !== userId)
         )
 
-        setFilteredChatPartners(
-            filteredChatPartners.filter(p => p.userId !== userId)
+        setFilteredChatTabs(
+            filteredChatTabs.filter(p => p.userId !== userId)
         )
 
-        if (currentChatPartner?.userId === userId)
-            setCurrentChatPartner(null)
-
-        if (previousChatPartner?.userId === userId)
-            setPreviousChatPartner(null)
+        if (openChatTab?.userId === userId)
+            setOpenChatTab(null)
     }
 
-    const setPartnerActive = (userId, isActive) => {
-        const copy = [...chatPartners]
+    const highlightChatTab = (userId) => {
+        const copy = [...chatTabs]
         const partner = copy.find(p => p.userId === userId)
-        partner.isActive = isActive
-        setChatPartners(copy)
-    }
-
-    const setPartnerInactive = () => {
-        const copy = [...chatPartners]
-        const partner = copy.find(p => p.isActive === true)
-        if (partner != null) {
-            partner.isActive = false
-            setChatPartners(copy)
-            setCurrentChatPartner(null)
+        if (partner != null){
+            partner.isHighlighted = true
+            setChatTabs(copy)
         }
     }
 
-    const incrementPartnerUnreadMessageCount = (userId) => {
-        const copy = [...chatPartners]
+    const unhighlightChatTab = () => {
+        const copy = [...chatTabs]
+        const partner = copy.find(p => p.isHighlighted === true)
+        if (partner != null) {
+            partner.isHighlighted = false
+            setChatTabs(copy)
+            setOpenChatTab(null)
+        }
+    }
+
+    const incrementUnreadMessages = (userId) => {
+        const copy = [...chatTabs]
         const partner = copy.find(p => p.userId === userId)
         partner.unreadMessageCount++
-        setChatPartners(copy)
+        setChatTabs(copy)
     }
 
-    const resetUnreadMessageCount = (userId) => {
-        const copy = [...chatPartners]
+    const resetUnreadMessages = (userId) => {
+        const copy = [...chatTabs]
         const partner = copy.find(p => p.userId === userId)
         if (partner != null) {
             partner.unreadMessageCount = 0
-            setChatPartners(copy)
+            setChatTabs(copy)
         }
     }
 
     const startNewChat = (partner) => {
-        if (checkPartnerExists(partner.userId) === false) {
-            createNewChatPartner(partner.userId, partner.name, '', '')
+        if (checkChatTabExists(partner.userId) === false) {
+            createNewChatTab(
+                partner.userId,
+                partner.name,
+                '',
+                true,
+                0
+            )
         }
 
-        setPreviousChatPartner(currentChatPartner)
-        setCurrentChatPartner(partner)
-        resetUnreadMessageCount(partner.userId)
+        unhighlightChatTab()
+        highlightChatTab(partner.userId)
+        setOpenChatTab(partner)
+        resetUnreadMessages(partner.userId)
         requestMessageHistory(partner.userId)
     }
-
-    useEffect(() => {
-        if (previousChatPartner != null)
-            setPartnerActive(previousChatPartner.userId, false)
-
-        if (currentChatPartner != null)
-            setPartnerActive(currentChatPartner.userId, true)
-    }, [currentChatPartner]);
 
     const {
         readyState,
         messageHistory,
         requestMessageHistory,
         processOutgoingMessage
-    } = useMessaging(currentChatPartner, checkPartnerExists, createNewChatPartner, incrementPartnerUnreadMessageCount)
+    } = useMessaging(openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages)
 
     return (
         <ChatContext.Provider value={{
             readyState,
             messageHistory,
             clearChatContext,
-            removeChatPartner,
+            removeChatTab,
             processOutgoingMessage,
             startNewChat,
-            setPartnerActive,
-            setPartnerInactive,
-            currentChatPartner,
-            chatPartners,
-            setChatPartners,
-            filteredChatPartners,
-            setFilteredChatPartners,
-            resetUnreadMessageCount
+            highlightChatTab,
+            unhighlightChatTab,
+            openChatTab,
+            chatTabs,
+            setChatTabs,
+            filteredChatTabs,
+            setFilteredChatTabs,
+            resetUnreadMessages
         }}>
             {children}
         </ChatContext.Provider>

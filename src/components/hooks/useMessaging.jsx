@@ -3,7 +3,7 @@ import useWebSocket, {ReadyState} from "react-use-websocket";
 import {playNotificationSound, showDesktopNotification} from "../../notificationUtils.js";
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
-function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPartner, incrementPartnerUnreadMessageCount) {
+function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages) {
     const { userId: loggedInUserId } = useContext(LoginContext)
 
     const [socketUrl, setSocketUrl] = useState(null)
@@ -54,17 +54,17 @@ function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPart
             const senderId = message.senderId
             const text = message.text
 
-            if (checkPartnerExists(senderId) === false){
-                createNewChatPartner(senderId, name, text)
-                incrementPartnerUnreadMessageCount(senderId)
+            if (checkChatTabExists(senderId) === false){
+                createNewChatTab(senderId, name, text)
+                incrementUnreadMessages(senderId)
                 return
             }
 
-            if (currentChatPartner != null && currentChatPartner.userId === senderId){
+            if (openChatTab != null && openChatTab.userId === senderId){
                 addMessageToHistory(message)
             }
             else {
-                incrementPartnerUnreadMessageCount(senderId)
+                incrementUnreadMessages(senderId)
             }
         }
 
@@ -92,7 +92,7 @@ function useMessaging (currentChatPartner, checkPartnerExists, createNewChatPart
         const messageData = {
             photoURL: '',
             senderId: loggedInUserId,
-            receiverId: currentChatPartner.userId,
+            receiverId: openChatTab.userId,
             text: text,
             delivered: true,
             type: CHAT_MESSAGE

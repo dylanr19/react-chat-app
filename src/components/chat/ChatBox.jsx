@@ -10,6 +10,8 @@ function ChatBox({ photoURL, text, date, senderId }) {
         return senderId === loggedInUserid
     }
 
+    // This useEffect gets called once upon the creation of the chat box
+    // a chat box gets created whenever the chat window gets a new chat message
     useEffect(() => {
         if (date == null){
             // Chat Message just got sent by local user and doesn't include a date

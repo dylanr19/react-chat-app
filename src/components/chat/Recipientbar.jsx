@@ -3,12 +3,12 @@ import {ChatContext} from "../../Contexts/ChatContext.jsx";
 import '../../styles/App.css'
 
 function Recipientbar() {
-    const { currentChatPartner } = useContext(ChatContext)
+    const { openChatTab } = useContext(ChatContext)
 
     return (
         <>
             <div className="recipient-bar">
-                To: {currentChatPartner?.name === '' ? 'name unavailable' : currentChatPartner?.name}
+                To: {openChatTab?.name === '' ? 'name unavailable' : openChatTab?.name}
             </div>
         </>
     )
