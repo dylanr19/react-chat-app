@@ -470,6 +470,7 @@
   display: flex;
   align-items: center;
   color: #294255;
+  background-color: white;
 }
 
 .chat-window {
@@ -568,7 +569,7 @@
 .message-bar .text-input {
   width: 100%;
   border:  none;
-  background-color: #f8f9fd;
+  background-color: white;
   font-family: "Roboto", sans-serif;
   opacity: 0.6;
   outline: none;
