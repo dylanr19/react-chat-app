@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import useFriendApi from "../hooks/useFriendApi.jsx";
 
-function AddFriend() {
+function AddFriendsWindow() {
     const { sendFriendRequest } = useFriendApi()
     const [ input, setInput ] = useState('');
     const [ message, setMessage ] = useState('');
@@ -32,4 +32,4 @@ function AddFriend() {
     )
 }
 
-export default AddFriend;
+export default AddFriendsWindow;

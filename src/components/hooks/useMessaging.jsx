@@ -4,11 +4,10 @@ import {playNotificationSound, showDesktopNotification} from "../../notification
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
 function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages) {
-    const { userId: loggedInUserId } = useContext(LoginContext)
-
     const [socketUrl, setSocketUrl] = useState(null)
     const [messageHistory, setMessageHistory] = useState([])
     const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true})
+    const { userId: loggedInUserId } = useContext(LoginContext)
 
     const CHAT_HISTORY = 'chatHistory'
     const CHAT_MESSAGE = 'chatMessage'
@@ -85,7 +84,6 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
 
     const processOutgoingMessage = (text) => {
         if (text.trim() === '') {
-            // text is empty
             return
         }
 
@@ -99,22 +97,7 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
         }
 
         addMessageToHistory(messageData)
-
-        if (sendJsonMessage(messageData) === false) {
-            setMessageNotDelivered('xxx')
-        }
     }
-
-    const setMessageNotDelivered = (senderId) => {
-        const updatedHistory = [...messageHistory].map(message => {
-            if (message.senderId === senderId) {
-                return { ...message, delivered: false };
-            }
-            return message;
-        });
-
-        setMessageHistory(updatedHistory);
-    };
 
     const addMessageToHistory = (messageData) => {
         setMessageHistory((prev) => prev.concat(messageData))

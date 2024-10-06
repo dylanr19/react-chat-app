@@ -1,11 +1,7 @@
-//import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
 import '../../styles/App.css'
-import React, {useContext, useEffect} from "react";
-import {ChatContext} from "../../Contexts/ChatContext.jsx";
+import React from "react";
 
-function WindowToggle({ isChatVisible, setIsChatVisible } ) {
+function OpenFriendsButton({ isChatVisible, setIsChatVisible } ) {
 
     const onButtonClick = () => {
         setIsChatVisible((prev) => !prev);
@@ -23,4 +19,4 @@ function WindowToggle({ isChatVisible, setIsChatVisible } ) {
     )
 }
 
-export default WindowToggle
+export default OpenFriendsButton

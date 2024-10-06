@@ -4,7 +4,7 @@ import useFriendApi from "../hooks/useFriendApi.jsx";
 import SearchBar from "../reusable components/SearchBar.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
 
-function FriendRequestList () {
+function FRWindow () {
     const { fetchIncomingFriendRequests, fetchOutgoingFriendRequests, acceptFriendRequest, declineFriendRequest } = useFriendApi()
 
     const [ originalOutgoingList, setOriginalOutgoingList ] = useState([])
@@ -102,4 +102,4 @@ function FriendRequestList () {
     )
 }
 
-export default FriendRequestList
+export default FRWindow

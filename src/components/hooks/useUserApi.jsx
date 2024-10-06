@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
-import {useApi} from "./useApi.js";
+import {api} from "./Api.js";
 import {LoginContext} from "../../Contexts/LoginContext.jsx";
 
 export const useUserApi = () => {
     const { userId: loggedInUserId } = useContext(LoginContext);
-    const { callApi } = useApi()
+    const { callApi } = api()
 
     const fetchUser = async () => {
         return await callApi(`http://localhost:5046/api/User/GetUser/${loggedInUserId}`);

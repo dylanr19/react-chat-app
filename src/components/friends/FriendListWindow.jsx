@@ -5,7 +5,7 @@ import SearchBar from "../reusable components/SearchBar.jsx";
 import {ChatContext} from "../../Contexts/ChatContext.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
 
-function FriendList () {
+function FriendListWindow () {
     const { startNewChat, removeChatTab } = useContext(ChatContext);
     const { fetchFriends, removeFriend } = useFriendApi()
     const [ originalFriendList, setOriginalFriendList ] = useState([])
@@ -68,4 +68,4 @@ function FriendList () {
     )
 }
 
-export default FriendList
+export default FriendListWindow

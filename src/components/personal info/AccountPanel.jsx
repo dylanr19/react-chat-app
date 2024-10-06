@@ -3,7 +3,7 @@ import {useUserApi} from "../hooks/useUserApi.jsx";
 import {LoginContext} from "../../Contexts/LoginContext.jsx";
 import {ChatContext} from "../../Contexts/ChatContext.jsx";
 
-export const PersonalInfo = () => {
+export const AccountPanel = () => {
     const { clearChatContext } = useContext(ChatContext)
 
     const [usernameInput, setUsernameInput] = useState('')

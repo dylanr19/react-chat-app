@@ -1,8 +1,8 @@
-import '../../styles/App.css'
+import '../../../styles/App.css'
 import React, {useContext, useEffect, useState} from "react";
-import SearchBar from "../reusable components/SearchBar.jsx";
+import SearchBar from "../../reusable components/SearchBar.jsx";
 import PartnerSearchComponent from "./PartnerSearchComponent.jsx";
-import {ChatContext} from "../../Contexts/ChatContext.jsx";
+import {ChatContext} from "../../../Contexts/ChatContext.jsx";
 
 function PartnerSearchContainer() {
     const { chatTabs,  setFilteredChatTabs } = useContext(ChatContext)

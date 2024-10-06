@@ -1,10 +1,10 @@
 import {useContext} from 'react';
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
-import {useApi} from "./useApi.js";
+import {api} from "./Api.js";
 
 function useFriendApi () {
     const { userId: loggedInUserId } = useContext(LoginContext);
-    const { callApi } = useApi()
+    const { callApi } = api()
 
     const fetchFriends = async () => {
         return await callApi(`http://localhost:5046/api/Friend/FetchFriends/${loggedInUserId}`)

@@ -1,10 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {useApi} from "../hooks/useApi.js";
+import {api} from "../hooks/Api.js";
 import {LoginContext} from "../../Contexts/LoginContext.jsx";
 import {useUserApi} from "../hooks/useUserApi.jsx";
 
 export const Registration = ({ setIsRegistering }) => {
-    const { callApi } = useApi()
+    const { callApi } = api()
     const { createUser } = useUserApi()
     const { setUserId: setLoggedInUserId } = useContext(LoginContext)
 

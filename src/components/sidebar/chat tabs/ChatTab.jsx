@@ -1,8 +1,8 @@
-import '../../styles/App.css'
+import '../../../styles/App.css'
 import {useContext} from 'react'
-import {ChatContext} from "../../Contexts/ChatContext.jsx";
+import {ChatContext} from "../../../Contexts/ChatContext.jsx";
 
-function PartnerTab({ partnerData }) {
+function ChatTab({ partnerData }) {
     const {
         startNewChat,
         resetUnreadMessages,
@@ -50,4 +50,4 @@ function PartnerTab({ partnerData }) {
     )
 }
 
-export default PartnerTab
+export default ChatTab

@@ -1,14 +1,14 @@
 import '../styles/App.css'
 import ChatWindow from './chat/ChatWindow.jsx'
-import Sidebar from './sidebar/Sidebar.jsx'
-import WindowToggle from './sidebar/WindowToggle.jsx'
+import ChatTabsWindow from './sidebar/chat tabs/ChatTabsWindow.jsx'
+import OpenFriendsButton from './sidebar/OpenFriendsButton.jsx'
 import Recipientbar from './chat/Recipientbar.jsx'
 import Messagebar from './chat/Messagebar.jsx'
-import FriendWindow from "./friends/FriendWindow.jsx";
+import FriendWindowManager from "./friends/FriendWindowManager.jsx";
 import {useContext, useEffect, useState} from "react";
 import {ChatContext} from "../Contexts/ChatContext.jsx";
-import PartnerSearchContainer from "./sidebar/PartnerSearchContainer.jsx";
-import {PersonalInfo} from "./personal info/PersonalInfo.jsx";
+import PartnerSearchContainer from "./sidebar/search window/PartnerSearchContainer.jsx";
+import {AccountPanel} from "./personal info/AccountPanel.jsx";
 import {LoginContext} from "../Contexts/LoginContext.jsx";
 import {LandingScreen} from "./landing screen/LandingScreen.jsx";
 
@@ -35,9 +35,9 @@ function App() {
                     <div className={"sidebar-container"}>
                         <PartnerSearchContainer isChatVisible={isChatVisible}
                                                 setIsChatVisible={setIsChatVisible}></PartnerSearchContainer>
-                        <WindowToggle isChatVisible={isChatVisible} setIsChatVisible={setIsChatVisible}></WindowToggle>
+                        <OpenFriendsButton isChatVisible={isChatVisible} setIsChatVisible={setIsChatVisible}></OpenFriendsButton>
                         <div className={"direct-messages-header"}>DIRECT MESSAGES</div>
-                        <Sidebar></Sidebar>
+                        <ChatTabsWindow></ChatTabsWindow>
                     </div>
                     {
                         isChatVisible ?
@@ -48,11 +48,11 @@ function App() {
                         </div>
                         :
                         <div className="friend-container">
-                            <FriendWindow></FriendWindow>
+                            <FriendWindowManager></FriendWindowManager>
                         </div>
                     }
                     <div className="personal-info-container">
-                        <PersonalInfo></PersonalInfo>
+                        <AccountPanel></AccountPanel>
                     </div>
                 </>
             }

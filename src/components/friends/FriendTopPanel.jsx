@@ -1,7 +1,7 @@
 import React from "react";
 import {WINDOW_STATES} from "./WINDOW_STATES.js";
 
-function TopNavigationBar({ currentWindow, setCurrentWindow }) {
+function FriendTopPanel({ currentWindow, setCurrentWindow }) {
 
     return(
         <>
@@ -49,4 +49,4 @@ function TopNavigationBar({ currentWindow, setCurrentWindow }) {
     )
 }
 
-export default TopNavigationBar;
+export default FriendTopPanel;

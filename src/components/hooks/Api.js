@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const useApi = () => {
+export const api = () => {
 
     const callApi = async (url, options) => {
         let response;
