@@ -4,7 +4,7 @@ import React from "react";
 function OpenFriendsButton({ isChatVisible, setIsChatVisible } ) {
 
     const onButtonClick = () => {
-        setIsChatVisible((prev) => !prev);
+        setIsChatVisible(false);
     }
 
     return (
