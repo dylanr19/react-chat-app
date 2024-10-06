@@ -334,7 +334,7 @@
   justify-content: flex-start;
   gap: 5px;
   transition: background-color 0.3s;
-  background-color: rgba(211, 211, 211, 0.31);
+  background-color: rgba(211, 211, 211, 0.45);
 }
 
 .toggle-window-button .input:hover {
