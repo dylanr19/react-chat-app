@@ -1,65 +1,35 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {WINDOW_STATES} from "./WINDOW_STATES.js";
 
-function TopNavigationBar({ setCurrentWindow }) {
-    const [ isFriendsButtonActive, setIsFriendsButtonActive] = useState(true);
-    const [ isFriendRequestsButtonActive, setIsFriendRequestsButtonActive] = useState(false);
-    const [ isAddFriendsButtonActive, setIsAddFriendsButtonActive] = useState(false);
-
-    useEffect(() => {
-
-        if (isFriendsButtonActive){
-            setIsAddFriendsButtonActive(false);
-            setIsFriendRequestsButtonActive(false);
-        }
-
-    }, [isFriendsButtonActive]);
-
-    useEffect(() => {
-
-        if (isFriendRequestsButtonActive){
-            setIsAddFriendsButtonActive(false);
-            setIsFriendsButtonActive(false);
-        }
-
-    }, [isFriendRequestsButtonActive]);
-
-    useEffect(() => {
-
-        if (isAddFriendsButtonActive){
-            setIsFriendsButtonActive(false);
-            setIsFriendRequestsButtonActive(false);
-        }
-
-    }, [isAddFriendsButtonActive]);
+function TopNavigationBar({ currentWindow, setCurrentWindow }) {
 
     return(
         <>
             <div className="test123">
             <div className="top-navigation-container">
-                {/*<div className="bi bi-person-raised-hand"></div>*/}
+
                 <h3 className="title">Friends</h3>
                 <div className="line"></div>
                 <div className="topnav">
 
                     <button
-                        className={ isFriendsButtonActive ? 'active' : null }
+                        className={ currentWindow === WINDOW_STATES.FRIENDS ? 'active' : null }
                         onClick={(e) => {
                            e.preventDefault();
                             setCurrentWindow(WINDOW_STATES.FRIENDS)
-                            setIsFriendsButtonActive(true)
                     }}
-                    >Accepted
+                    >
+                        Accepted
                     </button>
 
                     <button
-                        className={ isFriendRequestsButtonActive ? 'active' : null }
+                        className={ currentWindow === WINDOW_STATES.FRIENDREQUESTS ? 'active' : null }
                         onClick={(e) => {
                         e.preventDefault();
                         setCurrentWindow(WINDOW_STATES.FRIENDREQUESTS);
-                        setIsFriendRequestsButtonActive(true)
                     }}
-                    >Pending
+                    >
+                        Pending
                     </button>
 
                     <button
@@ -67,9 +37,9 @@ function TopNavigationBar({ setCurrentWindow }) {
                         onClick={(e) => {
                         e.preventDefault();
                         setCurrentWindow(WINDOW_STATES.ADDFRIENDS);
-                        setIsAddFriendsButtonActive(true)
                     }}
-                    >Add Friends
+                    >
+                        Add Friends
                     </button>
 
                 </div>

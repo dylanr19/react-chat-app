@@ -11,7 +11,7 @@ function FriendWindow () {
 
     return (
       <>
-          <TopNavigationBar setCurrentWindow={setCurrentWindow}></TopNavigationBar>
+          <TopNavigationBar currentWindow={currentWindow} setCurrentWindow={setCurrentWindow}></TopNavigationBar>
           {currentWindow === WINDOW_STATES.FRIENDS && <FriendList />}
           {currentWindow === WINDOW_STATES.FRIENDREQUESTS && <FriendRequestList />}
           {currentWindow === WINDOW_STATES.ADDFRIENDS && <AddFriend />}
