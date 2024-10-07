@@ -9,15 +9,20 @@ function AddFriendsWindow() {
     const onSendClick = async (userId) => {
         const response = await sendFriendRequest(userId)
 
-        if (response.status === 201 || response.status === 204) {
+        if (response.status === 201 || response.status === 204)
             setMessage(`Your friend request to ${userId} was sent.`)
-        }
-        if (response.status === 409) {
+
+        if (response.status === 400)
+            setMessage('You can not add yourself as a friend.')
+
+        if (response.status === 404)
+            setMessage('This user does not exist.')
+
+        if (response.status === 409)
             setMessage('This user is either already a friend or has a pending friend request.')
-        }
-        else if (response.status === 500) {
+
+        else if (response.status === 500)
             setMessage('Server error, please try again.')
-        }
     }
 
     return(
