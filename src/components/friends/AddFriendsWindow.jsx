@@ -30,7 +30,7 @@ function AddFriendsWindow() {
             <div className="example">
                 <input type="text" placeholder="Search by username..." name="search"
                        onChange={(e) => setInput(e.target.value)}/>
-                <button type="submit"><i className="bi bi-search" onClick={() => onSendClick(input)}></i></button>
+                <button type="submit"><i className="bi bi-search" onMouseDown={() => onSendClick(input)}></i></button>
             </div>
             <p className="success-message">{message}</p>
         </>
