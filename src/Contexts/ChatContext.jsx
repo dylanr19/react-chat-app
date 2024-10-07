@@ -70,8 +70,10 @@ export const ChatProvider = ({ children }) => {
     const incrementUnreadMessages = (userId) => {
         const copy = [...chatTabs]
         const partner = copy.find(p => p.userId === userId)
-        partner.unreadMessageCount++
-        setChatTabs(copy)
+        if (partner != null) {
+            partner.unreadMessageCount++
+            setChatTabs(copy)
+        }
     }
 
     const resetUnreadMessages = (userId) => {
