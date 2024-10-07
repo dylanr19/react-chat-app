@@ -22,11 +22,9 @@ export const AccountPanel = () => {
 
     useEffect(() => {
         const formatDate = ( response ) => {
-            const utcDateString = response.data.joinDate
-            const utcDate = new Date(utcDateString);
-            const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: timeZone };
-            response.data.joinDate = utcDate.toLocaleDateString('en-US', options);
+            const date = new Date(response.data.joinDate);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            response.data.joinDate = date.toLocaleDateString('en-US', options);
         }
 
         const fetchUserData = async () => {
