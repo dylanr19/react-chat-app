@@ -24,7 +24,7 @@ function FriendItem ({ userData, showChatButton, showAcceptButton, showDeleteBut
             <div className="friend-item">
                 <div className="info">
                     <img className="photo"
-                         src={photoURL === 'none' ? 'src/assets/profile picture placeholder.jpg' : photoURL}
+                         src={photoURL === 'none' || photoURL == null ? 'src/assets/profile picture placeholder.jpg' : photoURL}
                          alt="Photo of this user"
                     />
                     <div className="credentials">
