@@ -135,8 +135,10 @@ export const AccountPanel = () => {
                 <h5 className="header">User Options</h5>
 
                 <div className="profile-picture">
+                    <button
+                        className={isChangeImageOpen ? 'bi bi-caret-down' : 'bi bi-caret-right'}
+                        onClick={() => toggleChangeImage()}></button>
                     <p className="text">Change Profile Picture</p>
-                    <button className="bi bi-caret-right" onClick={() => toggleChangeImage()}></button>
                 </div>
                 {
                     isChangeImageOpen === false ? null :
@@ -146,8 +148,10 @@ export const AccountPanel = () => {
                 }
 
                 <div className="username">
+                    <button
+                        className={isChangeUsernameOpen ? 'bi bi-caret-down' : 'bi bi-caret-right'}
+                        onClick={() => toggleChangeUsername()}></button>
                     <p className="text">Change Username</p>
-                    <button className="bi bi-caret-right" onClick={() => toggleChangeUsername()}></button>
                 </div>
                 {
                     isChangeUsernameOpen === false ? null :
@@ -159,8 +163,10 @@ export const AccountPanel = () => {
                 }
 
                 <div className="delete-account">
+                    <button
+                        className={isDeleteAccountOpen ? 'bi bi-caret-down' : 'bi bi-caret-right'}
+                        onClick={() => toggleDeleteAccount()}></button>
                     <p className="text">Delete Account</p>
-                    <button className="bi bi-caret-right" onClick={() => toggleDeleteAccount()}></button>
                 </div>
                 {
                     isDeleteAccountOpen === false ? null :

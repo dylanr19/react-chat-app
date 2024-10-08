@@ -704,6 +704,7 @@
 .options-container .text {
   margin: 0;
   padding: 6px;
+  padding-left: 0;
   font-size: 13px;
 }
 
@@ -714,6 +715,7 @@
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 0;
+  margin-left: 2px;
 }
 
 .options-container .username {
@@ -722,12 +724,14 @@
   padding: 6px;
   padding-top: 0;
   padding-bottom: 2px;
+  padding-left: 0;
+  margin-left: 2px;
 }
 
 .options-container .username .bi,
 .options-container .profile-picture .bi,
 .options-container .delete-account .bi {
-  margin-left: auto;
+  /*margin-right: auto;*/
   background: none;
   border: none;
   padding: 0;
@@ -745,11 +749,18 @@
   padding-top: 0;
 }
 
+.options-container .edit-profile-picture {
+  padding: 0;
+  margin-top: -6px;
+  color: #313131;
+}
+
 .options-container .password-prompt {
   display: flex;
   padding: 6px;
-  padding-top: 0px;
+  padding-top: 0;
   padding-bottom: 8px;
+  margin-top: -2px;
 }
 
 .options-container .input {
@@ -796,6 +807,8 @@
   align-items: center;
   padding: 6px;
   padding-top: 2px;
+  padding-left: 0;
+  margin-left: 2px;
 }
 
 .options-container .username .text {
