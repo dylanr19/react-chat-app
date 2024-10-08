@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 function FriendItem ({ userData, showChatButton, showAcceptButton, showDeleteButton, onDelete, onChat, onAccept }) {
     const {
@@ -24,8 +24,9 @@ function FriendItem ({ userData, showChatButton, showAcceptButton, showDeleteBut
             <div className="friend-item">
                 <div className="info">
                     <img className="photo"
-                         src="https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg"
-                         alt="Photo of this user"/>
+                         src={photoURL === 'none' ? 'src/assets/profile picture placeholder.jpg' : photoURL}
+                         alt="Photo of this user"
+                    />
                     <div className="credentials">
                         <h2 className="name">{name}</h2>
                         <p className="userID">{userId}</p>

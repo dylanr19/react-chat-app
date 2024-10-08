@@ -51,9 +51,10 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             const message = lastJsonMessage.chatMessage;
             const name = message.name
             const senderId = message.senderId
+            const photoURL = message.photoURL
 
             if (checkChatTabExists(senderId) === false){
-                createNewChatTab(senderId, name, '', true, 1)
+                createNewChatTab(senderId, name, photoURL, true, 1)
                 incrementUnreadMessages(senderId)
                 return
             }

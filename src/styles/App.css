@@ -204,6 +204,10 @@
   margin: 0 25px;
 }
 
+.friend-item .photo {
+  object-fit: cover;
+}
+
 .friend-item .info {
   display: flex;
   align-items: center;
@@ -400,6 +404,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .partner-tab .info-container {
@@ -495,8 +500,10 @@
 }
 
 .chat-box-received .photo {
+  height: 48px;
   width: 48px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .chat-box-received .message-container {
@@ -615,9 +622,11 @@
 }
 
 .personal-info-container .photo {
+  height: 100px;
   width: 100px;
   border-radius: 50%;
   margin-top: 50px;
+  object-fit: cover;
 }
 
 .personal-info-container .credentials {
@@ -698,14 +707,25 @@
   font-size: 13px;
 }
 
+.options-container .profile-picture {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
 .options-container .username {
   display: flex;
   align-items: center;
   padding: 6px;
+  padding-top: 0;
   padding-bottom: 2px;
 }
 
 .options-container .username .bi,
+.options-container .profile-picture .bi,
 .options-container .delete-account .bi {
   margin-left: auto;
   background: none;
@@ -784,6 +804,11 @@
 }
 
 .options-container .delete-account .text {
+  margin: 0;
+  padding: 0;
+}
+
+.options-container .profile-photo .text {
   margin: 0;
   padding: 0;
 }

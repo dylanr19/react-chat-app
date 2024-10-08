@@ -1,5 +1,5 @@
 import '../../../styles/App.css'
-import {useContext} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import {ChatContext} from "../../../Contexts/ChatContext.jsx";
 
 function ChatTab({ partnerData }) {
@@ -28,7 +28,7 @@ function ChatTab({ partnerData }) {
 
                 <img
                     className="photo"
-                    src={partnerData.photoURL}
+                    src={partnerData.photoURL === 'none' ? 'src/assets/profile picture placeholder.jpg' : partnerData.photoURL}
                     alt={"photo of " + partnerData.name}
                 />
 

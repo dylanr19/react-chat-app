@@ -25,7 +25,7 @@ export const ChatProvider = ({ children }) => {
 
     const createNewChatTab = (userId, name, photoURL, isHighlighted, unreadMessageCount) => {
         const newPartner = {
-            photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg',
+            photoURL: photoURL,
             name: name,
             userId: userId,
             isHighlighted: isHighlighted,
@@ -90,7 +90,7 @@ export const ChatProvider = ({ children }) => {
             createNewChatTab(
                 partner.userId,
                 partner.name,
-                '',
+                partner.photoURL,
                 true,
                 0
             )

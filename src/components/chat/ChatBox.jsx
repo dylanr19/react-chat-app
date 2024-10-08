@@ -60,8 +60,7 @@ function ChatBox({ photoURL, text, date, senderId }) {
                 :
                 <div className={"chat-box-received"}>
                     <div className="photo-container">
-                        <img className="photo"
-                             src={photoURL}/>
+                        <img className="photo" src={photoURL === 'none' ? 'src/assets/profile picture placeholder.jpg' : photoURL}/>
                     </div>
                     <div className="message-container">
                         <span className="text">{text}</span>
