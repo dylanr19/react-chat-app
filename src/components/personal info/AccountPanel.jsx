@@ -61,7 +61,7 @@ export const AccountPanel = () => {
                 <h5 className="header">User Options</h5>
                 <ChangePictureOption setImageURL={setImageURL}></ChangePictureOption>
                 <ChangeDisplaynameOption userData={userData} setUserData={setUserData}></ChangeDisplaynameOption>
-                <DeleteAccountOption setLoggedInUserId={setLoggedInUserId}></DeleteAccountOption>
+                <DeleteAccountOption setLoggedInUserId={setLoggedInUserId} clearChatContext={clearChatContext}></DeleteAccountOption>
             </div>
 
             <div className="logout-button-container">

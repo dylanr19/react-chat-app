@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useUserApi} from "../hooks/useUserApi.jsx";
 
-export const DeleteAccountOption = ({ setLoggedInUserId }) => {
+export const DeleteAccountOption = ({ setLoggedInUserId, clearChatContext }) => {
     const [isDeleteAccountOpen, setIsDeleteAccountOpen] = useState(false)
     const {deleteUser} = useUserApi()
 
@@ -9,6 +9,7 @@ export const DeleteAccountOption = ({ setLoggedInUserId }) => {
         const response = await deleteUser()
         if (response.status === 200){
             setLoggedInUserId(null)
+            clearChatContext()
         }
     }
 
@@ -22,7 +23,7 @@ export const DeleteAccountOption = ({ setLoggedInUserId }) => {
                 <button
                     className={isDeleteAccountOpen ? 'bi bi-caret-down' : 'bi bi-caret-right'}
                     onClick={() => toggleDeleteAccount()}></button>
-                <p className="text">Delete Account</p>
+                <p className="text">Delete User Profile</p>
             </div>
             {
                 isDeleteAccountOpen === false ? null :

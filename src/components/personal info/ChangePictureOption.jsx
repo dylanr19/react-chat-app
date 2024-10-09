@@ -57,7 +57,7 @@ export const ChangePictureOption = ({ setImageURL }) => {
                 <button
                     className={isChangeImageOpen ? 'bi bi-caret-down' : 'bi bi-caret-right'}
                     onClick={() => toggleChangeImage()}></button>
-                <p className="text">Change Profile Picture</p>
+                <p className="text">Edit Profile Picture</p>
             </div>
             {
                 isChangeImageOpen === false ? null :

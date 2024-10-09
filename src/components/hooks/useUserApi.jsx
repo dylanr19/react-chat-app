@@ -10,7 +10,7 @@ export const useUserApi = () => {
         return await callApi(`http://localhost:5046/api/User/GetUser/${loggedInUserId}`);
     }
 
-    const changeUsername = async ( username ) => {
+    const changeDisplayname = async (username ) => {
         return await callApi(`http://localhost:5046/api/User/ChangeUsername/${loggedInUserId}/${username}`, { method: 'PUT' });
     }
 
@@ -46,7 +46,7 @@ export const useUserApi = () => {
         loginUser,
         createUser,
         deleteUser,
-        changeUsername,
+        changeDisplayname: changeDisplayname,
         changeProfilePicture,
         uploadProfilePictureToImgbb
     }

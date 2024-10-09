@@ -2,37 +2,37 @@ import React, {useState} from 'react';
 import {useUserApi} from "../hooks/useUserApi.jsx";
 
 export const ChangeDisplaynameOption = ({ userData, setUserData }) => {
-    const [usernameInput, setUsernameInput] = useState('')
-    const [isChangeUsernameOpen, setIsChangeUsernameOpen] = useState(false)
-    const {changeUsername} = useUserApi()
+    const [displaynameInput, setDisplaynameInput] = useState('')
+    const [isChangeDisplaynameOpen, setIsChangeDisplaynameOpen] = useState(false)
+    const {changeDisplayname} = useUserApi()
 
     const apiChangeUsername = async () => {
-        const response = await changeUsername(usernameInput)
+        const response = await changeDisplayname(displaynameInput)
         if (response.status === 200){
             setUserData((prev) => ({
                 ...prev,
-                name: usernameInput,
+                name: displaynameInput,
             }))
         }
     }
 
     const toggleChangeUsername = () => {
-        setIsChangeUsernameOpen(!isChangeUsernameOpen)
+        setIsChangeDisplaynameOpen(!isChangeDisplaynameOpen)
     }
 
     return (
         <>
-            <div className="username">
+            <div className="displayname">
                 <button
-                    className={isChangeUsernameOpen ? 'bi bi-caret-down' : 'bi bi-caret-right'}
+                    className={isChangeDisplaynameOpen ? 'bi bi-caret-down' : 'bi bi-caret-right'}
                     onClick={() => toggleChangeUsername()}></button>
-                <p className="text">Change Username</p>
+                <p className="text">Edit Display Name</p>
             </div>
             {
-                isChangeUsernameOpen === false ? null :
-                    <div className="edit-username">
+                isChangeDisplaynameOpen === false ? null :
+                    <div className="edit-displayname">
                         <input type="text" className="input" placeholder={userData.name}
-                               onChange={(e) => setUsernameInput(e.target.value)}></input>
+                               onChange={(e) => setDisplaynameInput(e.target.value)}></input>
                         <button className="submit" onClick={() => apiChangeUsername()}>Save</button>
                     </div>
             }

@@ -718,7 +718,7 @@
   margin-left: 2px;
 }
 
-.options-container .username {
+.options-container .displayname {
   display: flex;
   align-items: center;
   padding: 6px;
@@ -728,7 +728,7 @@
   margin-left: 2px;
 }
 
-.options-container .username .bi,
+.options-container .displayname .bi,
 .options-container .profile-picture .bi,
 .options-container .delete-account .bi {
   /*margin-right: auto;*/
@@ -743,7 +743,7 @@
   outline: none;
 }
 
-.options-container .edit-username {
+.options-container .edit-displayname {
   display: flex;
   padding: 6px;
   padding-top: 0;
@@ -811,7 +811,7 @@
   margin-left: 2px;
 }
 
-.options-container .username .text {
+.options-container .displayname .text {
   margin: 0;
   padding: 0;
 }
