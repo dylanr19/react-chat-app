@@ -28,7 +28,7 @@ function ChatTab({ partnerData }) {
 
                 <img
                     className="photo"
-                    src={partnerData.photoURL === 'none' ? 'src/assets/profile picture placeholder.jpg' : partnerData.photoURL}
+                    src={partnerData.photoURL === 'none' || partnerData.photoURL == null ? 'src/assets/profile picture placeholder.jpg' : partnerData.photoURL}
                     alt={"photo of " + partnerData.name}
                 />
 
