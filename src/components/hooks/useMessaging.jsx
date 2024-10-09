@@ -41,6 +41,8 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             return
         }
 
+        console.log(lastJsonMessage)
+
         const isAppMinimized = true;
 
         const processIncomingHistory = () => {
@@ -88,7 +90,6 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
         }
 
         const messageData = {
-            photoURL: '',
             senderId: loggedInUserId,
             receiverId: openChatTab.userId,
             text: text,
