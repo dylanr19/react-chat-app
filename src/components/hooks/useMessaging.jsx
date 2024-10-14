@@ -103,9 +103,6 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
     }
 
     const addMessageToHistory = (message) => {
-        // let updatedMsgHistory = [message]
-        // updatedMsgHistory = updatedMsgHistory.concat(messageHistory)
-        // setMessageHistory(updatedMsgHistory)
         setLastMessage(message)
     }
 
