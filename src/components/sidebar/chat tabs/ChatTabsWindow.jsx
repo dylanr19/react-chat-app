@@ -1,6 +1,6 @@
 import '../../../styles/App.css'
 import ChatTab from './ChatTab.jsx'
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {ChatContext} from '../../../Contexts/ChatContext.jsx'
 
 function ChatTabsWindow() {

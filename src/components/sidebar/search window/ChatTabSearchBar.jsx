@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PartnerSearchComponent = ( { placeholder, onChange } ) => {
+const ChatTabSearchBar = ({ placeholder, onChange } ) => {
 
     return(
         <>
@@ -13,4 +13,4 @@ const PartnerSearchComponent = ( { placeholder, onChange } ) => {
     )
 }
 
-export default PartnerSearchComponent
+export default ChatTabSearchBar

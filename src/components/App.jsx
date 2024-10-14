@@ -7,7 +7,7 @@ import Messagebar from './chat/Messagebar.jsx'
 import FriendWindowManager from "./friends/FriendWindowManager.jsx";
 import {useContext, useEffect, useState} from "react";
 import {ChatContext} from "../Contexts/ChatContext.jsx";
-import PartnerSearchContainer from "./sidebar/search window/PartnerSearchContainer.jsx";
+import ChatTabSearchContainer from "./sidebar/search window/ChatTabSearchContainer.jsx";
 import {AccountPanel} from "./personal info/AccountPanel.jsx";
 import {LoginContext} from "../Contexts/LoginContext.jsx";
 import {LandingScreen} from "./landing screen/LandingScreen.jsx";
@@ -33,8 +33,8 @@ function App() {
                 loggedInUserId == null ? <LandingScreen /> :
                     <>
                     <div className={"sidebar-container"}>
-                        <PartnerSearchContainer isChatVisible={isChatVisible}
-                                                setIsChatVisible={setIsChatVisible}></PartnerSearchContainer>
+                        <ChatTabSearchContainer isChatVisible={isChatVisible}
+                                                setIsChatVisible={setIsChatVisible}></ChatTabSearchContainer>
                         <OpenFriendsButton isChatVisible={isChatVisible} setIsChatVisible={setIsChatVisible}></OpenFriendsButton>
                         <div className={"direct-messages-header"}>DIRECT MESSAGES</div>
                         <ChatTabsWindow></ChatTabsWindow>

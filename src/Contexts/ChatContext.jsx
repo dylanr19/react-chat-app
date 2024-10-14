@@ -1,4 +1,4 @@
-import {createContext, useState} from 'react';
+import {createContext, useEffect, useState} from 'react';
 import useMessaging from "../components/hooks/useMessaging.jsx";
 
 export const ChatContext = createContext();
