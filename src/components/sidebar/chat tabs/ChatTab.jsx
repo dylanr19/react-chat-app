@@ -17,6 +17,15 @@ function ChatTab({ partnerData }) {
         startNewChat(partnerData)
     }
 
+    useEffect(() => {
+        if (partnerData.unreadMessageCount === 1){
+            // play sound on 1st unread message to prevent annoying spam
+            const notification = new Audio('src/assets/out-of-nowhere-message-tone.mp3')
+            notification.volume = 0.7
+            notification.play()
+        }
+    }, [partnerData.unreadMessageCount]);
+
     return (
         <>
             <button

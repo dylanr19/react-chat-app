@@ -90,6 +90,10 @@ function ChatWindow() {
             return
         }
 
+        const notification = new Audio('src/assets/mixkit-message-pop-alert-2354.mp3')
+        notification.volume = 0.5
+        notification.play()
+
         let updatedMsgHistory = [lastMessage]
         updatedMsgHistory = updatedMsgHistory.concat(messageHistory)
         setMessageHistory(updatedMsgHistory)
