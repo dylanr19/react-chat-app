@@ -1,11 +1,6 @@
 import {createContext, useState} from 'react';
 import useMessaging from "../components/hooks/useMessaging.jsx";
 
-// const initialPartnerData = {photoURL : '', name: '', userId: '', lastMessage: '', isActive: false}
-// const initialMessageData = {photoURL: '', senderId: '', date: '', text: '', delivered: true}
-// const placeholderPartner = {photoURL : 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg', name: 'Jacob', userId: 'user1', lastMessage: 'I am not sure if we can work that out.', isActive: false}
-// const placeholderMessage = {photoURL: 'https://static01.nyt.com/images/2022/06/16/arts/16OLD-MAN1/16OLD-MAN1-mediumSquareAt3X-v3.jpg', senderId: 'user1', date: '11:02 AM, January, 23rd', text: 'I am not sure if that can work out.', delivered: true}
-//TODO: This context serves no purpose anymore, get rid of it.
 export const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
@@ -21,6 +16,12 @@ export const ChatProvider = ({ children }) => {
 
     const checkChatTabExists = (userId) => {
         return chatTabs.some((cp) => cp.userId === userId)
+    }
+
+    const checkChatTabAlreadyOpen = (userId) => {
+        if (openChatTab != null){
+            return openChatTab.userId === userId
+        }
     }
 
     const createNewChatTab = (userId, name, photoURL, isHighlighted, unreadMessageCount) => {
@@ -86,6 +87,10 @@ export const ChatProvider = ({ children }) => {
     }
 
     const startNewChat = (partner) => {
+        if (checkChatTabAlreadyOpen(partner.userId)){
+            return
+        }
+
         if (checkChatTabExists(partner.userId) === false) {
             createNewChatTab(
                 partner.userId,
@@ -100,13 +105,18 @@ export const ChatProvider = ({ children }) => {
         highlightChatTab(partner.userId)
         setOpenChatTab(partner)
         resetUnreadMessages(partner.userId)
-        requestMessageHistory(partner.userId)
+        clearMessageHistory()
+        requestMessageHistory(partner.userId, 0, 15)
     }
 
     const {
         readyState,
         messageHistory,
+        setMessageHistory,
+        lastMessage,
+        setLastMessage,
         requestMessageHistory,
+        clearMessageHistory,
         processOutgoingMessage
     } = useMessaging(openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages)
 
@@ -114,6 +124,9 @@ export const ChatProvider = ({ children }) => {
         <ChatContext.Provider value={{
             readyState,
             messageHistory,
+            setMessageHistory,
+            lastMessage,
+            setLastMessage,
             clearChatContext,
             removeChatTab,
             processOutgoingMessage,
@@ -125,7 +138,8 @@ export const ChatProvider = ({ children }) => {
             setChatTabs,
             filteredChatTabs,
             setFilteredChatTabs,
-            resetUnreadMessages
+            resetUnreadMessages,
+            requestMessageHistory
         }}>
             {children}
         </ChatContext.Provider>

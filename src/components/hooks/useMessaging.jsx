@@ -6,6 +6,7 @@ import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages) {
     const [socketUrl, setSocketUrl] = useState(null)
     const [messageHistory, setMessageHistory] = useState([])
+    const [lastMessage, setLastMessage] = useState(null)
     const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true})
     const { userId: loggedInUserId } = useContext(LoginContext)
 
@@ -28,10 +29,12 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
         setSocketUrl(`ws://localhost:5046/ws?userID=${loggedInUserId}`)
     }, [loggedInUserId]);
 
-    const requestMessageHistory = (partnerId) => {
+    const requestMessageHistory = (partnerId, skip, take) => {
         sendJsonMessage({
             userId1: loggedInUserId,
             userId2: partnerId,
+            skip: skip,
+            take: take,
             type: CHAT_HISTORY
         })
     }
@@ -41,12 +44,11 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             return
         }
 
-        console.log(lastJsonMessage)
-
         const isAppMinimized = true;
 
         const processIncomingHistory = () => {
-            setMessageHistory(lastJsonMessage.messages)
+            // const fullHistory = lastJsonMessage.messages.concat(messageHistory)
+            setMessageHistory(messageHistory.concat(lastJsonMessage.messages))
         }
 
         const processIncomingMessage = () => {
@@ -100,16 +102,26 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
         addMessageToHistory(messageData)
     }
 
-    const addMessageToHistory = (messageData) => {
-        setMessageHistory((prev) => prev.concat(messageData))
+    const addMessageToHistory = (message) => {
+        // let updatedMsgHistory = [message]
+        // updatedMsgHistory = updatedMsgHistory.concat(messageHistory)
+        // setMessageHistory(updatedMsgHistory)
+        setLastMessage(message)
+    }
+
+    const clearMessageHistory = () => {
+        setMessageHistory([])
     }
 
     return {
         readyState,
         messageHistory,
         setMessageHistory,
+        lastMessage,
+        setLastMessage,
         processOutgoingMessage,
-        requestMessageHistory
+        requestMessageHistory,
+        clearMessageHistory
     }
 
 }
