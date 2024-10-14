@@ -58,7 +58,7 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             const photoURL = message.photoURL
 
             if (checkChatTabExists(senderId) === false){
-                createNewChatTab(senderId, name, photoURL, true, 1)
+                createNewChatTab(senderId, name, photoURL, false, 1)
                 incrementUnreadMessages(senderId)
                 return
             }
