@@ -483,7 +483,10 @@
   display: flex;
   flex-direction: column-reverse;
   overflow: auto;
-  background: #ededed;
+  background-image: url('src/assets/background-green-mountains-landscape-illustration.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .chat-box-received {
@@ -511,6 +514,7 @@
   margin-top: 24px;
   flex-direction: column;
   border-radius: 4px;
+  align-items: flex-start;
 }
 
 .chat-box-received .message-container .text {
@@ -525,9 +529,11 @@
 .chat-box-received .message-container .date {
   font-size: 10px;
   align-self: flex-start;
+  color: black;
 }
 
 .chat-box-sent .message-container .date {
+  /*color: black;*/
   color: black;
 }
 
