@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useUserApi} from "../hooks/useUserApi.jsx";
 
-export const ChangePictureOption = ({ setImageURL }) => {
+export const ChangePictureOption = ({ setImageURL, setUserData }) => {
     const [isChangeImageOpen, setIsChangeImageOpen] = useState(false)
     const { uploadProfilePictureToImgbb, changeProfilePicture } = useUserApi()
 
@@ -39,7 +39,16 @@ export const ChangePictureOption = ({ setImageURL }) => {
         const imgURL = response.data.data.image.url
         const encodedImgURL = encodeURIComponent(imgURL)
         response = await changeProfilePicture(encodedImgURL)
-        if (response.status === 200) setImageURL(imgURL)
+        if (response.status === 200) {
+            setImageURL(imgURL)
+            setUserData((prev) => ({
+                userId: prev.userId,
+                password: prev.password,
+                photoURL: imgURL,
+                name: prev.name,
+                joinDate: prev.joinDate
+            }))
+        }
         else console.log(`Could not change profile picture: ${response.status}`)
     }
 

@@ -59,7 +59,7 @@ export const AccountPanel = () => {
 
             <div className="options-container">
                 <h5 className="header">User Options</h5>
-                <ChangePictureOption setImageURL={setImageURL}></ChangePictureOption>
+                <ChangePictureOption setImageURL={setImageURL} setUserData={setUserData}></ChangePictureOption>
                 <ChangeDisplaynameOption userData={userData} setUserData={setUserData}></ChangeDisplaynameOption>
                 <DeleteAccountOption setLoggedInUserId={setLoggedInUserId} clearChatContext={clearChatContext}></DeleteAccountOption>
             </div>
