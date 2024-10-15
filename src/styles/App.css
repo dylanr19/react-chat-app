@@ -392,7 +392,7 @@
 }
 
 .partner-tab:hover {
-  border-color: #efeff4;
+  border-color: #f4eff2;
   opacity: 0.8;
 }
 
@@ -616,7 +616,7 @@
   color: #f8f9fd;
 }
 
-.personal-info-container {
+.account-panel {
   width: 350px;
   flex-grow: 0;
   flex-shrink: 0;
@@ -627,7 +627,7 @@
   scroll-behavior: auto;
 }
 
-.personal-info-container .photo {
+.account-panel .photo {
   height: 100px;
   width: 100px;
   border-radius: 50%;
@@ -635,23 +635,23 @@
   object-fit: cover;
 }
 
-.personal-info-container .credentials {
+.account-panel .credentials {
   color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.personal-info-container .credentials .name {
+.account-panel .credentials .name {
   margin-top: 8px;
   margin-bottom: -3px;
 }
 
-.personal-info-container .credentials .userID {
+.account-panel .credentials .userID {
   margin: 0;
 }
 
-.personal-info-container .member-since-container {
+.account-panel .member-since-container {
   color: black;
   margin-top: 8px;
   background-color: rgba(189, 189, 189, 0.31);
@@ -660,35 +660,35 @@
   padding: 8px;
 }
 
-.personal-info-container .member-since-container .header {
+.account-panel .member-since-container .header {
   font-size: 13px;
   padding-bottom: 4px;
   margin: 0;
 }
 
-.personal-info-container .member-since-container .date {
+.account-panel .member-since-container .date {
   font-size: 13px;
   margin: 0;
 }
 
-.personal-info-container .logout-button-container {
+.account-panel .logout-button-container {
   margin-top: auto;
   margin-bottom: 10px;
   width: 90%;
 }
 
-.personal-info-container .logout-button {
+.account-panel .logout-button {
   background-color: #ee3939;
   color: #f2f2f2;
   float: right;
   outline: none;
 }
 
-.personal-info-container .logout-button:hover {
+.account-panel .logout-button:hover {
   background-color: #e23636;
 }
 
-.personal-info-container .logout-button:active {
+.account-panel .logout-button:active {
   background-color: #c32e2e;
 }
 
@@ -830,12 +830,6 @@
 .options-container .profile-photo .text {
   margin: 0;
   padding: 0;
-}
-
-@media (max-width: 1000px) {
-  .personal-info-container {
-    display: none;
-  }
 }
 
 .login-flex-container {
@@ -1071,4 +1065,101 @@ form .input-container input {
   cursor: pointer;
   font-size: 14px;
   width: 300px;
+}
+
+.mobile-top-nav {
+  display: none;
+}
+
+.close-chatwindow-button {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .account-panel {
+    display: none;
+  }
+}
+/*@media (min-width: 480px) {*/
+/*  .side-bar-container{*/
+/*    display: flex;*/
+/*  }*/
+/*}*/
+@media (max-width: 480px) {
+  .account-panel{
+    width: 100%;
+  }
+
+  .test123 {
+    min-width: 0;
+  }
+  .top-navigation-container {
+    min-width: 0;
+  }
+  .top-navigation-container .line {
+    display: none;
+  }
+  .top-navigation-container .title {
+    display: none;
+  }
+  .topnav {
+    justify-content: center;
+  }
+  .close-chatwindow-button {
+    display: flex;
+    position: absolute;
+    right: 0;
+    width: 60px;
+    justify-content: center;
+    align-content: center;
+    background: rgba(0, 0, 0, 0.29);
+  }
+  .friend-container {
+    width: 100%;
+    min-width: 0;
+  }
+  .sidebar-container {
+    display: none;
+    flex: 1;
+  }
+  .partner-search-bar {
+    width: 100%;
+  }
+
+  .toggle-window-button {
+    display: none;
+  }
+
+  .side-bar {
+    width: 100%;
+  }
+
+  .partner-tab {
+    justify-content: flex-start;
+  }
+
+  .app-container {
+    padding-top: 45px;
+  }
+
+  .mobile-top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+    height: 50px;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-top-nav button {
+    background: inherit;
+  }
 }

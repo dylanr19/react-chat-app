@@ -47,7 +47,6 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
         const isAppMinimized = true;
 
         const processIncomingHistory = () => {
-            // const fullHistory = lastJsonMessage.messages.concat(messageHistory)
             setMessageHistory(messageHistory.concat(lastJsonMessage.messages))
         }
 
