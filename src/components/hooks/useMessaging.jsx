@@ -44,8 +44,6 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             return
         }
 
-        const isAppMinimized = true;
-
         const processIncomingHistory = () => {
             setMessageHistory(messageHistory.concat(lastJsonMessage.messages))
         }
@@ -76,11 +74,6 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
 
         else if (lastJsonMessage.type === CHAT_MESSAGE) {
             processIncomingMessage()
-        }
-
-        if (isAppMinimized) {
-            playNotificationSound()
-            showDesktopNotification()
         }
 
     }, [lastJsonMessage]);
