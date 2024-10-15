@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import useWebSocket, {ReadyState} from "react-use-websocket";
-import {playNotificationSound, showDesktopNotification} from "../../notificationUtils.js";
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
 function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages) {
