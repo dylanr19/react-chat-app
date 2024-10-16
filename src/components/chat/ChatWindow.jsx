@@ -33,20 +33,10 @@ function ChatWindow() {
     }
     const debouncedHandleScroll = debounce(handleScroll, 100);
 
-    const firstRender = useRef(true)
-    const secondRender = useRef(true)
-    const thirdRender = useRef(true)
+    const firstRenders = useRef(0)
     useEffect(() => {
-        if (firstRender.current) {
-            firstRender.current = false
-            return
-        }
-        if (secondRender.current) {
-            secondRender.current = false
-            return
-        }
-        if (thirdRender.current) {
-            thirdRender.current = false
+        if (firstRenders.current !== 3) {
+            firstRenders.current++
             return
         }
 
@@ -77,16 +67,10 @@ function ChatWindow() {
         }
     }, [messageHistory]);
 
-    const isInitialRender = useRef(true)
-    const isSecondRender = useRef(true)
+    const firstRender2 = useRef(0)
     useEffect(() => {
-        if (isInitialRender.current){
-            isInitialRender.current = false
-            return
-        }
-
-        if (isSecondRender.current){
-            isSecondRender.current = false
+        if (firstRender2.current !== 2){
+            firstRender2.current++
             return
         }
 
