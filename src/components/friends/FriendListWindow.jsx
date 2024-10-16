@@ -6,7 +6,7 @@ import {ChatContext} from "../../Contexts/ChatContext.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
 
 function FriendListWindow () {
-    const { startNewChat, removeChatTab } = useContext(ChatContext);
+    const { startNewChat, removeChatTab, removedFriend } = useContext(ChatContext);
     const { fetchFriends, removeFriend } = useFriendApi()
     const [ originalFriendList, setOriginalFriendList ] = useState([])
     const [ currentFriendList, setCurrentFriendList ] = useState([])
@@ -35,6 +35,13 @@ function FriendListWindow () {
     useEffect(() => {
         fetch()
     }, []);
+
+    useEffect(() => {
+        if (removedFriend != null){
+            // refresh with updated list
+            fetch()
+        }
+    }, [removedFriend]);
 
     return(
         <>

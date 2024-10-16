@@ -116,10 +116,17 @@ export const ChatProvider = ({ children }) => {
         lastMessage,
         setLastMessage,
         friendRequestResponse,
+        removedFriend,
         requestMessageHistory,
         clearMessageHistory,
         processOutgoingMessage
     } = useMessaging(openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages)
+
+    useEffect(() => {
+        if (removedFriend != null){
+            removeChatTab(removedFriend)
+        }
+    }, [removedFriend]);
 
     return (
         <ChatContext.Provider value={{
@@ -129,6 +136,7 @@ export const ChatProvider = ({ children }) => {
             lastMessage,
             setLastMessage,
             friendRequestResponse,
+            removedFriend,
             clearChatContext,
             removeChatTab,
             processOutgoingMessage,

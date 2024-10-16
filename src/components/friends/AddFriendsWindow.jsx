@@ -12,8 +12,8 @@ function AddFriendsWindow() {
         if (response.status === 201 || response.status === 204)
             setMessage(`Your friend request to ${userId} was sent.`)
 
-        if (response.status === 400)
-            setMessage('You can not add yourself as a friend.')
+        // if (response.status === 400)
+            // setMessage('You can not add yourself as a friend.')
 
         if (response.status === 404)
             setMessage('This user does not exist.')

@@ -19,7 +19,6 @@ function useFriendApi () {
     }
 
     const sendFriendRequest = async (receiverId) => {
-        console.log('token: ', token)
         return await callApi(`http://localhost:5046/api/Friend/SendFriendRequest/${loggedInUserId}/${receiverId}/${token}`, {method: 'POST'})
     }
 

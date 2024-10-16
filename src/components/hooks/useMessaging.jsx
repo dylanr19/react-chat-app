@@ -3,17 +3,22 @@ import useWebSocket, {ReadyState} from "react-use-websocket";
 import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
 function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages) {
+    const { userId: loggedInUserId, token: token } = useContext(LoginContext)
+
     const [socketUrl, setSocketUrl] = useState(null)
-    const [friendRequestResponse, setFriendRequestResponse] = useState(null)
+    const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true})
+
     const [messageHistory, setMessageHistory] = useState([])
     const [lastChatMessage, setLastChatMessage] = useState(null)
-    const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true})
-    const { userId: loggedInUserId, token: token } = useContext(LoginContext)
+
+    const [friendRequestResponse, setFriendRequestResponse] = useState(null)
+    const [removedFriend, setRemovedFriend] = useState(null)
 
     const CHAT_HISTORY = 'chatHistory'
     const CHAT_MESSAGE = 'chatMessage'
     const ACCEPT_FRIENDREQUEST = 'acceptedFriendRequest'
     const DECLINE_FRIENDREQUEST = 'declinedFriendRequest'
+    const REMOVE_FRIEND = 'removedFriend'
 
     const connectionStatus = {
         [ReadyState.CONNECTING]: 'Connecting',
@@ -85,6 +90,10 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             setFriendRequestResponse(lastJsonMessage)
         }
 
+        else if (lastJsonMessage.type === REMOVE_FRIEND) {
+            setRemovedFriend(lastJsonMessage.userId)
+        }
+
     }, [lastJsonMessage]);
 
     const processOutgoingMessage = (text) => {
@@ -117,6 +126,7 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
         messageHistory,
         setMessageHistory,
         friendRequestResponse,
+        removedFriend,
         lastMessage: lastChatMessage,
         setLastMessage: setLastChatMessage,
         processOutgoingMessage,
