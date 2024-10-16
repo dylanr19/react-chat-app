@@ -13,8 +13,12 @@ export const Login = ({ setIsRegistering }) => {
         e.preventDefault()
 
         const response = await loginUser(username, password)
-        if (response.status !== 200){
+        if (response.status === 429){
+          setErrorMessage('You got blocked by the server, please try again later.')
+
+        } else if (response.status !== 200){
             setErrorMessage('Login failed, please check your username and password')
+
         } else {
             setToken(response.data)
             setLoggedInUserId(username)
