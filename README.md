@@ -33,8 +33,6 @@ I created this project to learn and explore technologies in my spare time.
 * [![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework%20Core-7A3F5C?logo=dot-net&logoColor=white)](https://docs.microsoft.com/en-us/ef/core/)
 * [![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/index.html)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
