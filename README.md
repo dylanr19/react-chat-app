@@ -32,7 +32,7 @@ I created this project to learn and explore technologies in my spare time.
 * [![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?logo=asp.net&logoColor=white)](https://dotnet.microsoft.com/apps/aspnet)
 * [![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework%20Core-7A3F5C?logo=dot-net&logoColor=white)](https://docs.microsoft.com/en-us/ef/core/)
 * [![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/index.html)
-
+* [![Insomnia](https://img.shields.io/badge/Insomnia-5849BE?logo=insomnia&logoColor=white)](https://insomnia.rest/)
 
 
 <!-- GETTING STARTED -->
