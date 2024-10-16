@@ -4,6 +4,7 @@ import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 
 function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages) {
     const [socketUrl, setSocketUrl] = useState(null)
+    const [friendRequestResponse, setFriendRequestResponse] = useState(null)
     const [messageHistory, setMessageHistory] = useState([])
     const [lastChatMessage, setLastChatMessage] = useState(null)
     const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true})
@@ -11,6 +12,8 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
 
     const CHAT_HISTORY = 'chatHistory'
     const CHAT_MESSAGE = 'chatMessage'
+    const ACCEPT_FRIENDREQUEST = 'acceptedFriendRequest'
+    const DECLINE_FRIENDREQUEST = 'declinedFriendRequest'
 
     const connectionStatus = {
         [ReadyState.CONNECTING]: 'Connecting',
@@ -77,6 +80,11 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             processIncomingMessage()
         }
 
+        else if (lastJsonMessage.type === ACCEPT_FRIENDREQUEST
+            || lastJsonMessage.type === DECLINE_FRIENDREQUEST){
+            setFriendRequestResponse(lastJsonMessage)
+        }
+
     }, [lastJsonMessage]);
 
     const processOutgoingMessage = (text) => {
@@ -108,6 +116,7 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
         readyState,
         messageHistory,
         setMessageHistory,
+        friendRequestResponse,
         lastMessage: lastChatMessage,
         setLastMessage: setLastChatMessage,
         processOutgoingMessage,

@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import FriendItem from "./FriendItem.jsx";
 import useFriendApi from "../hooks/useFriendApi.jsx";
 import SearchBar from "../reusable components/SearchBar.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
+import {ChatContext} from "../../Contexts/ChatContext.jsx";
 
 function FRWindow () {
     const { fetchIncomingFriendRequests, fetchOutgoingFriendRequests, acceptFriendRequest, declineFriendRequest } = useFriendApi()
+    const { friendRequestResponse } = useContext(ChatContext)
 
     const [ originalOutgoingList, setOriginalOutgoingList ] = useState([])
     const [ currentOutgoingList, setCurrentOutgoingList ] = useState([])
@@ -45,6 +47,13 @@ function FRWindow () {
     useEffect(() => {
         fetch()
     }, []);
+
+    useEffect(() => {
+        // refresh with the updated list
+        if (friendRequestResponse != null){
+            fetch()
+        }
+    }, [friendRequestResponse]);
 
     return(
         <>

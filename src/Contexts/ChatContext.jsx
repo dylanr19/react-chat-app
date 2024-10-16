@@ -115,6 +115,7 @@ export const ChatProvider = ({ children }) => {
         setMessageHistory,
         lastMessage,
         setLastMessage,
+        friendRequestResponse,
         requestMessageHistory,
         clearMessageHistory,
         processOutgoingMessage
@@ -127,6 +128,7 @@ export const ChatProvider = ({ children }) => {
             setMessageHistory,
             lastMessage,
             setLastMessage,
+            friendRequestResponse,
             clearChatContext,
             removeChatTab,
             processOutgoingMessage,
