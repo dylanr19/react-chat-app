@@ -7,11 +7,10 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
     const [messageHistory, setMessageHistory] = useState([])
     const [lastChatMessage, setLastChatMessage] = useState(null)
     const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true})
-    const { userId: loggedInUserId, token: token, setToken: setToken } = useContext(LoginContext)
+    const { userId: loggedInUserId, token: token } = useContext(LoginContext)
 
     const CHAT_HISTORY = 'chatHistory'
     const CHAT_MESSAGE = 'chatMessage'
-    const TOKEN = 'token'
 
     const connectionStatus = {
         [ReadyState.CONNECTING]: 'Connecting',
@@ -26,8 +25,10 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
     }, [readyState]);
 
     useEffect(() => {
-        setSocketUrl(`ws://localhost:5046/ws?userID=${loggedInUserId}`)
-    }, [loggedInUserId]);
+        if (loggedInUserId != null && token != null) {
+            setSocketUrl(`ws://localhost:5046/ws?userID=${loggedInUserId}&token=${token}`);
+        }
+    }, [loggedInUserId, token]);
 
     const requestMessageHistory = (partnerId, skip, take) => {
         sendJsonMessage({
@@ -74,10 +75,6 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
 
         else if (lastJsonMessage.type === CHAT_MESSAGE) {
             processIncomingMessage()
-        }
-
-        else if (lastJsonMessage.type === TOKEN) {
-            setToken(lastJsonMessage.token)
         }
 
     }, [lastJsonMessage]);
