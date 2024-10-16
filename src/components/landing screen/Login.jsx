@@ -4,7 +4,7 @@ import {LoginContext} from "../../Contexts/LoginContext.jsx";
 
 export const Login = ({ setIsRegistering }) => {
     const { loginUser } = useUserApi()
-    const { setUserId: setLoggedInUserId } = useContext(LoginContext)
+    const { setUserId: setLoggedInUserId, setToken: setToken } = useContext(LoginContext)
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ errorMessage, setErrorMessage ] = useState('')
@@ -16,6 +16,7 @@ export const Login = ({ setIsRegistering }) => {
         if (response.status !== 200){
             setErrorMessage('Login failed, please check your username and password')
         } else {
+            setToken(response.data)
             setLoggedInUserId(username)
         }
     }

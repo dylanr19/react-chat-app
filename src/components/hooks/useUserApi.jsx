@@ -3,7 +3,7 @@ import {api} from "./Api.js";
 import {LoginContext} from "../../Contexts/LoginContext.jsx";
 
 export const useUserApi = () => {
-    const { userId: loggedInUserId } = useContext(LoginContext);
+    const { userId: loggedInUserId, token: token } = useContext(LoginContext);
     const { callApi } = api()
 
     const fetchUser = async () => {
@@ -11,7 +11,7 @@ export const useUserApi = () => {
     }
 
     const changeDisplayname = async (username ) => {
-        return await callApi(`http://localhost:5046/api/User/ChangeUsername/${loggedInUserId}/${username}`, { method: 'PUT' });
+        return await callApi(`http://localhost:5046/api/User/ChangeUsername/${loggedInUserId}/${username}/${token}`, { method: 'PUT' });
     }
 
     const uploadProfilePictureToImgbb = async ( formData ) => {
@@ -22,7 +22,7 @@ export const useUserApi = () => {
     }
 
     const changeProfilePicture = async ( imageURL ) => {
-        return await callApi(`http://localhost:5046/api/User/ChangeProfilePicture/${loggedInUserId}/${imageURL}`, { method: 'PUT' })
+        return await callApi(`http://localhost:5046/api/User/ChangeProfilePicture/${loggedInUserId}/${imageURL}/${token}`, { method: 'PUT' })
     }
 
     const loginUser = async (userId, password) => {
@@ -31,14 +31,14 @@ export const useUserApi = () => {
 
     const createUser = async (displayname, username, password) => {
         return await callApi(`http://localhost:5046/api/User/CreateUser/`, { method: 'POST', data: {
-                userId: username,
-                password: password,
-                name: displayname
+                Username: username,
+                DisplayName: displayname,
+                Password: password,
             }})
     }
 
     const deleteUser = async () => {
-        return await callApi(`http://localhost:5046/api/User/DeleteUser/${loggedInUserId}`, { method: 'DELETE' });
+        return await callApi(`http://localhost:5046/api/User/DeleteUser/${loggedInUserId}/${token}`, { method: 'DELETE' });
     }
 
     return {

@@ -5,12 +5,13 @@ import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages) {
     const [socketUrl, setSocketUrl] = useState(null)
     const [messageHistory, setMessageHistory] = useState([])
-    const [lastMessage, setLastMessage] = useState(null)
+    const [lastChatMessage, setLastChatMessage] = useState(null)
     const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true})
-    const { userId: loggedInUserId } = useContext(LoginContext)
+    const { userId: loggedInUserId, token: token, setToken: setToken } = useContext(LoginContext)
 
     const CHAT_HISTORY = 'chatHistory'
     const CHAT_MESSAGE = 'chatMessage'
+    const TOKEN = 'token'
 
     const connectionStatus = {
         [ReadyState.CONNECTING]: 'Connecting',
@@ -75,6 +76,10 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             processIncomingMessage()
         }
 
+        else if (lastJsonMessage.type === TOKEN) {
+            setToken(lastJsonMessage.token)
+        }
+
     }, [lastJsonMessage]);
 
     const processOutgoingMessage = (text) => {
@@ -86,6 +91,7 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
             senderId: loggedInUserId,
             receiverId: openChatTab.userId,
             text: text,
+            token: token,
             type: CHAT_MESSAGE
         }
 
@@ -94,7 +100,7 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
     }
 
     const addMessageToHistory = (message) => {
-        setLastMessage(message)
+        setLastChatMessage(message)
     }
 
     const clearMessageHistory = () => {
@@ -105,8 +111,8 @@ function useMessaging (openChatTab, checkChatTabExists, createNewChatTab, increm
         readyState,
         messageHistory,
         setMessageHistory,
-        lastMessage,
-        setLastMessage,
+        lastMessage: lastChatMessage,
+        setLastMessage: setLastChatMessage,
         processOutgoingMessage,
         requestMessageHistory,
         clearMessageHistory

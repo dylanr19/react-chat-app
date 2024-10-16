@@ -6,7 +6,7 @@ import {useUserApi} from "../hooks/useUserApi.jsx";
 export const Registration = ({ setIsRegistering }) => {
     const { callApi } = api()
     const { createUser } = useUserApi()
-    const { setUserId: setLoggedInUserId } = useContext(LoginContext)
+    const { setUserId: setLoggedInUserId, setToken: setToken } = useContext(LoginContext)
 
     const [displayName, setDisplayName] = useState('')
     const [username, setUsername] = useState('')
@@ -59,7 +59,10 @@ export const Registration = ({ setIsRegistering }) => {
 
         if (canRegister){
             const response = await createUser(displayName, username, password)
-            if (response.status === 201) setIsRegistrationComplete(true)
+            if (response.status === 200) {
+                setToken(response.data)
+                setIsRegistrationComplete(true)
+            }
         }
     }
 

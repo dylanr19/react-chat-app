@@ -3,7 +3,7 @@ import {LoginContext} from "/src/Contexts/LoginContext.jsx";
 import {api} from "./Api.js";
 
 function useFriendApi () {
-    const { userId: loggedInUserId } = useContext(LoginContext);
+    const { userId: loggedInUserId, token: token } = useContext(LoginContext);
     const { callApi } = api()
 
     const fetchFriends = async () => {
@@ -19,28 +19,20 @@ function useFriendApi () {
     }
 
     const sendFriendRequest = async (receiverId) => {
-        return await callApi(`http://localhost:5046/api/Friend/SendFriendRequest`, { method: 'POST', data: {
-                initiatorId: loggedInUserId,
-                acceptorId: receiverId,
-            }})
+        console.log('token: ', token)
+        return await callApi(`http://localhost:5046/api/Friend/SendFriendRequest/${loggedInUserId}/${receiverId}/${token}`, {method: 'POST'})
     }
 
     const acceptFriendRequest = async (initiatorId) => {
-        return await callApi(`http://localhost:5046/api/Friend/AcceptFriendRequest`, { method: 'PUT', data: {
-                initiatorId:initiatorId,
-                acceptorId:loggedInUserId
-            }})
+        return await callApi(`http://localhost:5046/api/Friend/AcceptFriendRequest/${initiatorId}/${loggedInUserId}/${token}`, { method: 'PUT' })
     }
 
     const declineFriendRequest = async (initiatorId) => {
-        return await callApi(`http://localhost:5046/api/Friend/DeclineFriendRequest`, { method: 'DELETE', data: {
-                initiatorId:initiatorId,
-                acceptorId:loggedInUserId
-            }})
+        return await callApi(`http://localhost:5046/api/Friend/DeclineFriendRequest/${initiatorId}/${loggedInUserId}/${token}`, { method: 'DELETE' })
     }
 
     const removeFriend = async (friendId) => {
-        return await callApi(`http://localhost:5046/api/Friend/RemoveFriend/${loggedInUserId}/${friendId}`, { method: 'DELETE' })
+        return await callApi(`http://localhost:5046/api/Friend/RemoveFriend/${loggedInUserId}/${friendId}/${token}`, { method: 'DELETE' })
     }
 
     return {
