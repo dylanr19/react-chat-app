@@ -75,11 +75,11 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Screenshots
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+![Chat](https://github.com/user-attachments/assets/97c325c4-68be-40bd-a199-edffb17ff95d)
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+![Friends](https://github.com/user-attachments/assets/2a8d67b7-89c0-4f8f-ac5d-8ff8284047f0)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
