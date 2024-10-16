@@ -778,16 +778,19 @@
 }
 
 .options-container .password-prompt .submit {
-  background-color: red;
+  /*background-color: red;*/
+  background: rgba(255, 0, 0, 0.18);
   width: 60px;
 }
 
 .options-container .password-prompt .submit:hover {
-  background-color: #eb0404;
+  /*background-color: #eb0404;*/
+  background: rgba(255, 0, 0, 0.18);
 }
 
 .options-container .password-prompt .submit:active {
-  background-color: #c70606;
+  /*background-color: #c70606;*/
+  background: rgba(255, 0, 0, 0.18);
 }
 
 .options-container .submit {

@@ -6,11 +6,11 @@ export const DeleteAccountOption = ({ setLoggedInUserId, clearChatContext }) => 
     const {deleteUser} = useUserApi()
 
     const apiDeleteUser = async () => {
-        const response = await deleteUser()
-        if (response.status === 200){
-            setLoggedInUserId(null)
-            clearChatContext()
-        }
+        // const response = await deleteUser()
+        // if (response.status === 200){
+        //     setLoggedInUserId(null)
+        //     clearChatContext()
+        // }
     }
 
     const toggleDeleteAccount = () => {
