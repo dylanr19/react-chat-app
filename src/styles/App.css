@@ -956,6 +956,18 @@ form .input-container input {
   cursor: pointer;
 }
 
+.guest-paragraph {
+  margin-top: -12px;
+  color: black;
+  /*font-size: 14px;*/
+  font-size: 10px;
+}
+
+.guest-paragraph span {
+  color: #0000EE;
+  cursor: pointer;
+}
+
 .register-flex-container {
   display: flex;
   width: 100%;
