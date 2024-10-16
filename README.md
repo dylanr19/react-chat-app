@@ -17,7 +17,7 @@ This is my first personal project built with **ReactJS** and **C#**. It is a mes
 
 ## Backend
 
-you can find the web api here -url to web api
+https://github.com/dylanr19/react-chat-app-backend
 
 ## Motivation
 
