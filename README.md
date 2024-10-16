@@ -81,6 +81,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 ![Friends](https://github.com/user-attachments/assets/2a8d67b7-89c0-4f8f-ac5d-8ff8284047f0)
 
+![login](https://github.com/user-attachments/assets/cf6b35bf-e766-4a64-aa51-f3c313fed68a)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
