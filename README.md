@@ -16,7 +16,7 @@ I created this project to learn and explore technologies in my spare time.
   - Delete your account if you choose to.
 - **Guest Login**: Try the application without creating an account.
 
-## Backend
+## Back-end
 
 https://github.com/dylanr19/react-chat-app-backend
 
