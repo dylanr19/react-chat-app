@@ -1,6 +1,7 @@
 ## About The Project
 
-This is my first personal project built with **ReactJS** and **C#**. It is a messaging app that allows users to connect and communicate in real-time.
+This is my first personal project built with **ReactJS** and **C#**. It is a messaging app that allows users to communicate in real-time.
+I created this project to learn and explore technologies in my spare time.
 
 ## Features
 
@@ -15,13 +16,9 @@ This is my first personal project built with **ReactJS** and **C#**. It is a mes
   - Delete your account if you choose to.
 - **Guest Login**: Try the application without creating an account.
 
-## Backend
+## Back-end
 
 https://github.com/dylanr19/react-chat-app-backend
-
-## Motivation
-
-I created this project to learn and explore technologies in my spare time.
 
 
 ### Built With
@@ -35,42 +32,30 @@ I created this project to learn and explore technologies in my spare time.
 * [![Insomnia](https://img.shields.io/badge/Insomnia-5849BE?logo=insomnia&logoColor=white)](https://insomnia.rest/)
 
 
+
+
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+You need to have nodejs and npm installed on your computer.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+* [![npm](https://img.shields.io/badge/npm-red?logo=npm&logoColor=white)](https://www.npmjs.com/) [![npm](https://img.shields.io/badge/nodeJS-gray?logo=node.js&logoColor=green)](https://nodejs.org/en)
+
+* install the dependencies
   ```sh
-  npm install npm@latest -g
+  npm install
   ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
+* start the development server
+  ```sh
+  npm run dev
+  ```
+* run the project
+  ```sh
+  o + enter
+  ```
 
 <!-- USAGE EXAMPLES -->
 ## Screenshots
