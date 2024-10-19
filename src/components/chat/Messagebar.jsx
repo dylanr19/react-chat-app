@@ -1,11 +1,13 @@
 import '../../styles/App.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import {useContext, useEffect, useState} from 'react'
-import { ChatContext } from '../../Contexts/ChatContext.jsx'
 import { ReadyState } from "react-use-websocket";
+import {ChatMessageContext} from "../../Contexts/ChatMessageContext.jsx";
+import {ChatContext} from "../../Contexts/ChatContext.jsx";
 
 function Messagebar() {
-    const { readyState, processOutgoingMessage  } = useContext(ChatContext)
+    const { readyState, sendChatMessage  } = useContext(ChatMessageContext)
+    const { openChatTab } = useContext(ChatContext)
     const [inputValue, setInputValue] = useState('')
 
     const handleChange = (e) => {
@@ -13,7 +15,7 @@ function Messagebar() {
     }
 
     const submitMessage = () => {
-        processOutgoingMessage(inputValue)
+        sendChatMessage(inputValue, openChatTab.userId)
         setInputValue('')
     }
 

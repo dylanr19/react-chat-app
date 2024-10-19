@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import FriendListWindow from "./FriendListWindow.jsx";
-import SearchBar from "../reusable components/SearchBar.jsx";
+import SearchBar from "../search bar/SearchBar.jsx";
 import FriendTopPanel from "./FriendTopPanel.jsx";
 import FRWindow from "./FRWindow.jsx";
 import AddFriendsWindow from "./AddFriendsWindow.jsx";

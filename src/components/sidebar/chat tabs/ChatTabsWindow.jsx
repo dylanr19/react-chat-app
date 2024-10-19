@@ -12,7 +12,7 @@ function ChatTabsWindow() {
                 {
                     filteredChatTabs.map((partner) => (
                     <ChatTab
-                        partnerData={partner}
+                        partner={partner}
                         key={partner.userId}
                     />))
                 }

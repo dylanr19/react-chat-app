@@ -1,12 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
 import useFriendApi from "../hooks/useFriendApi.jsx";
 import FriendItem from "./FriendItem.jsx";
-import SearchBar from "../reusable components/SearchBar.jsx";
+import SearchBar from "../search bar/SearchBar.jsx";
 import {ChatContext} from "../../Contexts/ChatContext.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
+import {FriendContext} from "../../Contexts/FriendContext.jsx";
 
 function FriendListWindow () {
-    const { startNewChat, removeChatTab, removedFriend } = useContext(ChatContext);
+    const { startNewChat, removeChatTab } = useContext(ChatContext);
+    const { friendRemovedNotification, friendRequestRespondedNotification } = useContext(FriendContext);
     const { fetchFriends, removeFriend } = useFriendApi()
     const [ originalFriendList, setOriginalFriendList ] = useState([])
     const [ currentFriendList, setCurrentFriendList ] = useState([])
@@ -37,11 +39,8 @@ function FriendListWindow () {
     }, []);
 
     useEffect(() => {
-        if (removedFriend != null){
-            // refresh with updated list
             fetch()
-        }
-    }, [removedFriend]);
+    }, [friendRemovedNotification, friendRequestRespondedNotification]);
 
     return(
         <>

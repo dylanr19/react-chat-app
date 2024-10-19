@@ -1,5 +1,6 @@
-import {createContext, useEffect, useState} from 'react';
-import useMessaging from "../components/hooks/useMessaging.jsx";
+import {createContext, useContext, useEffect, useRef, useState} from 'react';
+import {ChatMessageContext} from "./ChatMessageContext.jsx";
+import {MESSAGE_TYPES} from "./MESSAGE_TYPES.js";
 
 export const ChatContext = createContext();
 
@@ -7,6 +8,15 @@ export const ChatProvider = ({ children }) => {
     const [openChatTab, setOpenChatTab] = useState(null)
     const [chatTabs, setChatTabs] = useState([])
     const [filteredChatTabs, setFilteredChatTabs] = useState([])
+
+    const {
+        lastSentChatMessage,
+        lastJsonMessage,
+        requestMessageHistory,
+        clearMessageHistory,
+        messageHistory,
+        setMessageHistory
+    } = useContext(ChatMessageContext)
 
     const clearChatContext = () => {
         setOpenChatTab(null)
@@ -64,7 +74,7 @@ export const ChatProvider = ({ children }) => {
         if (partner != null) {
             partner.isHighlighted = false
             setChatTabs(copy)
-            setOpenChatTab(null)
+            // setOpenChatTab(null)
         }
     }
 
@@ -103,53 +113,66 @@ export const ChatProvider = ({ children }) => {
 
         unhighlightChatTab()
         highlightChatTab(partner.userId)
-        setOpenChatTab(partner)
         resetUnreadMessages(partner.userId)
-        clearMessageHistory()
-        requestMessageHistory(partner.userId, 0, 15)
+
+        newPartner.current = partner
+        setOpenChatTab(partner)
     }
 
-    const {
-        readyState,
-        messageHistory,
-        setMessageHistory,
-        lastMessage,
-        setLastMessage,
-        friendRequestResponse,
-        removedFriend,
-        requestMessageHistory,
-        clearMessageHistory,
-        processOutgoingMessage
-    } = useMessaging(openChatTab, checkChatTabExists, createNewChatTab, incrementUnreadMessages)
+    const newPartner = useRef(null)
+    useEffect(() => {
+        if (openChatTab != null){
+            clearMessageHistory()
+            requestMessageHistory(newPartner.current.userId, 0, 15)
+        }
+    }, [openChatTab]);
 
     useEffect(() => {
-        if (removedFriend != null){
-            removeChatTab(removedFriend)
+        const handleChatMessage = () => {
+            if (lastJsonMessage == null || lastJsonMessage.type !== MESSAGE_TYPES.CHAT_MESSAGE){
+                return
+            }
+
+            const { name, senderId, photoURL } = lastJsonMessage.chatMessage
+            if (checkChatTabExists(senderId) === false){
+                createNewChatTab(senderId, name, photoURL, false, 1)
+                incrementUnreadMessages(senderId)
+                return
+            }
+
+            if (openChatTab != null && openChatTab.userId === senderId){
+                const notification = new Audio('src/assets/mixkit-message-pop-alert-2354.mp3')
+                notification.volume = 0.5
+                notification.play()
+
+                setMessageHistory([lastJsonMessage.chatMessage].concat(messageHistory))
+            } else {
+                incrementUnreadMessages(senderId)
+            }
         }
-    }, [removedFriend]);
+
+        handleChatMessage()
+    }, [lastJsonMessage]);
+
+    useEffect(() => {
+        if (lastSentChatMessage != null)
+            setMessageHistory([lastSentChatMessage].concat(messageHistory))
+    }, [lastSentChatMessage]);
 
     return (
         <ChatContext.Provider value={{
-            readyState,
-            messageHistory,
-            setMessageHistory,
-            lastMessage,
-            setLastMessage,
-            friendRequestResponse,
-            removedFriend,
             clearChatContext,
             removeChatTab,
-            processOutgoingMessage,
             startNewChat,
             highlightChatTab,
             unhighlightChatTab,
             openChatTab,
+            setOpenChatTab,
             chatTabs,
             setChatTabs,
             filteredChatTabs,
             setFilteredChatTabs,
             resetUnreadMessages,
-            requestMessageHistory
         }}>
             {children}
         </ChatContext.Provider>

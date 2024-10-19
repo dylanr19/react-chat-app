@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ChatBox from "./ChatBox.jsx";
 
 export const ChatList = ({ chatWindowRef, handleScroll, messageHistory, force }) => {

@@ -115,8 +115,14 @@ export const Registration = ({ setIsRegistering }) => {
         const specialCharacter = /(?=.*[\W_])/;
         const lengthRequirement = /.{12,}/;
 
+        setIsPasswordValid(false)
+
         if (isEmpty(password))
             setPasswordValidationMessage(null)
+
+        // TODO: Gebruikers met een hashtag in hun WW kunnen niet inloggen. dus voor nu deze workaround
+        else if (password.includes("#"))
+            setPasswordValidationMessage('Your password can not contain a hashtag')
 
         else if (lowercase.test(password) === false)
             setPasswordValidationMessage('Your password must contain at least one lowercase character')
@@ -133,12 +139,10 @@ export const Registration = ({ setIsRegistering }) => {
         else if (lengthRequirement.test(password) === false)
             setPasswordValidationMessage('Your password must be at least 12 characters long')
 
-        else
+        else {
             setPasswordValidationMessage(null)
-
-        const fullRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/
-        const isValid = fullRegex.test(password)
-        setIsPasswordValid(isValid)
+            setIsPasswordValid(true)
+        }
 
     }, [password]);
 

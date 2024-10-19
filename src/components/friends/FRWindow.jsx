@@ -1,13 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
 import FriendItem from "./FriendItem.jsx";
 import useFriendApi from "../hooks/useFriendApi.jsx";
-import SearchBar from "../reusable components/SearchBar.jsx";
+import SearchBar from "../search bar/SearchBar.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
-import {ChatContext} from "../../Contexts/ChatContext.jsx";
+import {FriendContext} from "../../Contexts/FriendContext.jsx";
 
 function FRWindow () {
     const { fetchIncomingFriendRequests, fetchOutgoingFriendRequests, acceptFriendRequest, declineFriendRequest } = useFriendApi()
-    const { friendRequestResponse } = useContext(ChatContext)
+    const { friendRequestRespondedNotification, friendRequestReceivedNotification } = useContext(FriendContext);
 
     const [ originalOutgoingList, setOriginalOutgoingList ] = useState([])
     const [ currentOutgoingList, setCurrentOutgoingList ] = useState([])
@@ -30,7 +30,6 @@ function FRWindow () {
 
     const onAccept = async (userId) => {
         const response = await acceptFriendRequest(userId)
-
         if (response.status === 200){
             fetch()
         }
@@ -38,7 +37,6 @@ function FRWindow () {
 
     const onDecline = async (userId) => {
         const response = await declineFriendRequest(userId)
-
         if (response.status === 200){
             fetch()
         }
@@ -49,11 +47,8 @@ function FRWindow () {
     }, []);
 
     useEffect(() => {
-        // refresh with the updated list
-        if (friendRequestResponse != null){
             fetch()
-        }
-    }, [friendRequestResponse]);
+    }, [friendRequestRespondedNotification, friendRequestReceivedNotification]);
 
     return(
         <>

@@ -13,7 +13,7 @@ import {LoginContext} from "../Contexts/LoginContext.jsx";
 import {LandingScreen} from "./landing screen/LandingScreen.jsx";
 
 function App() {
-    const { openChatTab, unhighlightChatTab } = useContext(ChatContext)
+    const { openChatTab, setOpenChatTab, unhighlightChatTab } = useContext(ChatContext)
     const { userId: loggedInUserId } = useContext(LoginContext)
     const [ isChatVisible, setIsChatVisible ] = useState(false)
 
@@ -26,10 +26,10 @@ function App() {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 480); // You can adjust 768px as the mobile breakpoint
+            setIsMobile(window.innerWidth <= 480);
         };
 
-        handleResize(); // Run on mount to set initial state
+        handleResize();
         window.addEventListener('resize', handleResize);
     }, []);
 
@@ -40,6 +40,7 @@ function App() {
     useEffect(() => {
         if (isChatVisible === false) {
             unhighlightChatTab()
+            setOpenChatTab(null)
         }
 
         if (isMobile) {

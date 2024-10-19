@@ -1,6 +1,6 @@
 import '../../../styles/App.css'
 import React, {useContext, useEffect, useState} from "react";
-import SearchBar from "../../reusable components/SearchBar.jsx";
+import SearchBar from "../../search bar/SearchBar.jsx";
 import ChatTabSearchBar from "./ChatTabSearchBar.jsx";
 import {ChatContext} from "../../../Contexts/ChatContext.jsx";
 
