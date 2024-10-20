@@ -70,6 +70,7 @@ export const AccountPanel = () => {
                     <button className="logout-button" onClick={() => {
                         setLoggedInUserId(null);
                         clearChatContext();
+                        window.location.reload()
                     }}>Logout
                     </button>
                 </div>

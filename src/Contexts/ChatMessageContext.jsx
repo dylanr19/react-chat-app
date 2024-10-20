@@ -9,7 +9,7 @@ export const ChatMessageProvider = ({ children }) => {
     const { userId: loggedInUserId, token: token } = useContext(LoginContext)
 
     const [socketUrl, setSocketUrl] = useState(null)
-    const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true})
+    const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true});
 
     const [messageHistory, setMessageHistory] = useState([])
     const [lastSentChatMessage, setLastSentChatMessage] = useState(null)
@@ -17,6 +17,9 @@ export const ChatMessageProvider = ({ children }) => {
     useEffect(() => {
         if (loggedInUserId != null && token != null)
             setSocketUrl(`ws://localhost:5046/ws?userID=${loggedInUserId}&token=${token}`);
+        else
+            setSocketUrl(null) //TODO: dit sluit de websocket connectie niet
+
     }, [loggedInUserId, token]);
 
     useEffect(() => {

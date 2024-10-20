@@ -34,6 +34,10 @@ function useFriendApi () {
         return await callApi(`http://localhost:5046/api/Friend/RemoveFriend/${loggedInUserId}/${friendId}/${token}`, { method: 'DELETE' })
     }
 
+    const fetchOnlineStatus = async (userId) => {
+        return await callApi(`http://localhost:5046/api/User/FetchStatus/${userId}`)
+    }
+
     return {
         fetchFriends,
         fetchIncomingFriendRequests,
@@ -42,6 +46,7 @@ function useFriendApi () {
         removeFriend,
         acceptFriendRequest,
         declineFriendRequest,
+        fetchOnlineStatus,
     }
 }
 
