@@ -74,7 +74,6 @@ export const ChatProvider = ({ children }) => {
         if (partner != null) {
             partner.isHighlighted = false
             setChatTabs(copy)
-            // setOpenChatTab(null)
         }
     }
 

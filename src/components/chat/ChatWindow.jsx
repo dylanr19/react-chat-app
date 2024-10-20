@@ -22,7 +22,7 @@ function ChatWindow() {
         if (Math.ceil(Math.abs(chatWindow.scrollTop)) >= (chatWindow.scrollHeight - chatWindow.clientHeight) - 5){
             // Scroll bar has reached top of container ( direction reversed with css ). The compirason is not pixel perfect, hence the 5px offset
             // This is true when scrollTop equals value of max scrollable height -
-            // ( so full container height minus the portion of the scrollable container that's within viewport )
+            // ( so full container height minus the portion of the container that's within viewport )
             messageSequence.current = {skip: messageSequence.current.skip + 15 + newMessageCount.current, take: 15}
             requestMessageHistory(openChatTab.userId, messageSequence.current.skip, messageSequence.current.take)
             prevScrollheight.current = chatWindow.scrollHeight
@@ -30,10 +30,8 @@ function ChatWindow() {
     }
 
     const firstRender = useRef(true)
-    // change scrollbar position when new chat starts or when height of container changes
-    // adjusts the scrollbar position before the browser paints, so the user won't see the scrollbar "teleport"
-    // TODO: scrollbar zie je alsnog teleporteren lol
-    useLayoutEffect(() => {
+
+    useEffect(() => {
         if (firstRender.current === true) {
             firstRender.current = false;
             return
@@ -73,6 +71,7 @@ function ChatWindow() {
     useEffect(() => {
         // When a new chat starts, clear the values from the prev chat session
         setPreviousMessageHistory([])
+        chatWindowRef.current.scrollTop = 0
         prevScrollheight.current = 0
         newMessageCount.current = 0
         messageSequence.current = { skip: 0, take: 15 }

@@ -10,12 +10,14 @@ function FriendWindowManager () {
     const [ currentWindow, setCurrentWindow ] = useState(WINDOW_STATES.FRIENDS);
 
     return (
-      <>
-          <FriendTopPanel currentWindow={currentWindow} setCurrentWindow={setCurrentWindow}></FriendTopPanel>
-          {currentWindow === WINDOW_STATES.FRIENDS && <FriendListWindow />}
-          {currentWindow === WINDOW_STATES.FRIENDREQUESTS && <FRWindow />}
-          {currentWindow === WINDOW_STATES.ADDFRIENDS && <AddFriendsWindow />}
-      </>
+        <>
+            <div className="friend-container">
+                <FriendTopPanel currentWindow={currentWindow} setCurrentWindow={setCurrentWindow}></FriendTopPanel>
+                {currentWindow === WINDOW_STATES.FRIENDS && <FriendListWindow/>}
+                {currentWindow === WINDOW_STATES.FRIENDREQUESTS && <FRWindow/>}
+                {currentWindow === WINDOW_STATES.ADDFRIENDS && <AddFriendsWindow/>}
+            </div>
+        </>
     );
 }
 

@@ -44,32 +44,35 @@ export const AccountPanel = () => {
 
     return (
         <>
-            <img className="photo"
-                 src={imageURL === 'none' || imageURL == null ? 'src/assets/profile picture placeholder.jpg' : imageURL}
-                 alt="Photo of this user"
-            />
-            <div className="credentials">
-                <h3 className="name">{userData.name}</h3>
-                <p className="userID">{userData.userId}</p>
-            </div>
-            <div className="member-since-container">
-                <h5 className="header">Member Since</h5>
-                <p className="date">{userData.joinDate}</p>
-            </div>
+            <div className="account-panel">
+                <img className="photo"
+                     src={imageURL === 'none' || imageURL == null ? 'src/assets/profile picture placeholder.jpg' : imageURL}
+                     alt="Photo of this user"
+                />
+                <div className="credentials">
+                    <h3 className="name">{userData.name}</h3>
+                    <p className="userID">{userData.userId}</p>
+                </div>
+                <div className="member-since-container">
+                    <h5 className="header">Member Since</h5>
+                    <p className="date">{userData.joinDate}</p>
+                </div>
 
-            <div className="options-container">
-                <h5 className="header">User Options</h5>
-                <ChangePictureOption setImageURL={setImageURL} setUserData={setUserData}></ChangePictureOption>
-                <ChangeDisplaynameOption userData={userData} setUserData={setUserData}></ChangeDisplaynameOption>
-                <DeleteAccountOption setLoggedInUserId={setLoggedInUserId} clearChatContext={clearChatContext}></DeleteAccountOption>
-            </div>
+                <div className="options-container">
+                    <h5 className="header">User Options</h5>
+                    <ChangePictureOption setImageURL={setImageURL} setUserData={setUserData}></ChangePictureOption>
+                    <ChangeDisplaynameOption userData={userData} setUserData={setUserData}></ChangeDisplaynameOption>
+                    <DeleteAccountOption setLoggedInUserId={setLoggedInUserId}
+                                         clearChatContext={clearChatContext}></DeleteAccountOption>
+                </div>
 
-            <div className="logout-button-container">
-                <button className="logout-button" onClick={() => {
-                    setLoggedInUserId(null);
-                    clearChatContext();
-                }}>Logout
-                </button>
+                <div className="logout-button-container">
+                    <button className="logout-button" onClick={() => {
+                        setLoggedInUserId(null);
+                        clearChatContext();
+                    }}>Logout
+                    </button>
+                </div>
             </div>
         </>
     )
