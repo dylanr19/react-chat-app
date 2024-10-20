@@ -78,12 +78,11 @@ function ChatWindow() {
         messageSequence.current = { skip: 0, take: 15 }
     }, [openChatTab]);
 
-    // This makes sure that scroll handler only gets called upon scroll, to prevent weird behaviour
-    const debouncedHandleScroll = debounce(handleScroll, 100);
+    const handleScrollEnd = debounce(handleScroll, 100);
 
     return (
         <>
-            <div className="chat-window" ref={chatWindowRef} onScroll={debouncedHandleScroll}>
+            <div className="chat-window" ref={chatWindowRef} onScroll={handleScrollEnd}>
                 {messageHistory.map((message) => (
                     <ChatBox
                         photoURL={message.photoURL}
