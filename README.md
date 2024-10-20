@@ -24,7 +24,7 @@ https://github.com/dylanr19/react-chat-app-backend
 
 ### Built With
 
-* [![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=blue&color=gray)](https://reactjs.org/)
+* [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 * [![JavaScript](https://img.shields.io/badge/JavaScript-FFEA00?style=for-the-badge&logo=javascript&logoColor=yellow&color=white)](https://www.javascript.com/)
 * [![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=.NET&color=purple)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 * [![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?style=for-the-badge&logo=.NET&logoColor=white)](https://dotnet.microsoft.com/apps/aspnet)
