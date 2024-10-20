@@ -4,29 +4,25 @@ import {useContext, useEffect, useState} from 'react'
 import { ReadyState } from "react-use-websocket";
 import {ChatMessageContext} from "../../Contexts/ChatMessageContext.jsx";
 import {ChatContext} from "../../Contexts/ChatContext.jsx";
+import {playPopAudio} from "../other/SoundFX.js";
 
 function Messagebar() {
     const { readyState, sendChatMessage  } = useContext(ChatMessageContext)
     const { openChatTab } = useContext(ChatContext)
     const [inputValue, setInputValue] = useState('')
 
-    const handleChange = (e) => {
-        setInputValue(e.currentTarget.value)
-    }
-
     const submitMessage = () => {
         sendChatMessage(inputValue, openChatTab.userId)
         setInputValue('')
+        playPopAudio()
     }
 
+    const handleChange = (e) => setInputValue(e.currentTarget.value)
+    const handleClick = () => submitMessage()
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             submitMessage()
         }
-    }
-
-    const handleClick = () => {
-        submitMessage()
     }
 
     return (

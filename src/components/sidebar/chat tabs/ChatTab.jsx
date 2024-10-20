@@ -3,6 +3,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import {ChatContext} from "../../../Contexts/ChatContext.jsx";
 import {FriendContext} from "../../../Contexts/FriendContext.jsx";
 import {STATUS} from "./STATUS.js";
+import {playMessageAudio } from "/src/components/other/SoundFX.js"
 import {Userphoto} from "../../other/UserPhoto.jsx";
 
 function ChatTab({ partner }) {
@@ -10,9 +11,7 @@ function ChatTab({ partner }) {
 
     useEffect(() => {
         if (partner.unreadMessageCount === 1){
-            const notification = new Audio('src/assets/out-of-nowhere-message-tone.mp3')
-            notification.volume = 0.7
-            notification.play()
+            playMessageAudio()
         }
     }, [partner.unreadMessageCount]);
 

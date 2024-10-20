@@ -1,6 +1,7 @@
 import {createContext, useContext, useEffect, useRef, useState} from 'react';
 import {ChatMessageContext} from "./ChatMessageContext.jsx";
 import {MESSAGE_TYPES} from "./MESSAGE_TYPES.js";
+import {playPopAudio} from "/src/components/other/SoundFX.js"
 
 export const ChatContext = createContext();
 
@@ -142,11 +143,8 @@ export const ChatProvider = ({ children }) => {
             }
 
             if (openChatTab != null && openChatTab.userId === senderId){
-                // The sender's ID is equal to the ID of the user that is in ur current chat session.
-                const notification = new Audio('src/assets/mixkit-message-pop-alert-2354.mp3')
-                notification.volume = 0.5
-                notification.play()
-
+                // The sender is already in the current chat session.
+                playPopAudio()
                 // Chat Messages in the lowest indexes of the array, render at the bottom of the chat.
                 // Bottom newest messages -> top oldest.
                 setMessageHistory([lastJsonMessage.chatMessage].concat(messageHistory))
