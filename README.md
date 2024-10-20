@@ -15,6 +15,7 @@ I created this project to learn and explore technologies in my spare time.
   - Edit your profile image and name.
   - Delete your account if you choose to.
 - **Guest Login**: Try the application without creating an account.
+- **Mobile Support**: Support for mobile screens
 
 ## Back-end
 
