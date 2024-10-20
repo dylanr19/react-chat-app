@@ -1,7 +1,7 @@
 ## About The Project
 
 This is my first personal project built with **ReactJS** and **C#**. It is a messaging app that allows users to communicate in real-time.
-I created this project to learn and explore technologies in my spare time.
+I created this project for learning purposes.
 
 ## Features
 
@@ -24,13 +24,13 @@ https://github.com/dylanr19/react-chat-app-backend
 
 ### Built With
 
-* [![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
-* [![JavaScript](https://img.shields.io/badge/JavaScript-FFEA00?logo=javascript&logoColor=black)](https://www.javascript.com/)
-* [![C#](https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
-* [![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?logo=asp.net&logoColor=white)](https://dotnet.microsoft.com/apps/aspnet)
-* [![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework%20Core-7A3F5C?logo=dot-net&logoColor=white)](https://docs.microsoft.com/en-us/ef/core/)
-* [![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/index.html)
-* [![Insomnia](https://img.shields.io/badge/Insomnia-5849BE?logo=insomnia&logoColor=white)](https://insomnia.rest/)
+* [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+* [![JavaScript](https://img.shields.io/badge/JavaScript-FFEA00?style=for-the-badge&logo=javascript&logoColor=yellow&color=white)](https://www.javascript.com/)
+* [![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=.NET&color=purple)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+* [![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?style=for-the-badge&logo=.NET&logoColor=white)](https://dotnet.microsoft.com/apps/aspnet)
+* [![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework%20Core-7A3F5C?style=for-the-badge&logo=.NET&logoColor=white)](https://docs.microsoft.com/en-us/ef/core/)
+* [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/index.html)
+* [![Insomnia](https://img.shields.io/badge/Insomnia-5849BE?style=for-the-badge&logo=insomnia&logoColor=white)](https://insomnia.rest/)
 
 
 
