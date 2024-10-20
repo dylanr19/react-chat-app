@@ -20,7 +20,7 @@ function ChatWindow() {
         const chatWindow = chatWindowRef.current
 
         if (Math.ceil(Math.abs(chatWindow.scrollTop)) >= (chatWindow.scrollHeight - chatWindow.clientHeight) - 5){
-            // Scroll bar has reached top of container ( direction reversed with css )
+            // Scroll bar has reached top of container ( direction reversed with css ). The compirason is not pixel perfect, hence the 5px offset
             // This is true when scrollTop equals value of max scrollable height -
             // ( so full container height minus the portion of the scrollable container that's within viewport )
             messageSequence.current = {skip: messageSequence.current.skip + 15 + newMessageCount.current, take: 15}
