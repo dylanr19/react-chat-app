@@ -1,23 +1,12 @@
 import '../../../styles/App.css'
-import {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {ChatContext} from "../../../Contexts/ChatContext.jsx";
+import {FriendContext} from "../../../Contexts/FriendContext.jsx";
+import {STATUS} from "./STATUS.js";
+import {Userphoto} from "../../other/UserPhoto.jsx";
 
 function ChatTab({ partner }) {
-    const {
-        startNewChat,
-        openChatTab,
-        resetUnreadMessages,
-        highlightChatTab,
-        unhighlightChatTab
-    } = useContext(ChatContext)
-
-    const handleTabClick = () => {
-        // resetUnreadMessages(partnerData.userId)
-        // unhighlightChatTab()
-        // highlightChatTab(partnerData.userId)
-        startNewChat(partner)
-
-    }
+    const { startNewChat } = useContext(ChatContext)
 
     useEffect(() => {
         if (partner.unreadMessageCount === 1){
@@ -27,19 +16,23 @@ function ChatTab({ partner }) {
         }
     }, [partner.unreadMessageCount]);
 
+    const handleTabClick = () => {
+        startNewChat(partner)
+    }
+
     return (
         <>
             <button
                 className="partner-tab"
-                style={{ background: partner.isHighlighted ? '#ededed' : 'white' }}
+                style={{background: partner.isHighlighted ? '#ededed' : 'white'}}
                 id={partner.userId}
                 onClick={() => handleTabClick()}
             >
 
-                <img
-                    className="photo"
-                    src={partner.photoURL === 'none' || partner.photoURL == null ? 'src/assets/profile picture placeholder.jpg' : partner.photoURL}
-                    alt={"photo of " + partner.name}
+                <Userphoto
+                    userId={partner.userId}
+                    photoURL={partner.photoURL}
+                    style={{ minWidth: '15.7px'}}
                 />
 
                 <div className="info-container">

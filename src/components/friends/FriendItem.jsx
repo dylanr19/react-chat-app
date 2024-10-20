@@ -1,11 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import {STATUS} from "../sidebar/chat tabs/STATUS.js";
+import {FriendContext} from "../../Contexts/FriendContext.jsx";
+import {Userphoto} from "../other/UserPhoto.jsx";
 
 function FriendItem ({ userData, showChatButton, showAcceptButton, showDeleteButton, onDelete, onChat, onAccept }) {
-    const {
-        name,
-        userId,
-        photoURL,
-    } = userData
+    const {name, userId, photoURL,} = userData
 
     const onDeleteClick = () => {
         onDelete(userId)
@@ -23,10 +22,7 @@ function FriendItem ({ userData, showChatButton, showAcceptButton, showDeleteBut
         <>
             <div className="friend-item">
                 <div className="info">
-                    <img className="photo"
-                         src={photoURL === 'none' || photoURL == null ? 'src/assets/profile picture placeholder.jpg' : photoURL}
-                         alt="Photo of this user"
-                    />
+                    <Userphoto userId={userId} photoURL={photoURL} />
                     <div className="credentials">
                         <h2 className="name">{name}</h2>
                         <p className="userID">{userId}</p>

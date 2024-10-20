@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import FriendItem from "./FriendItem.jsx";
 import useFriendApi from "../hooks/useFriendApi.jsx";
-import SearchBar from "../search bar/SearchBar.jsx";
+import SearchBar from "../other/SearchBar.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
 import {FriendContext} from "../../Contexts/FriendContext.jsx";
 

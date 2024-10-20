@@ -1090,16 +1090,23 @@ form .input-container input {
   display: none;
 }
 
+.user-status {
+  border-radius: 50%;
+  border-style: solid;
+  border-color: white;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  right: 16px;
+  top: 16px;
+}
+
 @media (max-width: 1000px) {
   .account-panel {
     display: none;
   }
 }
-/*@media (min-width: 480px) {*/
-/*  .side-bar-container{*/
-/*    display: flex;*/
-/*  }*/
-/*}*/
+
 @media (max-width: 480px) {
   .account-panel{
     width: 100%;

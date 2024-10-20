@@ -10,8 +10,8 @@ export const FriendProvider = ({children}) => {
     const [friendRequestRespondedNotification, setFriendRequestRespondedNotification] = useState(null);
     const [friendRequestReceivedNotification, setFriendRequestReceivedNotification] = useState(null);
     const [friendRemovedNotification, setFriendRemovedNotification] = useState(null);
+    const [friendStatusNotification, setFriendStatusNotification] = useState(null);
 
-    // const { setUserStatus } = useContext(ChatContext)
     const { userId: loggedInUserId, token: token } = useContext(LoginContext)
     const { removeChatTab } = useContext(ChatContext)
 
@@ -38,7 +38,7 @@ export const FriendProvider = ({children}) => {
                 setFriendRemovedNotification(lastJsonMessage)
                 return
             case MESSAGE_TYPES.FRIEND_STATUS:
-                // setUserStatus(lastJsonMessage)
+                setFriendStatusNotification(lastJsonMessage)
                 return
         }
     }, [lastJsonMessage]);
@@ -62,6 +62,7 @@ export const FriendProvider = ({children}) => {
             friendRequestRespondedNotification,
             friendRequestReceivedNotification,
             friendRemovedNotification,
+            friendStatusNotification,
             shareStatus
         }}>
             {children}

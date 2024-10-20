@@ -8,6 +8,7 @@ export const ChatProvider = ({ children }) => {
     const [openChatTab, setOpenChatTab] = useState(null)
     const [chatTabs, setChatTabs] = useState([])
     const [filteredChatTabs, setFilteredChatTabs] = useState([])
+    const newPartner = useRef(null)
 
     const {
         lastSentChatMessage,
@@ -118,9 +119,10 @@ export const ChatProvider = ({ children }) => {
         setOpenChatTab(partner)
     }
 
-    const newPartner = useRef(null)
     useEffect(() => {
         if (openChatTab != null){
+            // Change messageHistory state after openChatTab, otherwise states get updated in random order -
+            // and that brings problems to components that use them.
             clearMessageHistory()
             requestMessageHistory(newPartner.current.userId, 0, 15)
         }
@@ -140,10 +142,13 @@ export const ChatProvider = ({ children }) => {
             }
 
             if (openChatTab != null && openChatTab.userId === senderId){
+                // The sender's ID is equal to the ID of the user that is in ur current chat session.
                 const notification = new Audio('src/assets/mixkit-message-pop-alert-2354.mp3')
                 notification.volume = 0.5
                 notification.play()
 
+                // Chat Messages in the lowest indexes of the array, render at the bottom of the chat.
+                // Bottom newest messages -> top oldest.
                 setMessageHistory([lastJsonMessage.chatMessage].concat(messageHistory))
             } else {
                 incrementUnreadMessages(senderId)
