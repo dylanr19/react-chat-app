@@ -1,32 +1,21 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {FriendContext} from "../../Contexts/FriendContext.jsx";
+import React, {useEffect, useState} from 'react';
 import {STATUS} from "../sidebar/chat tabs/STATUS.js";
-import useFriendApi from "../hooks/useFriendApi.jsx";
+import {useStatus} from "../hooks/useStatus.jsx";
 
 export const Userphoto = ({ photoURL, userId, style }) => {
 
-    const { fetchOnlineStatus } = useFriendApi()
-    const { friendStatusNotification } = useContext(FriendContext)
+    const { setUserId, userStatus } = useStatus()
     const [ statusColor, setStatusColor ] = useState('gray')
 
     useEffect(() => {
-        const getOnlineStatus = async () => {
-            const response = await fetchOnlineStatus(userId)
-            if (response.status === 200)
-                setStatusColor('green')
-            else
-                setStatusColor('gray')
-        }
-        getOnlineStatus()
-    }, []);
+        setUserId(userId)
+    }, [userId]);
 
     useEffect(() => {
-        if (friendStatusNotification == null) return
-        if (friendStatusNotification.userId !== userId) return
-        if (friendStatusNotification.status === STATUS.ONLINE)
+        if (userStatus === STATUS.ONLINE)
             setStatusColor('green')
         else setStatusColor('gray')
-    }, [friendStatusNotification]);
+    }, [userStatus]);
 
     return (
         <>

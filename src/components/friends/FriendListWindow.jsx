@@ -52,8 +52,7 @@ function FriendListWindow () {
             </SearchBar>
 
             {
-                currentFriendList.length === 0
-                    ?
+                currentFriendList.length === 0 ?
                     <p className="empty-friend-message">You have no friends.</p>
                     :
                     <div className="friend-list">

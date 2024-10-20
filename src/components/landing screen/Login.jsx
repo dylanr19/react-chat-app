@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useUserApi} from "../hooks/useUserApi.jsx";
 import {LoginContext} from "../../Contexts/LoginContext.jsx";
+import {TYPES} from "../friends/TYPES.js";
 
 export const Login = ({ setIsRegistering }) => {
     const { loginUser } = useUserApi()
@@ -52,22 +53,31 @@ export const Login = ({ setIsRegistering }) => {
                     <h2>LOGIN</h2>
 
                     <form onSubmit={login}>
+
                         <div className="input-container">
+
                             <div className="icon-container">
                                 <i className="bi bi-person"></i>
                             </div>
                             <input type="text" placeholder="Username" value={username}
-                                   onChange={(e) => setUsername(e.target.value)}/>
+                                   onChange={(e) => setUsername(e.target.value)}
+                            />
+
                         </div>
+
                         <div className="input-container">
+
                             <div className="icon-container">
                                 <i className="bi bi-shield-lock"></i>
                             </div>
                             <input type="password" placeholder="Password" value={password}
-                                   onChange={(e) => setPassword(e.target.value)}/>
+                                   onChange={(e) => setPassword(e.target.value)}
+                            />
+
                         </div>
 
                         <input className="login-button" type="submit" value="Login Now"/>
+
                     </form>
 
                     {

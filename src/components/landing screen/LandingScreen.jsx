@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Registration} from "./Registration.jsx";
+import {Registration} from "./Register/Registration.jsx";
 import {Login} from "./Login.jsx";
 
 export const LandingScreen = () => {

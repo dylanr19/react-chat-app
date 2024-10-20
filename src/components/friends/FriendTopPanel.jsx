@@ -3,6 +3,10 @@ import {WINDOW_STATES} from "./WINDOW_STATES.js";
 
 function FriendTopPanel({ currentWindow, setCurrentWindow }) {
 
+    const handleClick = (state) => {
+        setCurrentWindow(state)
+    }
+
     return(
         <>
             <div className="test123">
@@ -14,30 +18,21 @@ function FriendTopPanel({ currentWindow, setCurrentWindow }) {
 
                     <button
                         className={ currentWindow === WINDOW_STATES.FRIENDS ? 'active' : null }
-                        onClick={(e) => {
-                           e.preventDefault();
-                            setCurrentWindow(WINDOW_STATES.FRIENDS)
-                    }}
+                        onClick={() => handleClick(WINDOW_STATES.FRIENDS)}
                     >
                         Accepted
                     </button>
 
                     <button
                         className={ currentWindow === WINDOW_STATES.FRIENDREQUESTS ? 'active' : null }
-                        onClick={(e) => {
-                        e.preventDefault();
-                        setCurrentWindow(WINDOW_STATES.FRIENDREQUESTS);
-                    }}
+                        onClick={() => handleClick(WINDOW_STATES.FRIENDREQUESTS)}
                     >
                         Pending
                     </button>
 
                     <button
                         className="add"
-                        onClick={(e) => {
-                        e.preventDefault();
-                        setCurrentWindow(WINDOW_STATES.ADDFRIENDS);
-                    }}
+                        onClick={() => handleClick(WINDOW_STATES.ADDFRIENDS)}
                     >
                         Add Friends
                     </button>

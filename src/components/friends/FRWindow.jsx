@@ -4,6 +4,7 @@ import useFriendApi from "../hooks/useFriendApi.jsx";
 import SearchBar from "../other/SearchBar.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
 import {FriendContext} from "../../Contexts/FriendContext.jsx";
+import {TYPES} from "./TYPES.js";
 
 function FRWindow () {
     const { fetchIncomingFriendRequests, fetchOutgoingFriendRequests, acceptFriendRequest, declineFriendRequest } = useFriendApi()
@@ -15,7 +16,7 @@ function FRWindow () {
     const [ originalIncomingList, setOriginalIncomingList ] = useState([])
     const [ currentIncomingList, setCurrentIncomingList ] = useState([])
 
-    const fetch = async () => {
+    const fetchRequests = async () => {
         const response1 = await fetchIncomingFriendRequests()
         const response2 = await fetchOutgoingFriendRequests()
 
@@ -28,27 +29,65 @@ function FRWindow () {
         }
     }
 
-    const onAccept = async (userId) => {
+    const handleAccept = async (userId) => {
         const response = await acceptFriendRequest(userId)
         if (response.status === 200){
-            fetch()
+            fetchRequests()
         }
     }
 
-    const onDecline = async (userId) => {
+    const handleDecline = async (userId) => {
         const response = await declineFriendRequest(userId)
         if (response.status === 200){
-            fetch()
+            fetchRequests()
         }
     }
 
     useEffect(() => {
-        fetch()
+        fetchRequests()
     }, []);
 
     useEffect(() => {
-            fetch()
+        if (friendRequestReceivedNotification != null
+            && friendRequestRespondedNotification != null)
+            fetchRequests()
     }, [friendRequestRespondedNotification, friendRequestReceivedNotification]);
+
+    const RenderFriendList = (type) => {
+        let header = '';
+        let emptyMessage = '';
+        let list = '';
+
+        if (type === TYPES.INCOMING) {
+            header = 'Incoming'
+            emptyMessage = 'There are no incoming friend requests.'
+            list = currentIncomingList
+
+        } else if (type === TYPES.OUTGOING) {
+            header = 'Outgoing'
+            emptyMessage = 'There are no outgoing friend requests.'
+            list = currentOutgoingList
+        }
+
+        return (
+            <>
+                <h4 className="friend-requests-header">{header}</h4>
+                { list.length === 0 ?
+                        <p className="empty-friend-message">{emptyMessage}</p>
+                        :
+                        <div className="friend-list">
+                            {list.map(fr =>
+                                    <FriendItem
+                                        userData={fr}
+                                        key={fr.userId}
+                                        showDeleteButton={true}
+                                        onAccept={handleAccept}
+                                        onDelete={handleDecline}
+                                    />)}
+                        </div> }
+            </>
+        )
+    }
 
     return(
         <>
@@ -61,47 +100,8 @@ function FRWindow () {
             >
             </SearchBar>
 
-            <h4 className="friend-requests-header">Outgoing</h4>
-
-            {
-                currentOutgoingList.length === 0
-                    ?
-                    <p className="empty-friend-message">You have no outgoing friend requests.</p>
-                    :
-                    <div className="friend-list">
-                        {
-                            currentOutgoingList.map(fr =>
-                                <FriendItem
-                                    userData={fr}
-                                    key={fr.userId}
-                                    showDeleteButton={true}
-                                    onAccept={onAccept}
-                                    onDelete={onDecline}
-                                />)
-                        }
-                    </div>
-            }
-
-            <h4 className="friend-requests-header">Incoming</h4>
-            {
-                currentIncomingList.length === 0
-                    ?
-                    <p className="empty-friend-message">You have no incoming friend requests.</p>
-                    :
-                    <div className="friend-list">
-                        {
-                            currentIncomingList.map(fr =>
-                                <FriendItem
-                                    userData={fr}
-                                    key={fr.userId}
-                                    showAcceptButton={true}
-                                    showDeleteButton={true}
-                                    onAccept={onAccept}
-                                    onDelete={onDecline}
-                                />)
-                        }
-                    </div>
-            }
+            {RenderFriendList(TYPES.OUTGOING)}
+            {RenderFriendList(TYPES.INCOMING)}
         </>
     )
 }
