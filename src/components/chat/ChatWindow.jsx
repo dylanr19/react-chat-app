@@ -69,7 +69,7 @@ function ChatWindow() {
     }, [messageHistory]);
 
     useEffect(() => {
-        // When a new chat starts, clear the values from the prev chat session
+        // When a new chat starts, clear the values from the prev chat session, to prevent unwanted behaviour.
         setPreviousMessageHistory([])
         chatWindowRef.current.scrollTop = 0
         prevScrollheight.current = 0
