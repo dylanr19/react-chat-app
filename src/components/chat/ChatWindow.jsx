@@ -78,7 +78,7 @@ function ChatWindow() {
         messageSequence.current = { skip: 0, take: 15 }
     }, [openChatTab]);
 
-    // This makes sure that scroll handler only gets called upon scroll end with 100ms delay
+    // This makes sure that scroll handler only gets called upon scroll, to prevent weird behaviour
     const debouncedHandleScroll = debounce(handleScroll, 100);
 
     return (
