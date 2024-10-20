@@ -10,7 +10,8 @@ I created this project for learning purposes.
   - Send friend requests to other users.
   - Accept or decline incoming friend requests.
 - **User Registration**: Create a new user account easily.
-- **User Authentication**: Secure log-in to access your account.
+- **User Authentication**: Log-in to access your account.
+- **User Availability**: See who's online/offline.
 - **Profile Management**: 
   - Edit your profile image and name.
   - Delete your account if you choose to.
@@ -66,6 +67,10 @@ You need to have nodejs and npm installed on your computer.
 ![Friends](https://github.com/user-attachments/assets/2a8d67b7-89c0-4f8f-ac5d-8ff8284047f0)
 
 ![login](https://github.com/user-attachments/assets/cf6b35bf-e766-4a64-aa51-f3c313fed68a)
+
+![Unbenannt](https://github.com/user-attachments/assets/1be929dd-b65e-48fa-860a-090073efa433)
+
+![userstatus](https://github.com/user-attachments/assets/792ed9e1-e98c-4590-8c24-371afd4449bf)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
