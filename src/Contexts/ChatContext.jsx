@@ -121,8 +121,8 @@ export const ChatProvider = ({ children }) => {
 
     useEffect(() => {
         if (openChatTab != null){
-            // Change messageHistory state after openChatTab, otherwise states get updated in random order -
-            // and that brings problems to components that use them.
+            // State change of openchattab has to be finished before setting the messageHistory states,
+            // to prevent bug in ChatWindow component
             clearMessageHistory()
             requestMessageHistory(newPartner.current.userId, 0, 15)
         }
