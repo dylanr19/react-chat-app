@@ -32,6 +32,7 @@ function ChatWindow() {
     const firstRender = useRef(true)
     // change scrollbar position when new chat starts or when height of container changes
     // adjusts the scrollbar position before the browser paints, so the user won't see the scrollbar "teleport"
+    // TODO: scrollbar zie je alsnog teleporteren lol
     useLayoutEffect(() => {
         if (firstRender.current === true) {
             firstRender.current = false;
