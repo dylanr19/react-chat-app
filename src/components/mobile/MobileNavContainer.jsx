@@ -70,7 +70,6 @@ export const MobileNavContainer = ( { isChatVisible } ) => {
         };
 
         handleResize();
-        window.addEventListener('resize', handleResize);
     }, [])
 
     useEffect(() => {

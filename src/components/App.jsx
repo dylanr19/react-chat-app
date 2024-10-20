@@ -5,9 +5,9 @@ import {ChatContext} from "../Contexts/ChatContext.jsx";
 import {AccountPanel} from "./personal info/AccountPanel.jsx";
 import {LoginContext} from "../Contexts/LoginContext.jsx";
 import {LandingScreen} from "./landing screen/LandingScreen.jsx";
-import {ChatContainer} from "./ChatContainer.jsx";
-import {SidebarContainer} from "./SidebarContainer.jsx";
-import {MobileNavContainer} from "./MobileNavContainer.jsx";
+import {ChatContainer} from "./chat/ChatContainer.jsx";
+import {SidebarContainer} from "./sidebar/SidebarContainer.jsx";
+import {MobileNavContainer} from "./mobile/MobileNavContainer.jsx";
 
 function App() {
     const { openChatTab, setOpenChatTab, unhighlightChatTab } = useContext(ChatContext)

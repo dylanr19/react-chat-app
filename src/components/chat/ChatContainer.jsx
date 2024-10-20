@@ -1,6 +1,6 @@
-import Recipientbar from "./chat/Recipientbar.jsx";
-import ChatWindow from "./chat/ChatWindow.jsx";
-import Messagebar from "./chat/Messagebar.jsx";
+import Recipientbar from "./Recipientbar.jsx";
+import ChatWindow from "./ChatWindow.jsx";
+import Messagebar from "./Messagebar.jsx";
 
 export const ChatContainer = ( { setIsChatVisible } ) => {
 

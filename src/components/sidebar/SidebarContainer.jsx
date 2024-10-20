@@ -1,6 +1,6 @@
-import ChatTabSearchContainer from "./sidebar/search window/ChatTabSearchContainer.jsx";
-import OpenFriendsButton from "./sidebar/OpenFriendsButton.jsx";
-import ChatTabsWindow from "./sidebar/chat tabs/ChatTabsWindow.jsx";
+import ChatTabSearchContainer from "./search window/ChatTabSearchContainer.jsx";
+import OpenFriendsButton from "./OpenFriendsButton.jsx";
+import ChatTabsWindow from "./chat tabs/ChatTabsWindow.jsx";
 
 export const SidebarContainer = ({ isChatVisible, setIsChatVisible }) => {
 
