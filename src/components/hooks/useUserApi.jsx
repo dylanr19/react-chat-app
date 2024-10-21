@@ -23,6 +23,8 @@ export const useUserApi = () => {
 
     const changeProfilePicture = async ( imageURL ) => {
         return await callApi(`https://backend-dylan.azurewebsites.net/api/User/ChangeProfilePicture`, { method: 'PUT', data: {
+                Token: token,
+                UserId: loggedInUserId,
                 ImageURL: imageURL
             }})
     }
