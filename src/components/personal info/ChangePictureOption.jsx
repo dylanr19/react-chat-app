@@ -37,8 +37,8 @@ export const ChangePictureOption = ({ setImageURL, setUserData }) => {
 
         // Save the URL to the image in the user's profile in the db, then display it
         const imgURL = response.data.data.image.url
-        const encodedImgURL = encodeURIComponent(imgURL)
-        response = await changeProfilePicture(encodedImgURL)
+        // const encodedImgURL = encodeURIComponent(imgURL)
+        response = await changeProfilePicture(imgURL)
         if (response.status === 200) {
             setImageURL(imgURL)
             setUserData((prev) => ({
