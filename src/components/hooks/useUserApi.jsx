@@ -22,7 +22,9 @@ export const useUserApi = () => {
     }
 
     const changeProfilePicture = async ( imageURL ) => {
-        return await callApi(`https://backend-dylan.azurewebsites.net/api/User/ChangeProfilePicture/${loggedInUserId}/${imageURL}/${token}`, { method: 'PUT' })
+        return await callApi(`http://localhost:5046/api/User/ChangeProfilePicture/${loggedInUserId}/${token}`, { method: 'PUT', data: {
+                ImageURL: imageURL
+            }})
     }
 
     const loginUser = async (userId, password) => {
