@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useLayoutEffect, useRef, useState} from 'r
 import debounce from 'lodash.debounce';
 import {ChatContext} from "../../Contexts/ChatContext.jsx";
 import {ChatMessageContext} from "../../Contexts/ChatMessageContext.jsx";
-import ChatBox from "./ChatBox.jsx";
+import ChatBox from "./Chatbox/ChatBox.jsx";
 
 
 function ChatWindow() {
