@@ -57,16 +57,19 @@ function FRWindow () {
         let header = '';
         let emptyMessage = '';
         let list = '';
+        let showAcceptBtn = '';
 
         if (type === TYPES.INCOMING) {
             header = 'Incoming'
             emptyMessage = 'There are no incoming friend requests.'
             list = currentIncomingList
+            showAcceptBtn = true
 
         } else if (type === TYPES.OUTGOING) {
             header = 'Outgoing'
             emptyMessage = 'There are no outgoing friend requests.'
             list = currentOutgoingList
+            showAcceptBtn = false
         }
 
         return (
@@ -81,6 +84,7 @@ function FRWindow () {
                                         userData={fr}
                                         key={fr.userId}
                                         showDeleteButton={true}
+                                        showAcceptButton={showAcceptBtn}
                                         onAccept={handleAccept}
                                         onDelete={handleDecline}
                                     />)}
