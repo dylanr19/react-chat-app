@@ -30,11 +30,7 @@ export const useUserApi = () => {
     }
 
     const createUser = async (displayname, username, password) => {
-        return await callApi(`http://localhost:5046/api/User/CreateUser/`, { method: 'POST', data: {
-                Username: username,
-                DisplayName: displayname,
-                Password: password,
-            }})
+        return await callApi(`http://localhost:5046/api/User/CreateUser/${username}/${displayname}/${password}`, { method: 'POST' })
     }
 
     const deleteUser = async () => {
