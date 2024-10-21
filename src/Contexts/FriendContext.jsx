@@ -7,10 +7,10 @@ import {MESSAGE_TYPES} from "./MESSAGE_TYPES.js";
 export const FriendContext = createContext();
 
 export const FriendProvider = ({children}) => {
-    const [friendRequestRespondedNotification, setFriendRequestRespondedNotification] = useState(null);
-    const [friendRequestReceivedNotification, setFriendRequestReceivedNotification] = useState(null);
-    const [friendRemovedNotification, setFriendRemovedNotification] = useState(null);
-    const [friendStatusNotification, setFriendStatusNotification] = useState(null);
+    const [friendRequestResponse, setFriendRequestResponse] = useState(null);
+    const [receivedFriendRequest, setReceivedFriendRequest] = useState(null);
+    const [removedFriend, setRemovedFriend] = useState(null);
+    const [friendStatus, setFriendStatus] = useState(null);
 
     const { userId: loggedInUserId, token: token } = useContext(LoginContext)
     const { removeChatTab } = useContext(ChatContext)
@@ -29,31 +29,31 @@ export const FriendProvider = ({children}) => {
 
         switch (lastJsonMessage.type) {
             case MESSAGE_TYPES.FRIEND_REQUEST_RECEIVED:
-                setFriendRequestReceivedNotification(lastJsonMessage)
+                setReceivedFriendRequest(lastJsonMessage)
                 return
             case MESSAGE_TYPES.FRIEND_REQUEST_RESPONSE:
-                setFriendRequestRespondedNotification(lastJsonMessage)
+                setFriendRequestResponse(lastJsonMessage)
                 return
             case MESSAGE_TYPES.REMOVE_FRIEND:
-                setFriendRemovedNotification(lastJsonMessage)
+                setRemovedFriend(lastJsonMessage)
                 return
             case MESSAGE_TYPES.FRIEND_STATUS:
-                setFriendStatusNotification(lastJsonMessage)
+                setFriendStatus(lastJsonMessage)
                 return
         }
     }, [lastJsonMessage]);
 
     useEffect(() => {
-        if (friendRemovedNotification != null)
-            removeChatTab(friendRemovedNotification.userId)
-    }, [friendRemovedNotification]);
+        if (removedFriend != null)
+            removeChatTab(removedFriend.userId)
+    }, [removedFriend]);
 
     return(
         <FriendContext.Provider value={{
-            friendRequestRespondedNotification,
-            friendRequestReceivedNotification,
-            friendRemovedNotification,
-            friendStatusNotification
+            friendRequestRespondedNotification: friendRequestResponse,
+            friendRequestReceivedNotification: receivedFriendRequest,
+            friendRemovedNotification: removedFriend,
+            friendStatusNotification: friendStatus
         }}>
             {children}
         </FriendContext.Provider>

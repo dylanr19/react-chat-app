@@ -13,7 +13,7 @@ function FriendListWindow () {
     const [ originalFriendList, setOriginalFriendList ] = useState([])
     const [ currentFriendList, setCurrentFriendList ] = useState([])
 
-    const fetch = async () => {
+    const refreshFriendList = async () => {
         const response = await fetchFriends()
 
         if (response.status === 200) {
@@ -26,7 +26,7 @@ function FriendListWindow () {
 
         if (response.status === 200){
             removeChatTab(userId)
-            fetch()
+            refreshFriendList()
         }
     }
 
@@ -35,11 +35,11 @@ function FriendListWindow () {
     }
 
     useEffect(() => {
-        fetch()
+        refreshFriendList()
     }, []);
 
     useEffect(() => {
-            fetch()
+            refreshFriendList()
     }, [friendRemovedNotification, friendRequestRespondedNotification]);
 
     return(
