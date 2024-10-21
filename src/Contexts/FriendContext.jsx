@@ -20,7 +20,7 @@ export const FriendProvider = ({children}) => {
 
     useEffect(() => {
         if (loggedInUserId != null && token != null)
-            setSocketUrl(`ws://localhost:5046/ws?userID=${loggedInUserId}&token=${token}`);
+            setSocketUrl(`https://backend-dylan.azurewebsites.net/ws?userID=${loggedInUserId}&token=${token}`);
     }, [loggedInUserId, token]);
 
     useEffect(() => {

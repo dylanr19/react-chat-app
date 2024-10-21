@@ -7,11 +7,11 @@ export const useUserApi = () => {
     const { callApi } = api()
 
     const fetchUser = async () => {
-        return await callApi(`http://localhost:5046/api/User/GetUser/${loggedInUserId}`);
+        return await callApi(`https://backend-dylan.azurewebsites.net/api/User/GetUser/${loggedInUserId}`);
     }
 
     const changeDisplayname = async (username ) => {
-        return await callApi(`http://localhost:5046/api/User/ChangeUsername/${loggedInUserId}/${username}/${token}`, { method: 'PUT' });
+        return await callApi(`https://backend-dylan.azurewebsites.net/api/User/ChangeUsername/${loggedInUserId}/${username}/${token}`, { method: 'PUT' });
     }
 
     const uploadProfilePictureToImgbb = async ( formData ) => {
@@ -22,19 +22,19 @@ export const useUserApi = () => {
     }
 
     const changeProfilePicture = async ( imageURL ) => {
-        return await callApi(`http://localhost:5046/api/User/ChangeProfilePicture/${loggedInUserId}/${imageURL}/${token}`, { method: 'PUT' })
+        return await callApi(`https://backend-dylan.azurewebsites.net/api/User/ChangeProfilePicture/${loggedInUserId}/${imageURL}/${token}`, { method: 'PUT' })
     }
 
     const loginUser = async (userId, password) => {
-        return await callApi(`http://localhost:5046/api/User/LoginUser/${userId}/${password}`, { method: 'POST' })
+        return await callApi(`https://backend-dylan.azurewebsites.net/api/User/LoginUser/${userId}/${password}`, { method: 'POST' })
     }
 
     const createUser = async (displayname, username, password) => {
-        return await callApi(`http://localhost:5046/api/User/CreateUser/${username}/${displayname}/${password}`, { method: 'POST' })
+        return await callApi(`https://backend-dylan.azurewebsites.net/api/User/CreateUser/${username}/${displayname}/${password}`, { method: 'POST' })
     }
 
     const deleteUser = async () => {
-        return await callApi(`http://localhost:5046/api/User/DeleteUser/${loggedInUserId}/${token}`, { method: 'DELETE' });
+        return await callApi(`https://backend-dylan.azurewebsites.net/api/User/DeleteUser/${loggedInUserId}/${token}`, { method: 'DELETE' });
     }
 
     return {

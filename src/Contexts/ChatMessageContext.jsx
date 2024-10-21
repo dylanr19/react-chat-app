@@ -16,7 +16,7 @@ export const ChatMessageProvider = ({ children }) => {
 
     useEffect(() => {
         if (loggedInUserId != null && token != null)
-            setSocketUrl(`ws://localhost:5046/ws?userID=${loggedInUserId}&token=${token}`);
+            setSocketUrl(`https://backend-dylan.azurewebsites.net/ws?userID=${loggedInUserId}&token=${token}`);
         else
             setSocketUrl(null) //TODO: dit sluit de websocket connectie niet
 
