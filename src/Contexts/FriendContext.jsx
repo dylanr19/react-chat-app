@@ -48,22 +48,12 @@ export const FriendProvider = ({children}) => {
             removeChatTab(friendRemovedNotification.userId)
     }, [friendRemovedNotification]);
 
-    const shareStatus = (status) => {
-        sendJsonMessage({
-            userId: loggedInUserId,
-            token: token,
-            status: status,
-            type: MESSAGE_TYPES.FRIEND_STATUS
-        })
-    }
-
     return(
         <FriendContext.Provider value={{
             friendRequestRespondedNotification,
             friendRequestReceivedNotification,
             friendRemovedNotification,
-            friendStatusNotification,
-            shareStatus
+            friendStatusNotification
         }}>
             {children}
         </FriendContext.Provider>

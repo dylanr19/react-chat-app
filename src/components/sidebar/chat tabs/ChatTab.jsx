@@ -10,9 +10,8 @@ function ChatTab({ partner }) {
     const { startNewChat } = useContext(ChatContext)
 
     useEffect(() => {
-        if (partner.unreadMessageCount === 1){
+        if (partner.unreadMessageCount === 1)
             playMessageAudio()
-        }
     }, [partner.unreadMessageCount]);
 
     const handleTabClick = () => {
