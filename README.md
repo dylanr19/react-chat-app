@@ -1,6 +1,6 @@
 ## About The Project
 
-This is my first personal project built with **ReactJS** and **C#**. It is a messaging app that allows users to communicate in real-time.
+This is my first personal project built with **ReactJS** and **C#**. It is a messaging webapp that allows users to communicate in real-time.
 I created this project for learning purposes.
 
 ## Features
