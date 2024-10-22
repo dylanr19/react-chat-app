@@ -899,6 +899,8 @@ form .input-container input {
   border: none;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   width: 90%;
   outline: none;
   background: #dad7f7;
@@ -1183,9 +1185,5 @@ form .input-container input {
 
   .mobile-top-nav button {
     background: inherit;
-  }
-
-  .icon-container {
-    -webkit-appearance: none;
   }
 }
