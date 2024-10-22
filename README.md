@@ -16,7 +16,7 @@ I created this project for learning purposes.
   - Edit your profile image and name.
   - Delete your account if you choose to.
 - **Guest Login**: Try the application without creating an account.
-- **Responsive Design**: Response design for both desktop and mobile screns.
+- **Responsive Design**: Response design for both desktop and mobile screens.
 
 ## Back-end
 
