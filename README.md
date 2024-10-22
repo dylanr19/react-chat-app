@@ -5,7 +5,8 @@ I created this project for learning purposes.
 
 ## Features
 
-- **Real-Time Messaging**: Send and receive messages instantly.
+- **Real-Time Messaging**
+- **Responsive Design**
 - **Friend Requests**: 
   - Send friend requests to other users.
   - Accept or decline incoming friend requests.
@@ -16,7 +17,6 @@ I created this project for learning purposes.
   - Edit your profile image and name.
   - Delete your account if you choose to.
 - **Guest Login**: Try the application without creating an account.
-- **Responsive Design**: Response design for both desktop and mobile screens.
 
 ## Back-end
 
