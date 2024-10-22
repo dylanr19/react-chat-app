@@ -10,13 +10,14 @@ export const ChatMessageProvider = ({ children }) => {
 
     const [socketUrl, setSocketUrl] = useState(null)
     const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true});
-
     const [messageHistory, setMessageHistory] = useState([])
     const [lastSentChatMessage, setLastSentChatMessage] = useState(null)
 
+    const apiURL = import.meta.env.VITE_API_URL_WEBSOCKET
+
     useEffect(() => {
         if (loggedInUserId != null && token != null)
-            setSocketUrl(`https://backend-dylan.azurewebsites.net/ws?userID=${loggedInUserId}&token=${token}`);
+            setSocketUrl(`${apiURL}/ws?userID=${loggedInUserId}&token=${token}`);
         else
             setSocketUrl(null) //TODO: dit sluit de websocket connectie niet
 

@@ -14,13 +14,14 @@ export const FriendProvider = ({children}) => {
 
     const { userId: loggedInUserId, token: token } = useContext(LoginContext)
     const { removeChatTab } = useContext(ChatContext)
-
     const [socketUrl, setSocketUrl] = useState(null)
     const {lastJsonMessage, sendJsonMessage} = useWebSocket(socketUrl, {share: true})
 
+    const apiURL = import.meta.env.VITE_API_URL_WEBSOCKET
+
     useEffect(() => {
         if (loggedInUserId != null && token != null)
-            setSocketUrl(`https://backend-dylan.azurewebsites.net/ws?userID=${loggedInUserId}&token=${token}`);
+            setSocketUrl(`${apiURL}/ws?userID=${loggedInUserId}&token=${token}`);
     }, [loggedInUserId, token]);
 
     useEffect(() => {
