@@ -70,6 +70,8 @@ export const MobileNavContainer = ( { isChatVisible } ) => {
         };
 
         handleResize();
+
+        window.addEventListener('resize', handleResize);
     }, [])
 
     useEffect(() => {
@@ -77,6 +79,49 @@ export const MobileNavContainer = ( { isChatVisible } ) => {
             isChatVisible ? displayMobileChat() : displayMobileFriends()
         }
     }, [isChatVisible])
+
+    useEffect(() => {
+        if (isMobile === true) {
+
+            if (isChatVisible){
+                setDisplay(elements, {
+                    friend: 'none',
+                    chatWindow: 'flex',
+                    sidebar: 'none',
+                    accountPanel: 'none',
+                })
+            }
+            else {
+                setDisplay(elements, {
+                    friend: 'flex',
+                    chatWindow: 'none',
+                    sidebar: 'none',
+                    accountPanel: 'none',
+                })
+            }
+
+        }
+        else if (isMobile === false) {
+
+            if (isChatVisible){
+                setDisplay(elements, {
+                    friend: 'none',
+                    chatWindow: 'flex',
+                    sidebar: 'flex',
+                    accountPanel: 'flex',
+                })
+            }
+            else {
+                setDisplay(elements, {
+                    friend: 'flex',
+                    chatWindow: 'none',
+                    sidebar: 'flex',
+                    accountPanel: 'flex',
+                })
+            }
+
+        }
+    }, [isMobile]);
 
     return (
         <>
