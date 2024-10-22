@@ -1,11 +1,12 @@
 ## About The Project
 
-This is my first personal project built with **ReactJS** and **C#**. It is a messaging app that allows users to communicate in real-time.
+This is my first personal project built with **ReactJS** and **C#**. It is a messaging webapp that allows users to communicate in real-time.
 I created this project for learning purposes.
 
 ## Features
 
-- **Real-Time Messaging**: Send and receive messages instantly.
+- **Real-Time Messaging**: Sent and receives messages instantly.
+- **Responsive Design**: The app adjusts to different screen sizes.
 - **Friend Requests**: 
   - Send friend requests to other users.
   - Accept or decline incoming friend requests.
@@ -16,7 +17,6 @@ I created this project for learning purposes.
   - Edit your profile image and name.
   - Delete your account if you choose to.
 - **Guest Login**: Try the application without creating an account.
-- **Mobile Support**: Support for mobile screens
 
 ## Back-end
 
