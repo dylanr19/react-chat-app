@@ -144,6 +144,8 @@
   border: none;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   padding: 5px 8px;
   font: inherit;
   cursor: pointer;
@@ -1136,7 +1138,7 @@ form .input-container input {
     width: 60px;
     justify-content: center;
     align-content: center;
-    background: rgba(0, 0, 0, 0.29);
+    background: rgba(0, 0, 0, 0.14);
   }
   .friend-container {
     width: 100%;
