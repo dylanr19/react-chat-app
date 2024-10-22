@@ -5,8 +5,8 @@ I created this project for learning purposes.
 
 ## Features
 
-- **Real-Time Messaging**
-- **Responsive Design**
+- **Real-Time Messaging**: Sent and receives messages instantly.
+- **Responsive Design**: The app adjusts to different screen sizes.
 - **Friend Requests**: 
   - Send friend requests to other users.
   - Accept or decline incoming friend requests.
