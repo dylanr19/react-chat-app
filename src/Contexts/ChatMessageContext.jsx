@@ -2,6 +2,9 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 import {LoginContext} from "./LoginContext.jsx";
 import useWebSocket, {ReadyState} from "react-use-websocket";
 import { MESSAGE_TYPES } from "./MESSAGE_TYPES.js";
+import {webSocketOptions} from "../WebSocketOptions.js";
+
+const apiURL = import.meta.env.VITE_API_URL_WEBSOCKET
 
 export const ChatMessageContext = createContext();
 
@@ -9,17 +12,15 @@ export const ChatMessageProvider = ({ children }) => {
     const { userId: loggedInUserId, token: token } = useContext(LoginContext)
 
     const [socketUrl, setSocketUrl] = useState(null)
-    const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, {share: true});
+    const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(socketUrl, webSocketOptions);
     const [messageHistory, setMessageHistory] = useState([])
     const [lastSentChatMessage, setLastSentChatMessage] = useState(null)
 
-    const apiURL = import.meta.env.VITE_API_URL_WEBSOCKET
-
     useEffect(() => {
-        if (loggedInUserId != null && token != null)
+
+        if (loggedInUserId != null && token != null){
             setSocketUrl(`${apiURL}/ws?userID=${loggedInUserId}&token=${token}`);
-        else
-            setSocketUrl(null) //TODO: dit sluit de websocket connectie niet
+        }
 
     }, [loggedInUserId, token]);
 
