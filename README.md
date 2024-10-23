@@ -23,7 +23,7 @@ I created this project for learning purposes.
 https://github.com/dylanr19/react-chat-app-backend
 
 
-### Built With
+### Tech Stack
 
 * [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 * [![JavaScript](https://img.shields.io/badge/JavaScript-FFEA00?style=for-the-badge&logo=javascript&logoColor=black&textColor=black)](https://www.javascript.com/)
