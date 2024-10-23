@@ -1105,6 +1105,14 @@ form .input-container input {
   top: 16px;
 }
 
+.disconnected-pop-up {
+  color: #737373;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
 @media (max-width: 1000px) {
   .account-panel {
     display: none;

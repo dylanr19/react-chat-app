@@ -1,6 +1,6 @@
 import '../styles/App.css'
 import FriendWindowManager from "./friends/FriendWindowManager.jsx";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import {ChatContext} from "../Contexts/ChatContext.jsx";
 import {AccountPanel} from "./personal info/AccountPanel.jsx";
 import {LoginContext} from "../Contexts/LoginContext.jsx";
@@ -8,6 +8,7 @@ import {LandingScreen} from "./landing screen/LandingScreen.jsx";
 import {ChatContainer} from "./chat/ChatContainer.jsx";
 import {SidebarContainer} from "./sidebar/SidebarContainer.jsx";
 import {MobileNavContainer} from "./mobile/MobileNavContainer.jsx";
+import {KeepSocketAlive} from "./sidebar/KeepSocketAlive.jsx";
 
 function App() {
     const { openChatTab, setOpenChatTab, unhighlightChatTab } = useContext(ChatContext)
@@ -38,6 +39,7 @@ function App() {
                         <SidebarContainer isChatVisible={isChatVisible} setIsChatVisible={setIsChatVisible}/>
                         { isChatVisible ? <ChatContainer setIsChatVisible={setIsChatVisible}/> : <FriendWindowManager /> }
                         <AccountPanel />
+                        <KeepSocketAlive />
                     </>
             }
         </div>
