@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {useUserApi} from "../hooks/useUserApi.jsx";
 
 export const ChangePictureOption = ({ setImageURL, setUserData }) => {
-    const [isChangeImageOpen, setIsChangeImageOpen] = useState(false)
+    const [ isChangeImageOpen, setIsChangeImageOpen ] = useState(false)
+    const [ isLoading, setIsLoading ] = useState(false)
     const [ errorMessage, setErrorMessage ] = useState(null)
     const { uploadProfilePictureToImgbb, changeProfilePicture } = useUserApi()
 
@@ -23,6 +24,8 @@ export const ChangePictureOption = ({ setImageURL, setUserData }) => {
     }
 
     const apiUploadProfilePicture = async (file) => {
+        setIsLoading(true)
+
         // The Imgbb API expects a base64 string sent within form data
         const base64string = await convertToBase64(file);
         const cleanBase64String = base64string.replace(/^data:image\/[^;]+;base64,/, '');
@@ -33,6 +36,7 @@ export const ChangePictureOption = ({ setImageURL, setUserData }) => {
         let response = await uploadProfilePictureToImgbb(formData)
         if (response.status !== 200){
             setErrorMessage( `Could not upload profile picture to Imgbb error ${response.status}`)
+            setIsLoading(false)
             return
         } else setErrorMessage(null)
 
@@ -52,6 +56,8 @@ export const ChangePictureOption = ({ setImageURL, setUserData }) => {
             setErrorMessage(null)
         }
         else setErrorMessage(`Could not change profile picture: error ${response.status}`)
+
+        setIsLoading(false)
     }
 
     const handleChange = async (e) => {
@@ -75,7 +81,8 @@ export const ChangePictureOption = ({ setImageURL, setUserData }) => {
             {
                 isChangeImageOpen === false ? null :
                     <div className="edit-profile-picture">
-                        <input type="file" className="input" onChange={handleChange}></input>
+                        {isLoading && <div className="loader"></div>}
+                        <input type="file" className="input" onChange={handleChange}/>
                         <div style={{color: 'red', fontSize: 'x-small', paddingLeft: '7px'}}>{errorMessage}</div>
                     </div>
             }
