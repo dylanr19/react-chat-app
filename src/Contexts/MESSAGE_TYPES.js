@@ -5,5 +5,6 @@ export const MESSAGE_TYPES = {
     FRIEND_REQUEST_RESPONSE : 'friendRequestResponse',
     REMOVE_FRIEND : 'removedFriend',
     FRIEND_STATUS : 'friendStatus',
-    CHANGED_PROFILE_PICTURE: 'changedProfilePicture'
+    CHANGED_PROFILE_PICTURE: 'changedProfilePicture',
+    CHANGED_USERNAME: 'changedUsername'
 }

@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Userphoto} from "../other/UserPhoto.jsx";
+import {FriendContext} from "../../Contexts/FriendContext.jsx";
+import {useLiveUsername} from "../other/useLiveUsername.jsx";
 
 function FriendItem ({ userData, showChatButton, showAcceptButton, showDeleteButton, onDelete, onChat, onAccept }) {
     const {name, userId, photoURL,} = userData
+
+    const { username } = useLiveUsername(name, userId)
 
     const onDeleteClick = () => onDelete(userId)
     const onChatClick = () => onChat(userData)
@@ -16,7 +20,7 @@ function FriendItem ({ userData, showChatButton, showAcceptButton, showDeleteBut
                     <Userphoto userId={userId} photoURL={photoURL} />
 
                     <div className="credentials">
-                        <h2 className="name">{name}</h2>
+                        <h2 className="name">{username}</h2>
                         <p className="userID">{userId}</p>
                     </div>
                 </div>

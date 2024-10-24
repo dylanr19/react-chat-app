@@ -15,6 +15,7 @@ export const FriendProvider = ({children}) => {
     const [removedFriend, setRemovedFriend] = useState(null);
     const [friendStatus, setFriendStatus] = useState(null);
     const [changedProfilePicture, setChangedProfilePicture] = useState(null)
+    const [changedUsername, setChangedUsername] = useState(null)
 
     const { userId: loggedInUserId, token: token } = useContext(LoginContext)
     const { removeChatTab } = useContext(ChatContext)
@@ -49,6 +50,9 @@ export const FriendProvider = ({children}) => {
             case MESSAGE_TYPES.CHANGED_PROFILE_PICTURE:
                 setChangedProfilePicture(lastJsonMessage)
                 return
+            case MESSAGE_TYPES.CHANGED_USERNAME:
+                setChangedUsername(lastJsonMessage)
+                return
         }
     }, [lastJsonMessage]);
 
@@ -63,7 +67,8 @@ export const FriendProvider = ({children}) => {
             friendRequestReceivedNotification: receivedFriendRequest,
             friendRemovedNotification: removedFriend,
             friendStatusNotification: friendStatus,
-            changedProfilePicture
+            changedProfilePicture,
+            changedUsername
         }}>
             {children}
         </FriendContext.Provider>

@@ -5,9 +5,11 @@ import {FriendContext} from "../../../Contexts/FriendContext.jsx";
 import {STATUS} from "./STATUS.js";
 import {playMessageAudio } from "/src/components/other/SoundFX.js"
 import {Userphoto} from "../../other/UserPhoto.jsx";
+import {useLiveUsername} from "../../other/useLiveUsername.jsx";
 
 function ChatTab({ partner }) {
     const { startNewChat } = useContext(ChatContext)
+    const { username } = useLiveUsername(partner.name, partner.userId)
 
     useEffect(() => {
         if (partner.unreadMessageCount === 1)
@@ -33,7 +35,7 @@ function ChatTab({ partner }) {
                 />
 
                 <div className="info-container">
-                    <div className="name">{partner.name}</div>
+                    <div className="name">{username}</div>
                 </div>
 
                 {
