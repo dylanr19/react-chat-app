@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {STATUS} from "../sidebar/chat tabs/STATUS.js";
 import {useStatus} from "../hooks/useStatus.jsx";
 import {FriendContext} from "../../Contexts/FriendContext.jsx";
+import placeholder from "/src/assets/profile picture placeholder.jpg"
 
 export const Userphoto = ({ photoURL, userId, style }) => {
 
@@ -29,7 +30,7 @@ export const Userphoto = ({ photoURL, userId, style }) => {
     return (
         <>
             <img className="photo"
-                 src={currentPictureURL === 'none' || currentPictureURL == null ? '/src/assets/profile picture placeholder.jpg' : currentPictureURL}
+                 src={currentPictureURL === 'none' || currentPictureURL == null ? placeholder : currentPictureURL}
                  alt="Photo of this user"
             />
             <div className="user-status" style={ {background: statusColor, ...style }}></div>

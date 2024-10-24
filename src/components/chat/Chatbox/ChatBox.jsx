@@ -4,6 +4,7 @@ import {LoginContext} from "../../../Contexts/LoginContext.jsx";
 import {formatDate} from "/src/components/chat/Chatbox/formatDate.js"
 import {SentMessage} from "./SentMessage.jsx";
 import {ReceivedMessage} from "./ReceivedMessage.jsx";
+import placeholder from "/src/assets/profile picture placeholder.jpg"
 
 function ChatBox({ photoURL, text, date, senderId }) {
     const { userId: loggedInUserid } = useContext(LoginContext)
@@ -25,7 +26,11 @@ function ChatBox({ photoURL, text, date, senderId }) {
             isOwnMessage(senderId) ?
                 <SentMessage text={text} date={localisedDate} />
                 :
-                <ReceivedMessage photoURL={photoURL} date={localisedDate} text={text} />
+                <ReceivedMessage
+                    photoURL={photoURL === 'none' || photoURL != null ? photoURL : placeholder}
+                    date={localisedDate}
+                    text={text}
+                />
         }
         </>
     )

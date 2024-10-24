@@ -5,6 +5,7 @@ import {ChatContext} from "../../Contexts/ChatContext.jsx";
 import {ChangePictureOption} from "./ChangePictureOption.jsx";
 import {ChangeDisplaynameOption} from "./ChangeDisplaynameOption.jsx";
 import {DeleteAccountOption} from "./DeleteAccountOption.jsx";
+import placeholder from "/src/assets/profile picture placeholder.jpg";
 
 export const AccountPanel = () => {
     const {userId: loggedInUserId, setUserId: setLoggedInUserId} = useContext(LoginContext)
@@ -46,7 +47,7 @@ export const AccountPanel = () => {
         <>
             <div className="account-panel">
                 <img className="photo"
-                     src={imageURL === 'none' || imageURL == null ? '/src/assets/profile picture placeholder.jpg' : imageURL}
+                     src={imageURL === 'none' || imageURL == null ? {placeholder} : imageURL}
                      alt="Photo of this user"
                 />
                 <div className="credentials">
