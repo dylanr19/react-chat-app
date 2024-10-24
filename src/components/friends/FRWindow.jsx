@@ -5,16 +5,17 @@ import SearchBar from "../other/SearchBar.jsx";
 import FriendSearchComponent from "./FriendSearchComponent.jsx";
 import {FriendContext} from "../../Contexts/FriendContext.jsx";
 
-//TODO: deze component kleiner maken
 function FRWindow () {
     const { fetchIncomingFriendRequests, fetchOutgoingFriendRequests, acceptFriendRequest, declineFriendRequest } = useFriendApi()
     const { friendRequestRespondedNotification, friendRequestReceivedNotification } = useContext(FriendContext);
 
-    const [ originalOutgoingList, setOriginalOutgoingList ] = useState([])
-    const [ currentOutgoingList, setCurrentOutgoingList ] = useState([])
+    const [ originalOutgoingList, setOriginalOutgoingList ] = useState(null)
+    const [ originalIncomingList, setOriginalIncomingList ] = useState(null)
+    const [ currentOutgoingList, setCurrentOutgoingList ] = useState(null)
+    const [ currentIncomingList, setCurrentIncomingList ] = useState(null)
 
-    const [ originalIncomingList, setOriginalIncomingList ] = useState([])
-    const [ currentIncomingList, setCurrentIncomingList ] = useState([])
+    const [ incomingMessage, setIncomingMessage ] = useState('')
+    const [ outgoingMessage, setOutgoingMessage ] = useState('')
 
     const fetch = async () => {
         const response1 = await fetchIncomingFriendRequests()
@@ -44,8 +45,16 @@ function FRWindow () {
     }
 
     useEffect(() => {
-        fetch()
-    }, []);
+        if (originalIncomingList != null && originalIncomingList.length === 0){
+            setIncomingMessage('You have no incoming friend requests.')
+        }
+    }, [originalIncomingList]);
+
+    useEffect(() => {
+        if (originalOutgoingList != null && originalOutgoingList.length === 0){
+            setOutgoingMessage('You have no outgoing friend requests.')
+        }
+    }, [originalOutgoingList]);
 
     useEffect(() => {
         fetch()
@@ -64,12 +73,13 @@ function FRWindow () {
 
             <h4 className="friend-requests-header">Outgoing</h4>
 
+
+
+                    <p className="empty-friend-message">{outgoingMessage}</p>
+
             {
-                currentOutgoingList.length === 0
-                    ?
-                    <p className="empty-friend-message">You have no outgoing friend requests.</p>
-                    :
-                    <div className="friend-list">
+                currentOutgoingList != null &&
+                <div className="friend-list">
                         {
                             currentOutgoingList.map(fr =>
                                 <FriendItem
@@ -83,13 +93,16 @@ function FRWindow () {
                     </div>
             }
 
+
             <h4 className="friend-requests-header">Incoming</h4>
+
+
+
+                    <p className="empty-friend-message">{incomingMessage}</p>
+
             {
-                currentIncomingList.length === 0
-                    ?
-                    <p className="empty-friend-message">You have no incoming friend requests.</p>
-                    :
-                    <div className="friend-list">
+                currentIncomingList != null &&
+                <div className="friend-list">
                         {
                             currentIncomingList.map(fr =>
                                 <FriendItem
@@ -103,6 +116,7 @@ function FRWindow () {
                         }
                     </div>
             }
+
         </>
     )
 }

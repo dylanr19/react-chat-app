@@ -10,8 +10,9 @@ function FriendListWindow () {
     const { startNewChat, removeChatTab } = useContext(ChatContext);
     const { friendRemovedNotification, friendRequestRespondedNotification } = useContext(FriendContext);
     const { fetchFriends, removeFriend } = useFriendApi()
-    const [ originalFriendList, setOriginalFriendList ] = useState([])
-    const [ currentFriendList, setCurrentFriendList ] = useState([])
+    const [ originalFriendList, setOriginalFriendList ] = useState(null)
+    const [ currentFriendList, setCurrentFriendList ] = useState(null)
+    const [ noFriendsMessage, setNoFriendsMessage ] = useState('')
 
     const refreshFriendList = async () => {
         const response = await fetchFriends()
@@ -34,9 +35,12 @@ function FriendListWindow () {
         startNewChat(user)
     }
 
+    // Prevent short ui flickering due to message displaying before the list has fetched.
     useEffect(() => {
-        refreshFriendList()
-    }, []);
+        if (originalFriendList != null && originalFriendList.length === 0){
+            setNoFriendsMessage('You currently have no friends. Check out the \'Add Friends\' section to connect with others.')
+        }
+    }, [originalFriendList]);
 
     useEffect(() => {
             refreshFriendList()
@@ -51,23 +55,23 @@ function FriendListWindow () {
             >
             </SearchBar>
 
+                    <p className="empty-friend-message">{noFriendsMessage}</p>
+
             {
-                currentFriendList.length === 0 ?
-                    <p className="empty-friend-message">You have no friends.</p>
-                    :
-                    <div className="friend-list">
-                        {
-                            currentFriendList.map(fr =>
-                                <FriendItem
-                                    userData={fr}
-                                    key={fr.userId}
-                                    showChatButton={true}
-                                    showDeleteButton={true}
-                                    onDelete={onDeleteClick}
-                                    onChat={onChatClick}
-                                />)
-                        }
-                    </div>
+                currentFriendList != null &&
+                <div className="friend-list">
+                    {
+                        currentFriendList.map(fr =>
+                            <FriendItem
+                                userData={fr}
+                                key={fr.userId}
+                                showChatButton={true}
+                                showDeleteButton={true}
+                                onDelete={onDeleteClick}
+                                onChat={onChatClick}
+                            />)
+                    }
+                </div>
             }
         </>
     )
