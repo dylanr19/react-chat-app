@@ -46,7 +46,7 @@ export const AccountPanel = () => {
         <>
             <div className="account-panel">
                 <img className="photo"
-                     src={imageURL === 'none' || imageURL == null ? 'src/assets/profile picture placeholder.jpg' : imageURL}
+                     src={imageURL === 'none' || imageURL == null ? '/src/assets/profile picture placeholder.jpg' : imageURL}
                      alt="Photo of this user"
                 />
                 <div className="credentials">

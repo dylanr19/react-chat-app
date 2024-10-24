@@ -29,7 +29,7 @@ export const Userphoto = ({ photoURL, userId, style }) => {
     return (
         <>
             <img className="photo"
-                 src={currentPictureURL === 'none' || currentPictureURL == null ? 'src/assets/profile picture placeholder.jpg' : currentPictureURL}
+                 src={currentPictureURL === 'none' || currentPictureURL == null ? '/src/assets/profile picture placeholder.jpg' : currentPictureURL}
                  alt="Photo of this user"
             />
             <div className="user-status" style={ {background: statusColor, ...style }}></div>
