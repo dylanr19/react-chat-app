@@ -40,6 +40,7 @@ function FriendListWindow () {
         if (originalFriendList != null && originalFriendList.length === 0){
             setNoFriendsMessage('You currently have no friends. Check out the \'Add Friends\' section to connect with others.')
         }
+        else setNoFriendsMessage(null)
     }, [originalFriendList]);
 
     useEffect(() => {
