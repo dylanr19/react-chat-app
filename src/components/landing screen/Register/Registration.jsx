@@ -9,6 +9,8 @@ import {validateUsername} from "./validateUsername.js";
 import {validateName} from "./validateName.js";
 import {hasSpecialCharacters, isEmpty, isNameValid, isWithinLength} from "./validationMethods.js";
 
+const apiURL = import.meta.env.VITE_API_URL
+
 export const Registration = ({ setIsRegistering }) => {
     const { callApi } = api()
     const { createUser } = useUserApi()
@@ -33,7 +35,7 @@ export const Registration = ({ setIsRegistering }) => {
     const [ isRegistrationComplete, setIsRegistrationComplete ] = useState(false)
 
     const doesUsernameAlreadyExist = async () => {
-        const response = await callApi(`http://localhost:5046/api/User/CheckUsernameExists/${username}`, { method: 'POST' })
+        const response = await callApi(`${apiURL}/api/User/CheckUsernameExists/${username}`, { method: 'POST' })
         return response.status === 200
     }
 
