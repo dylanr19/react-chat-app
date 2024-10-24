@@ -589,6 +589,7 @@
 .message-bar .text-input {
   width: 100%;
   border: none;
+  background: inherit;
   font-family: "Roboto", sans-serif;
   opacity: 0.6;
   outline: none;
