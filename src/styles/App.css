@@ -1118,6 +1118,11 @@ form .input-container input {
   border-radius: 50%;
 }
 
+.partner-tab .user-status {
+  width: 15px;
+  height: 13px;
+}
+
 @media (max-width: 1000px) {
   .account-panel {
     display: none;
@@ -1175,6 +1180,11 @@ form .input-container input {
 
   .partner-tab {
     justify-content: flex-start;
+  }
+
+  .partner-tab .user-status {
+    width: 13px;
+    height: 13px;
   }
 
   .app-container {
