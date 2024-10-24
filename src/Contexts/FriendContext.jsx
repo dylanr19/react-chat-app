@@ -14,11 +14,12 @@ export const FriendProvider = ({children}) => {
     const [receivedFriendRequest, setReceivedFriendRequest] = useState(null);
     const [removedFriend, setRemovedFriend] = useState(null);
     const [friendStatus, setFriendStatus] = useState(null);
+    const [changedProfilePicture, setChangedProfilePicture] = useState(null)
 
-    const { userId: loggedInUserId, token: token, setUserId: setLoggedInUserId } = useContext(LoginContext)
+    const { userId: loggedInUserId, token: token } = useContext(LoginContext)
     const { removeChatTab } = useContext(ChatContext)
     const [socketUrl, setSocketUrl] = useState(null)
-    const {lastJsonMessage, sendJsonMessage, readyState} = useWebSocket(socketUrl, webSocketOptions)
+    const {lastJsonMessage} = useWebSocket(socketUrl, webSocketOptions)
 
     useEffect(() => {
 
@@ -45,6 +46,9 @@ export const FriendProvider = ({children}) => {
             case MESSAGE_TYPES.FRIEND_STATUS:
                 setFriendStatus(lastJsonMessage)
                 return
+            case MESSAGE_TYPES.CHANGED_PROFILE_PICTURE:
+                setChangedProfilePicture(lastJsonMessage)
+                return
         }
     }, [lastJsonMessage]);
 
@@ -58,7 +62,8 @@ export const FriendProvider = ({children}) => {
             friendRequestRespondedNotification: friendRequestResponse,
             friendRequestReceivedNotification: receivedFriendRequest,
             friendRemovedNotification: removedFriend,
-            friendStatusNotification: friendStatus
+            friendStatusNotification: friendStatus,
+            changedProfilePicture
         }}>
             {children}
         </FriendContext.Provider>

@@ -30,7 +30,7 @@ function ChatTab({ partner }) {
                 <Userphoto
                     userId={partner.userId}
                     photoURL={partner.photoURL}
-                    style={{ minWidth: '15.7px'}}
+                    style={{ width: '15px', height: '13px'}}
                 />
 
                 <div className="info-container">
