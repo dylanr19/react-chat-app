@@ -588,12 +588,12 @@
 
 .message-bar .text-input {
   width: 100%;
-  border:  none;
-  background-color: white;
+  border: none;
   font-family: "Roboto", sans-serif;
   opacity: 0.6;
   outline: none;
-  align-content: center;
+  align-self: center;
+  /*text-align: center;*/
   margin-left: 18px;
 }
 
