@@ -1,13 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 #root {
-  /*max-width: 1280px;*/
   overflow: hidden;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  /*margin: 0 auto;*/
-  /*padding: 2rem;*/
-  /*text-align: center;*/
 }
 
 ::-webkit-scrollbar {
@@ -72,12 +68,10 @@
   width: 350px;
   overflow: hidden;
   display: flex;
-  /*justify-content: space-between;*/
   align-items: center;
   gap: 20px;
 }
 
-/* Style the links inside the navigation bar */
 .topnav button {
   color: #a5a5ab;
   background-color: inherit;
@@ -85,9 +79,6 @@
   padding: 4px 9px;
   border: none;
   border-radius: 6px;
-  /*border-style: solid;*/
-  /*border-width: 2px;*/
-  /*border-color: #262a34;*/
   transition: background-color 0.3s;
 }
 
@@ -96,13 +87,11 @@
   background-color: #121a2d;
 }
 
-/* Change the color of links on hover */
 .topnav button:hover {
   background-color: #121a2d;
   border-color: #262a34;
 }
 
-/* Add a color to the active/current link */
 .topnav button.active {
   background-color: #172037;
 }
@@ -111,10 +100,6 @@
   background-color: #5542f6;
   color: white;
 }
-
-/*.topnav button.add:active {*/
-/*  background-color: #121a2d;*/
-/*}*/
 
 * {
   box-sizing: border-box;
@@ -131,22 +116,11 @@
   border-style: solid;
   border-color: #262a34;
   border-width: 2px;
-  /*border-left-width: 0;*/
   border-radius: 4px;
   padding: 5px 8px;
   cursor: pointer;
   outline: inherit;
 }
-
-/*.partner-search-bar .bi {*/
-/*  color: #72767c;*/
-/*  border-style: solid;*/
-/*  border-width: 1px;*/
-/*  border-color: #262a34;*/
-/*  border-right-width: 0;*/
-/*  font-size: 10px;*/
-/*  align-self: c*/
-/*}*/
 
 .partner-search-bar input[type=text]::placeholder {
   color: #72767c;
@@ -163,7 +137,6 @@
 
 .example input[type=text] {
   width: 100%;
-  /*max-width: 700px;*/
   background: inherit;
   border-style: solid;
   border-width: 2px;
@@ -194,7 +167,6 @@
   border-width: 2px;
   border-left-width: 0;
   border-color: #262a34;
-  /*border-radius: 3px;*/
   border-radius: 0 3px 3px 0;
   padding: 0px 5px;
   font: inherit;
@@ -209,18 +181,7 @@
   color: #a5a5ab;
 }
 
-/*.example button:hover {*/
-/*  background: #0b7dda;*/
-/*}*/
-
-/*.example::after {*/
-/*  content: "";*/
-/*  clear: both;*/
-/*  display: table;*/
-/*}*/
-
 .friend-container {
-  /*background-color: #f8f9fd;*/
   border-width: 0;
   border-left-width: 1px;
   border-right-width: 1px;
@@ -237,7 +198,6 @@
 
 .friend-item {
   display: flex;
-  /*max-width: 725px;*/
   position: relative;
   border-top-style: solid;
   border-top-width: 1px;
@@ -258,7 +218,6 @@
   width: 85%;
   height: 100%;
   background-color: rgba(23, 29, 39, 0);
-  /*z-index: -1;*/
 }
 
 .friend-item .photo {
@@ -279,7 +238,6 @@
 .friend-item .credentials {
   margin-left: 10px;
   font-size: 13px;
-  /*color: #294255;*/
 }
 
 .friend-item .credentials .name {
@@ -312,14 +270,11 @@
 }
 
 .friend-item .chat-button {
-  /*background-color: inherit;*/
-  /*color: #a5a5ab;*/
   background-color: #5542f6;
   color: white;
 }
 
 .friend-item .chat-button:hover {
-  /*background-color: #121a2d;*/
   background-color: #5e4cfe;
 }
 
@@ -338,8 +293,6 @@
 }
 
 .friend-item .accept-button {
-  /*background-color: inherit;*/
-  /*color: #a5a5ab;*/
   background-color: #5542f6;
   color: white;
   margin-left: 10px;
@@ -356,7 +309,6 @@
 }
 
 .sidebar-container {
-  /*background-color: white;*/
   font-weight: 500;
   height: 100%;
   flex: 0 0 200px;
@@ -529,7 +481,6 @@
 }
 
 .chatWindow-container {
-  /*background-color: #f8f9fd;*/
   border-width: 0;
   border-left-width: 1px;
   border-right-width: 1px;
@@ -555,7 +506,6 @@
   display: flex;
   align-items: center;
   color: #fcfcfc;
-  /*background-color: white;*/
 }
 
 .chat-window {
@@ -563,7 +513,6 @@
   display: flex;
   flex-direction: column-reverse;
   overflow: auto;
-  /*background-image: url('/src/assets/background-green-mountains-landscape-illustration.jpg');*/
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -614,7 +563,6 @@
 }
 
 .chat-box-sent .message-container .date {
-  /*color: black;*/
   color: #95969d;
 }
 
@@ -637,7 +585,6 @@
 
 .chat-box-sent .message-container .text {
   color: #fcfcfc;
-  /*background-image: linear-gradient(310deg, #a663ea, #17c1e8);*/
   background-color: #5542f6;
   border-radius: 4px;
   padding: 10px;
@@ -673,13 +620,11 @@
   opacity: 0.6;
   outline: none;
   align-self: center;
-  /*text-align: center;*/
   margin-left: 18px;
 }
 
 .message-bar .text-input::placeholder {
   color: #a5a5ab;
-  /*padding-left: 10px;*/
 }
 
 .message-bar input{
@@ -719,7 +664,6 @@
   width: 350px;
   flex-grow: 0;
   flex-shrink: 0;
-  /*background-color: white;*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -851,7 +795,6 @@
 .options-container .displayname .bi,
 .options-container .profile-picture .bi,
 .options-container .delete-account .bi {
-  /*margin-right: auto;*/
   background: none;
   border: none;
   padding: 0;
@@ -928,18 +871,15 @@
 }
 
 .options-container .password-prompt .submit {
-  /*background-color: red;*/
   background: rgba(85, 66, 246, 0.18);
   width: 60px;
 }
 
 .options-container .password-prompt .submit:hover {
-  /*background-color: #eb0404;*/
   background: rgba(85, 66, 246, 0.18);
 }
 
 .options-container .password-prompt .submit:active {
-  /*background-color: #c70606;*/
   background: rgba(85, 66, 246, 0.18);
 }
 
@@ -1012,7 +952,6 @@
   border-style: solid;
   border-width: 2px;
   border-color: #2b2f3a;
-  /*border-radius: 8px;*/
   z-index: 2;
 }
 
@@ -1133,7 +1072,6 @@ form .input-container input::placeholder {
 .guest-paragraph {
   margin-top: -12px;
   color: #a5a5ab;
-  /*font-size: 14px;*/
   font-size: 10px;
 }
 
@@ -1171,7 +1109,6 @@ form .input-container input::placeholder {
   border-style: solid;
   border-width: 2px;
   border-color: #2b2f3a;
-  /*background: linear-gradient(to bottom, #f0f0f0, #ffffff);*/
 }
 
 .register-container form {
@@ -1182,7 +1119,6 @@ form .input-container input::placeholder {
 }
 
 .register-container label {
-  /*margin-bottom: -20px;*/
   font-size: 14px;
 }
 
@@ -1195,7 +1131,6 @@ form .input-container input::placeholder {
   background: inherit;
   box-shadow: none;
   padding: 6px;
-  /*margin: 0;*/
   font: inherit;
   font-size: 14px;
   color: #a5a5ab;
@@ -1214,14 +1149,12 @@ form .input-container input::placeholder {
   border-radius: 8px;
   padding: 8px;
   margin-top: 15px;
-  /*margin: 0;*/
   outline: none;
   box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.1),
   0 1px 3px rgba(0, 0, 0, 0.08);
   color: whitesmoke;
   font: inherit;
   font-size: 12px;
-  /*transition: background-color 0.3s ease;*/
 }
 
 .register-container form button.disabled {
