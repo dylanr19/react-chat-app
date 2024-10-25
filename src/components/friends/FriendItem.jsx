@@ -16,6 +16,8 @@ function FriendItem ({ userData, showChatButton, showAcceptButton, showDeleteBut
         <>
             <div className="friend-item">
 
+                <div className="clickable-area" onClick={onChatClick}></div>
+
                 <div className="info">
                     <Userphoto userId={userId} photoURL={photoURL} />
 
