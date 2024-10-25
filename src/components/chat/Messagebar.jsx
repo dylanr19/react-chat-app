@@ -31,7 +31,7 @@ function Messagebar() {
                 <input
                     type="text"
                     className="text-input"
-                    placeholder="Type a message here ..."
+                    placeholder="Type a message"
                     value={inputValue}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}

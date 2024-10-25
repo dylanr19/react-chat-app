@@ -24,7 +24,7 @@ function ChatTab({ partner }) {
         <>
             <button
                 className="partner-tab"
-                style={{background: partner.isHighlighted ? '#ededed' : 'white'}}
+                style={{background: partner.isHighlighted ? '#161b26' : '#0c111d'}}
                 id={partner.userId}
                 onClick={() => handleTabClick()}
             >

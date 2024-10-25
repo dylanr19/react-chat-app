@@ -24,7 +24,7 @@
 }
 
 .app-container {
-  background-color: #242424;
+  background-color: #0c111d;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -33,10 +33,10 @@
 
 .test123 {
   border-width: 0;
-  border-bottom-width: 2px;
-  border-top-width: 2px;
+  border-bottom-width: 1px;
+  border-top-width: 1px;
   border-style: solid;
-  border-color: #efeff4;
+  border-color: #171d27;
   height: 6%;
   min-height: 50px;
   min-width: 500px;
@@ -57,14 +57,15 @@
 }
 
 .top-navigation-container .line {
-  width: 1px;
+  width: 0.5px;
   height: 30px;
-  background-color: #e2e2e2;
+  background-color: #171d27;
   border-radius: 10px;
 }
 
 .top-navigation-container .title {
-  color: #294255;
+  color: #fcfcfc;
+  font-size: 17px;
 }
 
 .topnav {
@@ -78,40 +79,42 @@
 
 /* Style the links inside the navigation bar */
 .topnav button {
-  color: black;
-  background-color: #f8f9fd;
-  font-size: 17px;
-  padding: 2px 5px;
+  color: #a5a5ab;
+  background-color: inherit;
+  font-size: 15px;
+  padding: 4px 9px;
+  border: none;
   border-radius: 6px;
-  border-style: hidden;
+  /*border-style: solid;*/
+  /*border-width: 2px;*/
+  /*border-color: #262a34;*/
   transition: background-color 0.3s;
 }
 
 .topnav button:focus {
   outline: none;
+  background-color: #121a2d;
 }
 
 /* Change the color of links on hover */
 .topnav button:hover {
-  background-color: rgba(211, 211, 211, 0.31);
-  color: black;
-  border-style: hidden;
+  background-color: #121a2d;
+  border-color: #262a34;
 }
 
 /* Add a color to the active/current link */
 .topnav button.active {
-  background-color: #e2e2e2;
+  background-color: #172037;
 }
 
 .topnav button.add {
-  background-color: #04AA6D;
+  background-color: #5542f6;
   color: white;
 }
 
-.topnav button.add:hover {
-  background-color: #0dba7a;
-  color: white;
-}
+/*.topnav button.add:active {*/
+/*  background-color: #121a2d;*/
+/*}*/
 
 * {
   box-sizing: border-box;
@@ -124,12 +127,33 @@
 
 .partner-search-bar input[type=text] {
   width: 100%;
-  background: #e2e2e2;
-  border: none;
-  border-radius: 2px;
+  background: inherit;
+  border-style: solid;
+  border-color: #262a34;
+  border-width: 2px;
+  /*border-left-width: 0;*/
+  border-radius: 4px;
   padding: 5px 8px;
   cursor: pointer;
   outline: inherit;
+}
+
+/*.partner-search-bar .bi {*/
+/*  color: #72767c;*/
+/*  border-style: solid;*/
+/*  border-width: 1px;*/
+/*  border-color: #262a34;*/
+/*  border-right-width: 0;*/
+/*  font-size: 10px;*/
+/*  align-self: c*/
+/*}*/
+
+.partner-search-bar input[type=text]::placeholder {
+  color: #72767c;
+}
+
+.partner-search-bar input {
+  color: #a5a5ab;
 }
 
 .example {
@@ -140,8 +164,11 @@
 .example input[type=text] {
   width: 100%;
   /*max-width: 700px;*/
-  background: #e2e2e2;
-  border: none;
+  background: inherit;
+  border-style: solid;
+  border-width: 2px;
+  border-right-width: 0;
+  border-color: #262a34;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   border-top-right-radius: 0;
@@ -152,22 +179,34 @@
   outline: inherit;
 }
 
+.example input {
+  color: #a5a5ab;
+}
+
+.example input[type=text]::placeholder{
+  color: #72767c;
+}
+
 .example button {
   width: 30px;
-  background: #e2e2e2;
-  border: none;
+  background: inherit;
+  border-style: solid;
+  border-width: 2px;
+  border-left-width: 0;
+  border-color: #262a34;
   /*border-radius: 3px;*/
   border-radius: 0 3px 3px 0;
-  padding: 5px 8px;
+  padding: 0px 5px;
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  color: #72767c;
 }
 
 .success-message {
   margin: -10px 25px;
   font-size: 13px;
-  color: black;
+  color: #a5a5ab;
 }
 
 /*.example button:hover {*/
@@ -181,12 +220,12 @@
 /*}*/
 
 .friend-container {
-  background-color: #f8f9fd;
+  /*background-color: #f8f9fd;*/
   border-width: 0;
-  border-left-width: 2px;
-  border-right-width: 2px;
+  border-left-width: 1px;
+  border-right-width: 1px;
   border-style: solid;
-  border-color: #efeff4;
+  border-color: #171d27;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -201,7 +240,7 @@
   /*max-width: 725px;*/
   border-top-style: solid;
   border-top-width: 1px;
-  border-color: rgba(139, 139, 139, 0.31);
+  border-color: #171d27;
   height: 60px;
   margin: 0 25px;
 }
@@ -224,15 +263,17 @@
 .friend-item .credentials {
   margin-left: 10px;
   font-size: 13px;
-  color: #294255;
+  /*color: #294255;*/
 }
 
 .friend-item .credentials .name {
   margin: 0 0 -4px;
+  color: #fcfcfc;
 }
 
 .friend-item .credentials .userID {
   margin: 0;
+  color: #95969d;
 }
 
 .friend-item .buttons {
@@ -241,7 +282,12 @@
 }
 
 .friend-item .buttons button {
-  border-style: hidden;
+  display: inline-flex;
+  justify-content: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #393e4c;
+  width: 10px;
   transition: background-color 0.3s;
 }
 
@@ -250,29 +296,35 @@
 }
 
 .friend-item .chat-button {
-  background-color: rgba(211, 211, 211, 0.31);
+  /*background-color: inherit;*/
+  /*color: #a5a5ab;*/
+  background-color: #5542f6;
+  color: white;
 }
 
 .friend-item .chat-button:hover {
-  background-color: rgba(202, 202, 202, 0.67);
+  /*background-color: #121a2d;*/
+  background-color: #5e4cfe;
 }
 
 .friend-item .delete-button:hover {
-  background-color: rgb(240, 42, 42);
+  background-color: #121a2d;
 }
 
 .friend-item .delete-button {
-  background-color: #ff4545;
-  color: white;
+  background-color: inherit;
+  color: #a5a5ab;
   margin-left: 10px;
 }
 
 .friend-item .accept-button:hover {
-  background-color: rgb(21, 144, 89);
+  background-color: #121a2d;
 }
 
 .friend-item .accept-button {
-  background-color: #1ba769;
+  /*background-color: inherit;*/
+  /*color: #a5a5ab;*/
+  background-color: #5542f6;
   color: white;
   margin-left: 10px;
 }
@@ -288,7 +340,7 @@
 }
 
 .sidebar-container {
-  background-color: white;
+  /*background-color: white;*/
   font-weight: 500;
   height: 100%;
   flex: 0 0 200px;
@@ -297,11 +349,11 @@
 }
 
 .partner-search-container {
-  border-width: 2px;
+  border-width: 1px;
   border-left-width: 0;
   border-right-width: 0;
   border-style: solid;
-  border-color: #efeff4;
+  border-color: #171d27;
   min-height: 50px;
   height: 6%;
   width: 100%;
@@ -318,7 +370,7 @@
 
 .toggle-window-button .bi {
   font-size: 20px;
-  color: black;
+  color: #a5a5ab;
   opacity: 0.8;
   align-content: center;
   text-align: center;
@@ -327,28 +379,32 @@
 
 .toggle-window-button .text {
   opacity: 0.8;
+  color: #b0b0b6;
 }
 
 .toggle-window-button .input {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   outline: none;
-  border: none;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  border-color: #262a34;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 5px;
   transition: background-color 0.3s;
-  background-color: rgba(211, 211, 211, 0.45);
+  background-color: inherit;
 }
 
 .toggle-window-button .input:hover {
-  background-color: #e4e4e4;
+  background-color: #121a2d;
 }
 
 .toggle-window-button .input:active {
-  background-color: #afafaf;
+  background-color: #121a2d;
 }
 
 .direct-messages-header {
@@ -369,11 +425,11 @@
 }
 
 .empty-friend-message {
-  color: black;
+  color: #72767c;
 }
 
 .friend-requests-header {
-  color: #294255;
+  color: #fcfcfc;
 }
 
 .partner-tab {
@@ -387,15 +443,15 @@
   justify-content: space-evenly;
   border-style: solid;
   border-width: 0;
-  border-bottom-width: 1px;
-  border-color: rgba(139, 139, 139, 0.31);
+  border-top-width: 1px;
+  border-color: #171d27;
   border-radius: 0;
   transition: opacity ease 0.3s;
 }
 
 .partner-tab:hover {
-  border-color: #f4eff2;
-  opacity: 0.8;
+  border-color: #171d27;
+  opacity: 0.6;
 }
 
 .partner-tab:focus {
@@ -403,7 +459,7 @@
 }
 
 .partner-tab .photo {
-  width: 40px;
+  width: 35px;
   /*height: 48px;*/
   aspect-ratio: 1/1;
   border-radius: 50%;
@@ -420,6 +476,7 @@
 .partner-tab .info-container .name {
   display: block;
   font-size: 11.5px;
+  color: #fcfcfc;
 }
 
 .partner-tab .info-container .last-message {
@@ -452,16 +509,16 @@
   padding-right: 1px;
   padding-left: 1px;
   border-radius: 2px;
-  background-color: #e22727;
+  background-color: #5542f6;
 }
 
 .chatWindow-container {
-  background-color: #f8f9fd;
+  /*background-color: #f8f9fd;*/
   border-width: 0;
-  border-left-width: 2px;
-  border-right-width: 2px;
+  border-left-width: 1px;
+  border-right-width: 1px;
   border-style: solid;
-  border-color: #efeff4;
+  border-color: #171d27;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -470,19 +527,19 @@
 
 .recipient-bar {
   border-width: 0;
-  border-bottom-width: 2px;
-  border-top-width: 2px;
+  border-bottom-width: 1px;
+  border-top-width: 1px;
   border-style: solid;
   font-weight: 500;
   font-size: 15px;
-  border-color: #efeff4;
+  border-color: #171d27;
   padding-left: 18px;
   height: 6%;
   min-height: 50px;
   display: flex;
   align-items: center;
-  color: #294255;
-  background-color: white;
+  color: #fcfcfc;
+  /*background-color: white;*/
 }
 
 .chat-window {
@@ -490,7 +547,7 @@
   display: flex;
   flex-direction: column-reverse;
   overflow: auto;
-  background-image: url('/src/assets/background-green-mountains-landscape-illustration.jpg');
+  /*background-image: url('/src/assets/background-green-mountains-landscape-illustration.jpg');*/
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -525,7 +582,8 @@
 }
 
 .chat-box-received .message-container .text {
-  background-color: white;
+  background-color: #161b26;
+  color: #95969d;
   border-radius: 4px;
   padding: 10px;
   padding-top: 6px;
@@ -536,12 +594,12 @@
 .chat-box-received .message-container .date {
   font-size: 10px;
   align-self: flex-start;
-  color: black;
+  color: #95969d;
 }
 
 .chat-box-sent .message-container .date {
   /*color: black;*/
-  color: black;
+  color: #95969d;
 }
 
 
@@ -562,8 +620,9 @@
 }
 
 .chat-box-sent .message-container .text {
-  color: #ffffff;
-  background-image: linear-gradient(310deg, #a663ea, #17c1e8);
+  color: #fcfcfc;
+  /*background-image: linear-gradient(310deg, #a663ea, #17c1e8);*/
+  background-color: #5542f6;
   border-radius: 4px;
   padding: 10px;
   padding-top: 6px;
@@ -579,8 +638,8 @@
 
 .message-bar {
   border-top-style: solid;
-  border-color: #efeff4;
-  border-width: 2px;
+  border-color: #171d27;
+  border-width: 1px;
   height: 70px;
   width: 100%;
   display: flex;
@@ -588,8 +647,12 @@
 
 .message-bar .text-input {
   width: 100%;
-  border: none;
-  background: inherit;
+  height: 55%;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 8px;
+  border-color: #2b2f3a;
+  background-color: #161b26;
   font-family: "Roboto", sans-serif;
   opacity: 0.6;
   outline: none;
@@ -598,22 +661,34 @@
   margin-left: 18px;
 }
 
+.message-bar .text-input::placeholder {
+  color: #a5a5ab;
+  /*padding-left: 10px;*/
+}
+
+.message-bar input{
+  color: #a5a5ab;
+  padding-left: 10px;
+}
+
 .message-bar .send-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #159059;
+  background-color: #5542f6;
   transition: background-color 0.3s ease;
-  margin: 1%;
-  border-radius: 50%;
+  margin-left: 8px;
+  margin-right: 18px;
+  border-radius: 8px;
   width: 10px;
+  height: 38px;
   text-align: center;
   align-self: center;
   outline: none;
 }
 
 .message-bar .send-button:hover {
-  background-color: #157347;
+  background-color: #5542f6;
 }
 
 .message-bar .send-button:active {
@@ -628,7 +703,7 @@
   width: 350px;
   flex-grow: 0;
   flex-shrink: 0;
-  background-color: white;
+  /*background-color: white;*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -653,16 +728,21 @@
 .account-panel .credentials .name {
   margin-top: 8px;
   margin-bottom: -3px;
+  color: #fcfcfc;
 }
 
 .account-panel .credentials .userID {
   margin: 0;
+  color: #95969d;
 }
 
 .account-panel .member-since-container {
   color: black;
   margin-top: 8px;
-  background-color: rgba(189, 189, 189, 0.31);
+  background-color: #161b26;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #2b2f3a;
   border-radius: 8px;
   width: 90%;
   padding: 8px;
@@ -672,11 +752,13 @@
   font-size: 13px;
   padding-bottom: 4px;
   margin: 0;
+  color: #fcfcfc;
 }
 
 .account-panel .member-since-container .date {
   font-size: 13px;
   margin: 0;
+  color: #a5a5ab;
 }
 
 .account-panel .logout-button-container {
@@ -686,24 +768,31 @@
 }
 
 .account-panel .logout-button {
-  background-color: #ee3939;
-  color: #f2f2f2;
+  background-color: inherit;
+  color: #a5a5ab;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #262a34;
   float: right;
   outline: none;
+  transition: background-color 0.3s;
 }
 
 .account-panel .logout-button:hover {
-  background-color: #e23636;
+  background-color: #121a2d;
 }
 
 .account-panel .logout-button:active {
-  background-color: #c32e2e;
+  background-color: #121a2d;
 }
 
 .options-container {
-  color: black;
   margin-top: 8px;
-  background-color: rgba(189, 189, 189, 0.31);
+  background-color: #161b26;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #2b2f3a;
+  color: #a5a5ab;
   border-radius: 8px;
   width: 90%;
 }
@@ -713,6 +802,7 @@
   padding: 6px;
   padding-bottom: 4px;
   margin: 0;
+  color: #fcfcfc;
 }
 
 .options-container .text {
@@ -766,7 +856,22 @@
 .options-container .edit-profile-picture {
   padding: 0;
   margin-top: -6px;
-  color: #313131;
+  color: #72767c;
+}
+
+.options-container .edit-profile-picture .input::file-selector-button {
+  background-color: inherit;
+  color: #72767c;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #2b2f3a;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.options-container .edit-profile-picture .input::file-selector-button:hover {
+  background-color: #121a2d;
+  cursor: pointer;
 }
 
 .options-container .password-prompt {
@@ -785,38 +890,57 @@
   padding: 6px;
 }
 
+.options-container .edit-displayname .input {
+  background-color: inherit;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 4px;
+  border-color: #2b2f3a;
+}
+
+.options-container .password-prompt .input {
+  background-color: inherit;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 4px;
+  border-color: #2b2f3a;
+}
+
 .options-container .password-prompt .submit {
   /*background-color: red;*/
-  background: rgba(255, 0, 0, 0.18);
+  background: rgba(85, 66, 246, 0.18);
   width: 60px;
 }
 
 .options-container .password-prompt .submit:hover {
   /*background-color: #eb0404;*/
-  background: rgba(255, 0, 0, 0.18);
+  background: rgba(85, 66, 246, 0.18);
 }
 
 .options-container .password-prompt .submit:active {
   /*background-color: #c70606;*/
-  background: rgba(255, 0, 0, 0.18);
+  background: rgba(85, 66, 246, 0.18);
 }
 
 .options-container .submit {
-  background-color: #2eaf5c;
+  background-color: #5542f6;
   font-size: 12px;
   color: #eeeeee;
   padding: 6px;
   width: 40px;
   border-radius: 3px;
   outline: none;
+  transition: background-color 0.3s;
 }
 
 .options-container .submit:hover {
-  background-color: #2aa052;
+  background-color: #5c49fe;
+  outline: none;
+  border: none;
 }
 
 .options-container .submit:active {
-  background-color: #218040;
+  background-color: #705fff;
 }
 
 .options-container .delete-account {
@@ -1103,7 +1227,7 @@ form .input-container input {
 .user-status {
   border-radius: 50%;
   border-style: solid;
-  border-color: white;
+  border-color: #0c111d;
   width: 16px;
   height: 16px;
   position: relative;
@@ -1120,8 +1244,12 @@ form .input-container input {
 }
 
 .partner-tab .user-status {
-  width: 15px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  right: 14px;
+  top: 13px;
+  border-width: 2px;
 }
 
 @media (max-width: 1000px) {
@@ -1157,7 +1285,11 @@ form .input-container input {
     width: 60px;
     justify-content: center;
     align-content: center;
-    background: rgba(0, 0, 0, 0.14);
+    background: inherit;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #2b2f3a;
+    color: #72767c;
   }
   .friend-container {
     width: 100%;
@@ -1184,8 +1316,9 @@ form .input-container input {
   }
 
   .partner-tab .user-status {
-    width: 13px;
-    height: 13px;
+    width: 10px;
+    height: 10px;
+    right: 12px;
   }
 
   .app-container {

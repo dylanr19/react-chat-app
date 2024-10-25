@@ -82,7 +82,7 @@ export const ChangePictureOption = ({ setImageURL, setUserData }) => {
                 isChangeImageOpen === false ? null :
                     <div className="edit-profile-picture">
                         {isLoading && <div className="loader"></div>}
-                        <input type="file" className="input" onChange={handleChange}/>
+                        <input type="file"  className="input" onChange={handleChange}/>
                         <div style={{color: 'red', fontSize: 'x-small', paddingLeft: '7px'}}>{errorMessage}</div>
                     </div>
             }

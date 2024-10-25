@@ -10,7 +10,6 @@ export const SidebarContainer = ({ isChatVisible, setIsChatVisible }) => {
                 <ChatTabSearchContainer />
                 <OpenFriendsButton isChatVisible={isChatVisible}
                                    setIsChatVisible={setIsChatVisible}></OpenFriendsButton>
-                <div className={"direct-messages-header"}>DIRECT MESSAGES</div>
                 <ChatTabsWindow />
             </div>
         </>

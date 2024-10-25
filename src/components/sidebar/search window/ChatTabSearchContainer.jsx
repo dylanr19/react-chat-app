@@ -9,7 +9,7 @@ function ChatTabSearchContainer() {
 
     return (
         <SearchBar
-            placeholder={"Find a conversation"}
+            placeholder={"Find a conversation..."}
             ListStates={[{originalList: chatTabs, setCurrentList: setFilteredChatTabs}]}
             SearchComponent={ChatTabSearchBar}>
         </SearchBar>
