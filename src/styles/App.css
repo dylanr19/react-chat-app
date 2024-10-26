@@ -253,6 +253,7 @@
 .friend-item .buttons {
   margin-left: auto;
   align-self: center;
+  z-index: 1;
 }
 
 .friend-item .buttons button {
