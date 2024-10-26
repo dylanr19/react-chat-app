@@ -5,7 +5,7 @@ I created this project for learning purposes.
 
 ## See the App in Action
 
-I host my web app and API on Microsoft Azure. Load times may occasionally vary thanks to the Azure free tier.
+I host my web app on Microsoft Azure. Load times may occasionally vary thanks to the Azure free tier.
 - https://dylanschatapp.xyz/
 
 ## Features
