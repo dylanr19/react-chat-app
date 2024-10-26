@@ -26,10 +26,10 @@ https://github.com/dylanr19/react-chat-app-backend
 ### Tech Stack
 
 * [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-* [![JavaScript](https://img.shields.io/badge/JavaScript-FFEA00?style=for-the-badge&logo=javascript&logoColor=black&textColor=black)](https://www.javascript.com/)
+* [![JavaScript](https://img.shields.io/badge/JavaScript-black?style=for-the-badge&logo=javascript&logoColor=yellow&textColor=white)](https://www.javascript.com/)
 * [![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=.NET&color=blueviolet)](https://docs.microsoft.com/en-us/dotnet/csharp/)
-* [![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?style=for-the-badge&logo=.NET&logoColor=white&color=0c2c65)](https://dotnet.microsoft.com/apps/aspnet)
 * [![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework%20Core-7A3F5C?style=for-the-badge&logo=.NET&logoColor=white&color=9932CC)](https://docs.microsoft.com/en-us/ef/core/)
+* [![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?style=for-the-badge&logo=.NET&logoColor=white&color=0c2c65)](https://dotnet.microsoft.com/apps/aspnet)
 * [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/index.html)
 * [![Insomnia](https://img.shields.io/badge/Insomnia-5849BE?style=for-the-badge&logo=insomnia&logoColor=white)](https://insomnia.rest/)
 
