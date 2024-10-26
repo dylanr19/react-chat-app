@@ -7,8 +7,10 @@ export const formatDate = (date, setLocalisedDate) => {
         }))
 
     }  else {
-        // Chat Message was fetched from server and includes UTC date of when it was sent
-        const messageSentDate = new Date(date + 'Z') // The dates in the database are saved in UTC+0
+        // Chat Message fetched/received from backend and already includes the date
+        const messageSentDate = date.endsWith('Z')
+            ? new Date(date) // message was forwarded while this client is online
+            : new Date(date + 'Z') // message fetched from db, where dates are saved without timezone
         const today = new Date()
 
         if (today.getDay() === messageSentDate.getDay() &&
