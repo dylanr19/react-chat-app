@@ -12,17 +12,11 @@ function AddFriendsWindow() {
         if (response.status === 201 || response.status === 204)
             setMessage(`Your friend request to ${userId} was sent.`)
 
-        // if (response.status === 400)
-            // setMessage('You can not add yourself as a friend.')
+        else if (response.status === 500 )
+            setMessage('An unexpected error has occurred in the server, please try again.')
 
-        if (response.status === 404)
-            setMessage('This user does not exist.')
-
-        if (response.status === 409)
-            setMessage('This user is either already a friend or has a pending friend request.')
-
-        else if (response.status === 500)
-            setMessage('Server error, please try again.')
+        else
+            setMessage(response.data)
     }
 
     return(
