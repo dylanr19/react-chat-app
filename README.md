@@ -3,6 +3,11 @@
 This is my first personal project built with **ReactJS** and **C#**. It is a messaging webapp that allows users to communicate in real-time.
 I created this project for learning purposes.
 
+## See the App in Action
+
+I host my web app and API on Microsoft Azure. Load times may occasionally vary thanks to the Azure free tier.
+- https://dylanschatapp.xyz/
+
 ## Features
 
 - **Real-Time Messaging**: Send and receive messages instantly.
@@ -21,7 +26,6 @@ I created this project for learning purposes.
 ## Back-end
 
 https://github.com/dylanr19/react-chat-app-backend
-
 
 ### Tech Stack
 
