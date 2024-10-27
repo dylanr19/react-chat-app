@@ -3,6 +3,11 @@
 This is my first personal project built with **ReactJS** and **C#**. It is a messaging webapp that allows users to communicate in real-time.
 I created this project for learning purposes.
 
+## See the App in Action
+
+I host my web app on Microsoft Azure. Load times may occasionally vary thanks to the Azure free tier.
+- https://lemon-ground-07d72aa03.5.azurestaticapps.net/
+
 ## Features
 
 - **Real-Time Messaging**: Send and receive messages instantly.
@@ -21,7 +26,6 @@ I created this project for learning purposes.
 ## Back-end
 
 https://github.com/dylanr19/react-chat-app-backend
-
 
 ### Tech Stack
 
@@ -62,15 +66,13 @@ You need to have nodejs and npm installed on your computer.
 <!-- USAGE EXAMPLES -->
 ## Screenshots
 
-![Chat](https://github.com/user-attachments/assets/97c325c4-68be-40bd-a199-edffb17ff95d)
+![darkmodechatnew](https://github.com/user-attachments/assets/514c3cb4-d63b-42c0-897a-6b38f69c4ebf)
 
-![Friends](https://github.com/user-attachments/assets/2a8d67b7-89c0-4f8f-ac5d-8ff8284047f0)
+![dark mode friends](https://github.com/user-attachments/assets/96b2fbd3-7316-44c9-9ff6-0f98fdb6cc7b)
 
-![login](https://github.com/user-attachments/assets/cf6b35bf-e766-4a64-aa51-f3c313fed68a)
+![darkmode incoming](https://github.com/user-attachments/assets/eb7ded8e-a49a-4c12-876f-b15bc615739e)
 
-![Unbenannt](https://github.com/user-attachments/assets/1be929dd-b65e-48fa-860a-090073efa433)
-
-![userstatus](https://github.com/user-attachments/assets/792ed9e1-e98c-4590-8c24-371afd4449bf)
+![logindarkmode](https://github.com/user-attachments/assets/b409ca3a-4a8d-4c99-8cd8-9657a59cff02)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
