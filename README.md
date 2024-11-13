@@ -1,6 +1,6 @@
 ## About The Project
 
-This is my first portfolio project built with **ReactJS** and **C#**. It is a messaging webapp that allows users to communicate in real-time.
+This is my first portfolio project built with **ReactJS** and **.NET**. It is a messaging webapp that allows users to communicate in real-time.
 For the design i took inspiration from existing messaging apps like slack & discord.
 
 ## See the App in Action
